@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>syifarw | Cute & Elegant Affiliate Links</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FFF8F9; /* Soft blush white */
+            color: #4A4A4A;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- PALETTE WARNA --- */
+        :root {
+            --primary-cute: #FFB7B2; /* Pastel Pink */
+            --secondary-elegant: #6C5B7B; /* Deep Elegant Mauve */
+            --accent-gold: #D4AF37; /* Hint of Gold for elegance */
+            --white: #FFFFFF;
+            --card-bg: #FFF0F2;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: var(--white);
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(255, 183, 178, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary-cute);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--secondary-elegant);
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: var(--primary-cute);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        nav ul li a {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--secondary-elegant);
+            transition: 0.3s;
+        }
+        nav ul li a:hover {
+            color: var(--primary-cute);
+        }
+
+        /* --- HERO & SEARCH BY NUMBER --- */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, #FFE5E7 0%, #FFF8F9 100%);
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: var(--secondary-elegant);
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 16px;
+            color: #888;
+            margin-bottom: 30px;
+        }
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .search-box {
+            width: 100%;
+            padding: 16px 25px;
+            border-radius: 30px;
+            border: 2px solid var(--primary-cute);
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 10px 25px rgba(255, 183, 178, 0.2);
+            transition: 0.3s;
+        }
+        .search-box:focus {
+            border-color: var(--secondary-elegant);
+        }
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--secondary-elegant);
+            color: var(--white);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .search-btn:hover {
+            background-color: var(--primary-cute);
+            color: var(--secondary-elegant);
+        }
+
+        /* --- CATEGORIES SECTION --- */
+        .categories {
+            padding: 40px 10%;
+            text-align: center;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--secondary-elegant);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '🌸';
+            display: block;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .category-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .category-item {
+            background-color: var(--white);
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--secondary-elegant);
+            border: 1px solid rgba(255, 183, 178, 0.4);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .category-item:hover, .category-item.active {
+            background-color: var(--primary-cute);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* --- PRODUCT GRID --- */
+        .products {
+            padding: 20px 10% 80px 10%;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+        }
+        .product-card {
+            background-color: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255, 183, 178, 0.2);
+            transition: 0.3s;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 183, 178, 0.3);
+        }
+        .product-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--secondary-elegant);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 10;
+        }
+        .product-img {
+            width: 100%;
+            height: 220px;
+            background-color: var(--card-bg); /* Placeholder kalau belum ada gambar */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-cute);
+            font-size: 40px;
+        }
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+        .product-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .product-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary-cute);
+            color: var(--white);
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .product-btn:hover {
+            background-color: var(--secondary-elegant);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--secondary-elegant);
+            color: var(--white);
+            text-align: center;
+            padding: 30px;
+            font-size: 14px;
+        }
+        footer span {
+            color: var(--primary-cute);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; }
+            .hero h1 { font-size: 32px; }
+            .products { padding: 20px 5% 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">syifa<span>rw.</span></div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">TikTok</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Find Your Cute Stuff ✨</h1>
+        <p>Cari kode angka di video/postingan aku untuk langsung dapet link produknya!</p>
+        <div class="search-container">
+            <input type="number" class="search-box" placeholder="Masukkan Angka / Kode Produk... (Contoh: 101)" id="searchNumber">
+            <button class="search-btn" onclick="searchByNumber()">Cari</button>
+        </div>
+    </section>
+
+    <section class="categories">
+        <h2 class="section-title">Pilih Kategori</h2>
+        <div class="category-grid">
+            <div class="category-item active">Semua</div>
+            <div class="category-item">Fashion</div>
+            <div class="category-item">Beauty</div>
+            <div class="category-item">Room Decor</div>
+            <div class="category-item">Aksesoris</div>
+        </div>
+    </section>
+
+    <section class="products">
+        <div class="product-grid" id="productGrid">
+            
+            <div class="product-card" data-number="101">
+                <div class="product-number">#101</div>
+                <div class="product-img">🎀</div> 
+                <div class="product-info">
+                    <div class="product-title">Cardigan Rajut Pita Korean Style</div>
+                    <a href="https://shopee.co.id" target="_blank" class="product-btn">Beli Produk</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-number="102">
+                <div class="product-number">#102</div>
+                <div class="product-img">💄</div>
+                <div class="product-info">
+                    <div class="product-title">Lip Tint Glossy Soft Pink</div>
+                    <a href="#" target="_blank" class="product-btn">Beli Produk</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-number="103">
+                <div class="product-number">#103</div>
+                <div class="product-img">⏰</div>
+                <div class="product-info">
+                    <div class="product-title">Jam Dinding Aesthetic Minimalis</div>
+                    <a href="#" target="_blank" class="product-btn">Beli Produk</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-number="104">
+                <div class="product-number">#104</div>
+                <div class="product-img">🧸</div>
+                <div class="product-info">
+                    <div class="product-title">Gantungan Kunci Beruang Bulu</div>
+                    <a href="#" target="_blank" class="product-btn">Beli Produk</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 <span>syifarw</span>. Built with love and elegance 💕</p>
+    </footer>
+
+    <script>
+        function searchByNumber() {
+            let input = document.getElementById('searchNumber').value;
+            let cards = document.getElementsByClassName('product-card');
+            let found = false;
+
+            for (let i = 0; i < cards.length; i++) {
+                let productNum = cards[i].getAttribute('data-number');
+                
+                if (input === "") {
+                    cards[i].style.display = "block"; // Jika kosong, tampilkan semua
+                    found = true;
+                } else if (productNum === input) {
+                    cards[i].style.display = "block"; // Tampilkan yang cocok
+                    found = true;
+                } else {
+                    cards[i].style.display = "none"; // Sembunyikan yang tidak cocok
+                }
+            }
+
+            if(!found) {
+                alert("Yah, produk dengan nomor tersebut belum ada nih 🥺");
+            }
+        }
+
+        // Jalankan pencarian juga saat user menekan tombol 'Enter' di keyboard
+        document.getElementById('searchNumber').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                searchByNumber();
+            }
+        });
+    </script>
+</body>
+</html>
