@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Capital — FX Macro Research Weekly · Juni 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500;600&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#070c14; --bg2:#0c1320; --bg3:#111d2e; --bg4:#162338; --panel:#0f1a28;
+  --border:#1e3050; --border2:#243d5e; --gold:#c8a84b; --gold2:#e0c570; --gold-dim:#8a6f2e;
+  --amber:#e8962a; --green:#2eca8b; --green-dim:#1a7a54; --red:#e84040; --red-dim:#7a2020;
+  --yellow:#f5c842; --blue:#4a9eff; --blue-dim:#1e4a80; --teal:#2abcca;
+  --text:#c8d8e8; --text2:#8aa0b8; --text3:#506070; --white:#e8f0f8;
+  --accent:#c8a84b; --glow:rgba(200,168,75,0.12); --glow2:rgba(200,168,75,0.05);
+  --orange:#e8962a; --orange-dim:rgba(232,150,42,0.15);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+  position: relative;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);
+  pointer-events: none;
+  z-index: 9999;
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.4;
+}
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 240px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+  background: var(--bg2);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+.sidebar::-webkit-scrollbar { width: 3px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+.sidebar-brand { padding: 24px 20px 20px; border-bottom: 1px solid var(--border); background: linear-gradient(135deg, var(--bg3), var(--bg2)); }
+.sidebar-brand .logo { font-family: 'DM Serif Display', serif; color: var(--gold); font-size: 18px; letter-spacing: 0.02em; }
+.sidebar-brand .sub { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--text3); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+.nav-section { padding: 12px 0 4px; border-bottom: 1px solid var(--border); }
+.nav-section:last-child { border-bottom: none; }
+.nav-section-label { font-family: 'IBM Plex Mono', monospace; font-size: 8.5px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.12em; padding: 0 20px 6px; }
+.nav-item { display: flex; align-items: center; gap: 10px; padding: 7px 20px; color: var(--text2); text-decoration: none; font-family: 'IBM Plex Mono', monospace; font-size: 11px; transition: all 0.15s; border-left: 2px solid transparent; }
+.nav-item:hover { color: var(--gold); background: var(--glow2); border-left-color: var(--gold-dim); }
+.nav-item.active { color: var(--gold); background: var(--glow); border-left-color: var(--gold); }
+.nav-num { font-size: 9px; color: var(--text3); min-width: 20px; }
+.main { flex: 1; padding: 0 32px 60px; min-width: 0; }
+.report-header { padding: 48px 0 40px; border-bottom: 1px solid var(--border); margin-bottom: 48px; position: relative; }
+.report-header::after { content: ''; display: block; width: 120px; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); margin-top: 24px; }
+.header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
+.org-name { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--gold); letter-spacing: 0.01em; }
+.org-sub { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text3); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.1em; }
+.header-meta { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.header-meta .badge { background: var(--gold-dim); color: var(--gold2); font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.1em; }
+.meta-row { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text3); }
+.meta-row span { color: var(--text2); }
+.report-title { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--white); line-height: 1.2; margin-bottom: 10px; }
+.report-title em { color: var(--gold); font-style: italic; }
+.report-subtitle { font-family: 'Libre Franklin', sans-serif; font-size: 14px; color: var(--text2); font-weight: 300; }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+.live-dot { display: inline-block; width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: pulse 2s ease-in-out infinite; vertical-align: middle; margin-right: 5px; }
+.section { margin-bottom: 56px; scroll-margin-top: 32px; }
+.section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid var(--border); position: relative; }
+.section-header::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 60px; height: 2px; background: var(--gold); }
+.section-num { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--gold-dim); text-transform: uppercase; letter-spacing: 0.15em; background: var(--glow2); padding: 3px 8px; border: 1px solid var(--border); border-radius: 2px; white-space: nowrap; }
+.section-title { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--white); }
+.sub-section { margin-bottom: 40px; scroll-margin-top: 32px; }
+.sub-section-title { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.market-banner { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin-bottom: 32px; padding: 20px; background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; }
+.market-item-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 3px; }
+.market-item-val { font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--gold2); font-weight: 500; }
+.market-item-sub { font-size: 10px; color: var(--text3); margin-top: 2px; }
+.tbl-wrap { overflow-x: auto; margin-bottom: 24px; border: 1px solid var(--border); border-radius: 4px; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+thead th { background: var(--bg3); color: var(--gold); font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border2); white-space: nowrap; }
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--glow2); }
+tbody td { padding: 9px 12px; color: var(--text); vertical-align: top; line-height: 1.5; }
+tbody td:first-child { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--white); font-weight: 500; white-space: nowrap; }
+.tbl-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text3); }
+.badge-hawkish { display: inline-block; background: rgba(232,150,42,0.15); color: var(--amber); border: 1px solid rgba(232,150,42,0.3); font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; padding: 2px 7px; border-radius: 2px; white-space: nowrap; }
+.badge-dovish { display: inline-block; background: rgba(74,158,255,0.12); color: var(--blue); border: 1px solid rgba(74,158,255,0.25); font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; padding: 2px 7px; border-radius: 2px; white-space: nowrap; }
+.badge-neutral { display: inline-block; background: rgba(245,200,66,0.1); color: var(--yellow); border: 1px solid rgba(245,200,66,0.2); font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; padding: 2px 7px; border-radius: 2px; white-space: nowrap; }
+.badge-hold { display: inline-block; background: rgba(42,188,202,0.12); color: var(--teal); border: 1px solid rgba(42,188,202,0.25); font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; padding: 2px 7px; border-radius: 2px; white-space: nowrap; }
+.impact-high { color: var(--red); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; }
+.impact-med { color: var(--yellow); font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+.impact-low { color: var(--green); font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+.heat-strong-bull { background: rgba(46,202,139,0.18); color: var(--green); font-weight: 600; }
+.heat-bull { background: rgba(46,202,139,0.08); color: #6edfb5; }
+.heat-neutral { background: rgba(245,200,66,0.08); color: var(--yellow); }
+.heat-bear { background: rgba(232,64,64,0.08); color: #f07070; }
+.heat-strong-bear { background: rgba(232,64,64,0.18); color: var(--red); font-weight: 600; }
+.info-box { padding: 12px 16px; border-radius: 3px; border-left: 3px solid; margin-bottom: 14px; font-size: 13px; line-height: 1.6; }
+.info-box.warn { background: rgba(245,200,66,0.07); border-color: var(--yellow); color: var(--text); }
+.info-box.bull-box { background: rgba(46,202,139,0.07); border-color: var(--green); color: var(--text); }
+.info-box.bear-box { background: rgba(232,64,64,0.07); border-color: var(--red); color: var(--text); }
+.info-box.info-blue { background: rgba(74,158,255,0.07); border-color: var(--blue); color: var(--text); }
+.info-box.info-amber { background: rgba(232,150,42,0.07); border-color: var(--amber); color: var(--text); }
+.currency-card { border: 1px solid var(--border); border-radius: 4px; margin-bottom: 16px; overflow: hidden; background: var(--bg2); transition: border-color 0.2s; }
+.currency-card:hover { border-color: var(--border2); }
+.currency-card-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; cursor: pointer; background: var(--bg3); transition: background 0.15s; user-select: none; }
+.currency-card-header:hover { background: var(--bg4); }
+.currency-flag-title { display: flex; align-items: center; gap: 14px; }
+.currency-flag { font-size: 24px; }
+.currency-name { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--white); }
+.currency-pair { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text3); margin-top: 2px; }
+.currency-bias-badge { display: flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+.toggle-icon { color: var(--text3); transition: transform 0.25s; font-size: 10px; }
+.currency-card.open .toggle-icon { transform: rotate(180deg); }
+.currency-card-body { display: none; padding: 20px; border-top: 1px solid var(--border); }
+.currency-card.open .currency-card-body { display: block; }
+.scenario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+.scenario-block { padding: 14px 16px; border-radius: 3px; border: 1px solid; }
+.scenario-block.bull { background: rgba(46,202,139,0.05); border-color: rgba(46,202,139,0.25); }
+.scenario-block.bear { background: rgba(232,64,64,0.05); border-color: rgba(232,64,64,0.25); }
+.scenario-block.neut { background: rgba(245,200,66,0.05); border-color: rgba(245,200,66,0.2); }
+.scenario-block.tail { background: rgba(200,168,75,0.05); border-color: rgba(200,168,75,0.2); }
+.scenario-title { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+.scenario-block.bull .scenario-title { color: var(--green); }
+.scenario-block.bear .scenario-title { color: var(--red); }
+.scenario-block.neut .scenario-title { color: var(--yellow); }
+.scenario-block.tail .scenario-title { color: var(--gold); }
+.scenario-block p, .scenario-block li { font-size: 12.5px; color: var(--text); line-height: 1.6; }
+.scenario-block ul { padding-left: 16px; margin-top: 6px; }
+.scenario-block li { margin-bottom: 4px; }
+.snapshot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-bottom: 20px; }
+.snapshot-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 3px; padding: 11px 14px; }
+.snapshot-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
+.snapshot-val { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--white); }
+.theme-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 20px; margin-bottom: 14px; }
+.theme-number { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--gold-dim); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 8px; }
+.theme-title { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--white); margin-bottom: 14px; }
+.theme-row { display: flex; gap: 12px; padding: 8px 0; border-top: 1px solid var(--border); font-size: 13px; line-height: 1.5; }
+.theme-row-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--gold); min-width: 120px; padding-top: 1px; flex-shrink: 0; }
+.risk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 20px; }
+.risk-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 3px; padding: 14px 16px; }
+.risk-item-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+.risk-item-val { font-family: 'IBM Plex Mono', monospace; font-size: 16px; color: var(--gold2); margin-bottom: 4px; }
+.risk-item-desc { font-size: 11.5px; color: var(--text2); line-height: 1.5; }
+.katalis-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.katalis-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text2); min-width: 200px; flex-shrink: 0; }
+.katalis-track { flex: 1; height: 6px; background: var(--bg4); border-radius: 3px; overflow: hidden; }
+.katalis-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+.katalis-pct { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text2); min-width: 36px; text-align: right; }
+.stars { color: var(--gold); font-size: 13px; }
+.stars-empty { color: var(--text3); font-size: 13px; }
+.bull { color: var(--green); }
+.bear { color: var(--red); }
+.neutral-c { color: var(--yellow); }
+.info-c { color: var(--blue); }
+.gold-c { color: var(--gold); }
+.mono { font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+.amber-c { color: var(--amber); }
+.play-card { background: var(--bg3); border: 1px solid var(--border2); border-radius: 4px; padding: 20px; margin-bottom: 14px; position: relative; }
+.play-number { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--gold-dim); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 8px; }
+.play-title { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--gold); margin-bottom: 12px; }
+.play-row { display: flex; gap: 10px; padding: 6px 0; border-top: 1px solid var(--border); font-size: 12.5px; }
+.play-row-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text3); min-width: 130px; flex-shrink: 0; padding-top: 1px; }
+.week-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 16px 20px; margin-bottom: 12px; }
+.week-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.week-badge { font-family: 'IBM Plex Mono', monospace; font-size: 9px; background: var(--gold-dim); color: var(--gold2); padding: 2px 8px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.1em; }
+.week-dates { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text3); }
+.ranking-list { list-style: none; padding: 0; margin: 0; }
+.ranking-item { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.ranking-item:last-child { border-bottom: none; }
+.ranking-num { font-family: 'IBM Plex Mono', monospace; font-size: 18px; color: var(--gold); min-width: 30px; line-height: 1; }
+.ranking-content { flex: 1; }
+.ranking-event { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--white); margin-bottom: 4px; }
+.ranking-reason { font-size: 12.5px; color: var(--text2); line-height: 1.5; }
+p { margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+.content-block { margin-bottom: 20px; }
+.content-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+.regime-badge { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; padding: 2px 8px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+.regime-stagflation { background: rgba(232,64,64,0.15); color: #f07070; border: 1px solid rgba(232,64,64,0.3); }
+.regime-reflation { background: rgba(46,202,139,0.12); color: var(--green); border: 1px solid rgba(46,202,139,0.25); }
+.regime-deflation { background: rgba(74,158,255,0.12); color: var(--blue); border: 1px solid rgba(74,158,255,0.25); }
+.regime-expansion { background: rgba(200,168,75,0.12); color: var(--gold); border: 1px solid rgba(200,168,75,0.25); }
+.divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+#disclaimer { padding: 32px 0; border-top: 1px solid var(--border); margin-top: 60px; }
+.disclaimer-text { font-family: 'Libre Franklin', sans-serif; font-size: 12px; color: var(--text3); line-height: 1.7; max-width: 700px; }
+@media (max-width: 900px) { .sidebar { display: none; } .main { padding: 0 16px 40px; } }
+@media (max-width: 600px) { .scenario-grid, .risk-grid { grid-template-columns: 1fr; } }
+@media print { .sidebar { display: none; } .currency-card-body { display: block !important; } body { background: white; color: black; } body::before, body::after { display: none; } }
+strong { color: var(--white); font-weight: 600; }
+em { color: var(--gold); font-style: italic; }
+code { font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: var(--bg4); padding: 1px 5px; border-radius: 2px; color: var(--teal); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.panel { background: var(--bg3); border: 1px solid var(--border); border-radius: 3px; padding: 16px; }
+.panel-title { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+.bullet-list { list-style: none; padding: 0; }
+.bullet-list li { padding: 5px 0 5px 14px; border-bottom: 1px solid var(--border); font-size: 12.5px; color: var(--text); line-height: 1.5; position: relative; }
+.bullet-list li:last-child { border-bottom: none; }
+.bullet-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold-dim); font-family: 'IBM Plex Mono', monospace; }
+.intraweek-block {
+  margin-bottom: 36px;
+  border: 1px solid rgba(42,188,202,0.35);
+  border-left: 4px solid var(--teal);
+  border-radius: 4px;
+  background: rgba(42,188,202,0.04);
+  overflow: hidden;
+}
+.intraweek-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 20px;
+  background: rgba(42,188,202,0.08);
+  border-bottom: 1px solid rgba(42,188,202,0.2);
+}
+.intraweek-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  background: rgba(42,188,202,0.2);
+  color: var(--teal);
+  border: 1px solid rgba(42,188,202,0.4);
+  padding: 2px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+.intraweek-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--teal);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.intraweek-body { padding: 18px 20px; }
+.intraweek-section-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+  margin-top: 16px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(42,188,202,0.15);
+}
+.intraweek-section-label:first-child { margin-top: 0; }
+.iw-prose { font-size: 12.5px; color: var(--text); line-height: 1.65; }
+.iw-prose strong { color: var(--white); }
+.iw-prose .teal { color: var(--teal); }
+.iw-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  white-space: nowrap;
+  text-align: center;
+}
+.iw-label.beat { background: rgba(46,202,139,0.15); color: var(--green); border: 1px solid rgba(46,202,139,0.3); }
+.iw-label.miss { background: rgba(232,64,64,0.12); color: var(--red); border: 1px solid rgba(232,64,64,0.25); }
+.iw-label.inline { background: rgba(245,200,66,0.1); color: var(--yellow); border: 1px solid rgba(245,200,66,0.2); }
+.iw-label.kjut { background: rgba(232,150,42,0.15); color: var(--amber); border: 1px solid rgba(232,150,42,0.3); }
+.iw-pelengkap { background: rgba(80,96,112,0.25); color: var(--text3); border: 1px solid rgba(80,96,112,0.3); font-family:'IBM Plex Mono',monospace; font-size:9.5px; padding:2px 6px; border-radius:2px; white-space:nowrap; text-align:center; }
+.iw-utama { background: rgba(200,168,75,0.12); color: var(--gold); border: 1px solid rgba(200,168,75,0.3); font-family:'IBM Plex Mono',monospace; font-size:9.5px; padding:2px 6px; border-radius:2px; white-space:nowrap; text-align:center; }
+.blackout-box {
+  margin-top: 16px;
+  border: 1px solid rgba(232,64,64,0.4);
+  border-left: 4px solid var(--red);
+  background: rgba(232,64,64,0.05);
+  border-radius: 3px;
+  padding: 12px 16px;
+}
+.blackout-header {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--red);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.blackout-item {
+  font-size: 12.5px;
+  color: var(--text);
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(232,64,64,0.1);
+  display: flex;
+  gap: 10px;
+}
+.blackout-item:last-child { border-bottom: none; }
+.blackout-item .when { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--red); min-width: 140px; flex-shrink: 0; }
+tr.updated-row { background: rgba(42,188,202,0.05) !important; }
+tr.updated-row:hover { background: rgba(42,188,202,0.09) !important; }
+.update-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--teal);
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.update-dot-4jun {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--yellow);
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.week-badge.done {
+  background: rgba(46,202,139,0.12);
+  color: var(--green);
+  border: 1px solid rgba(46,202,139,0.3);
+}
+.week-card.done-card {
+  border-color: rgba(46,202,139,0.2);
+  background: rgba(46,202,139,0.03);
+}
+.scorecard-row { display: grid; grid-template-columns: 180px 1fr 120px 120px 50px 1fr; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--border); align-items: start; font-size: 12px; }
+.scorecard-header { background: var(--bg3); font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.07em; padding: 10px 14px; border-bottom: 1px solid var(--border2); }
+.iw-label.kjut-big {
+  background: rgba(232,150,42,0.2);
+  color: var(--amber);
+  border: 1px solid rgba(232,150,42,0.5);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9.5px;
+  padding:2px 6px;
+  border-radius:2px;
+  white-space:nowrap;
+  text-align:center;
+  animation: pulse-amber 2s ease-in-out infinite;
+}
+@keyframes pulse-amber {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232,150,42,0); }
+  50% { box-shadow: 0 0 6px 2px rgba(232,150,42,0.3); }
+}
+.kejutan-block {
+  margin-top: 14px;
+  border: 1px solid rgba(232,150,42,0.45);
+  border-left: 4px solid var(--amber);
+  background: rgba(232,150,42,0.05);
+  border-radius: 3px;
+  padding: 14px 16px;
+}
+.kejutan-header {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--amber);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+/* ===== 3 JUN UPDATE STYLING ===== */
+.intraweek-3jun {
+  margin-bottom: 36px;
+  border: 1px solid rgba(46,202,139,0.35);
+  border-left: 4px solid var(--green);
+  border-radius: 4px;
+  background: rgba(46,202,139,0.03);
+  overflow: hidden;
+}
+.intraweek-3jun .intraweek-header {
+  background: rgba(46,202,139,0.07);
+  border-bottom: 1px solid rgba(46,202,139,0.2);
+}
+.intraweek-3jun .intraweek-tag {
+  background: rgba(46,202,139,0.2);
+  color: var(--green);
+  border-color: rgba(46,202,139,0.4);
+}
+.intraweek-3jun .intraweek-title { color: var(--green); }
+.intraweek-3jun .intraweek-section-label {
+  color: var(--green);
+  border-bottom-color: rgba(46,202,139,0.15);
+}
+/* ===== 4 JUN UPDATE STYLING ===== */
+.intraweek-4jun {
+  margin-bottom: 36px;
+  border: 1px solid rgba(245,200,66,0.4);
+  border-left: 4px solid var(--yellow);
+  border-radius: 4px;
+  background: rgba(245,200,66,0.03);
+  overflow: hidden;
+}
+.intraweek-4jun .intraweek-header {
+  background: rgba(245,200,66,0.07);
+  border-bottom: 1px solid rgba(245,200,66,0.2);
+}
+.intraweek-4jun .intraweek-tag {
+  background: rgba(245,200,66,0.2);
+  color: var(--yellow);
+  border: 1px solid rgba(245,200,66,0.4);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+.intraweek-4jun .intraweek-title {
+  color: var(--yellow);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.intraweek-4jun .intraweek-section-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  color: var(--yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+  margin-top: 16px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(245,200,66,0.15);
+}
+.intraweek-4jun .intraweek-section-label:first-child { margin-top: 0; }
+/* Row highlight untuk 4 Jun */
+tr.updated-row-4jun { background: rgba(245,200,66,0.04) !important; }
+tr.updated-row-4jun:hover { background: rgba(245,200,66,0.08) !important; }
+/* ADP beat styling — pelengkap */
+.iw-label.beat-pelengkap {
+  background: rgba(46,202,139,0.08);
+  color: #6edfb5;
+  border: 1px solid rgba(46,202,139,0.2);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9.5px;
+  padding:2px 6px;
+  border-radius:2px;
+  white-space:nowrap;
+}
+/* ISM Services Prices beat pelengkap */
+.week-card.today-card {
+  border-color: rgba(42,188,202,0.35);
+  background: rgba(42,188,202,0.03);
+}
+.week-badge.today {
+  background: rgba(42,188,202,0.15);
+  color: var(--teal);
+  border: 1px solid rgba(42,188,202,0.4);
+}
+/* MISSION CRITICAL notice box */
+.critical-box {
+  border: 1px solid rgba(232,64,64,0.5);
+  border-left: 4px solid var(--red);
+  background: rgba(232,64,64,0.06);
+  border-radius: 3px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.critical-header {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--red);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+/* 4 Jun MISS label */
+.iw-label.miss-4jun {
+  background: rgba(232,64,64,0.1);
+  color: #f07070;
+  border: 1px solid rgba(232,64,64,0.2);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9.5px;
+  padding:2px 6px;
+  border-radius:2px;
+  white-space:nowrap;
+}
+/* Pre-NFP softening notice */
+.softening-box {
+  border: 1px solid rgba(245,200,66,0.45);
+  border-left: 4px solid var(--yellow);
+  background: rgba(245,200,66,0.04);
+  border-radius: 3px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.softening-header {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--yellow);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar">
+  <div class="sidebar-brand">
+    <div class="logo">Nova Capital</div>
+    <div class="sub">FX Macro Research &middot; Juni 2026</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Navigasi Laporan</div>
+    <a class="nav-item" href="#intraweek-update-4jun"><span class="nav-num">&#9889;</span>Update 4 Jun (NY)</a>
+    <a class="nav-item" href="#katalis"><span class="nav-num">00</span>Katalis Tracker</a>
+    <a class="nav-item" href="#langkah1"><span class="nav-num">01</span>Kondisi Pasar</a>
+    <a class="nav-item" href="#langkah2"><span class="nav-num">02</span>Kalender Ekonomi</a>
+    <a class="nav-item" href="#langkah3"><span class="nav-num">03</span>Skenario Per Mata Uang</a>
+    <a class="nav-item" href="#langkah4"><span class="nav-num">04</span>Divergence Matrix</a>
+    <a class="nav-item" href="#langkah5"><span class="nav-num">05</span>Ringkasan Eksekutif</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Mata Uang</div>
+    <a class="nav-item" href="#usd"><span class="nav-num">&#127482;&#127480;</span>USD</a>
+    <a class="nav-item" href="#eur"><span class="nav-num">&#127466;&#127482;</span>EUR</a>
+    <a class="nav-item" href="#gbp"><span class="nav-num">&#127468;&#127463;</span>GBP</a>
+    <a class="nav-item" href="#jpy"><span class="nav-num">&#127471;&#127477;</span>JPY</a>
+    <a class="nav-item" href="#aud"><span class="nav-num">&#127462;&#127482;</span>AUD</a>
+    <a class="nav-item" href="#nzd"><span class="nav-num">&#127475;&#127487;</span>NZD</a>
+    <a class="nav-item" href="#cad"><span class="nav-num">&#127464;&#127462;</span>CAD</a>
+    <a class="nav-item" href="#chf"><span class="nav-num">&#127464;&#127469;</span>CHF</a>
+    <a class="nav-item" href="#cny"><span class="nav-num">&#127464;&#127475;</span>CNY</a>
+    <a class="nav-item" href="#idr"><span class="nav-num">&#127470;&#127465;</span>IDR</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Multi-Aset</div>
+    <a class="nav-item" href="#xauusd"><span class="nav-num">&#127945;</span>XAUUSD</a>
+    <a class="nav-item" href="#btc"><span class="nav-num">&#8383;</span>Bitcoin</a>
+  </div>
+  <div class="nav-section">
+    <a class="nav-item" href="#disclaimer"><span class="nav-num">&#9888;</span>Disclaimer</a>
+  </div>
+</nav>
+<main class="main">
+
+  <div class="report-header">
+    <div class="header-top">
+      <div class="header-logo-area">
+        <div class="org-name">Nova Capital</div>
+        <div class="org-sub">Forex Macro Research &middot; Global Macro Institutional</div>
+      </div>
+      <div class="header-meta">
+        <div class="badge">Edisi Juni 2026</div>
+        <div class="meta-row">Penulis: <span>Bima Galih</span></div>
+        <div class="meta-row">Distribusi: <span>INTERNAL &mdash; Komunitas Trading Nova Capital</span></div>
+        <div class="meta-row"><span class="live-dot"></span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">Diterbitkan: 31 Mei 2026 &middot; Diupdate: 4 Juni 2026 (Sesi New York)</span></div>
+      </div>
+    </div>
+    <div class="report-title">FX Macro Research <em>Weekly</em></div>
+    <div class="report-subtitle">Baseline 25&ndash;29 Mei 2026 &rarr; Forward Outlook 1&ndash;5 Juni 2026 &middot; Analisis Divergensi Kebijakan Moneter Global, Regime Pasar, dan Skenario Mata Uang</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- UPDATE INTRAWEEK 4 JUN 2026 — NEW YORK SESSION           -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="intraweek-4jun" id="intraweek-update-4jun">
+    <div class="intraweek-header">
+      <span class="intraweek-tag">&#128993; UPDATE INTRAWEEK</span>
+      <span class="intraweek-title">4 Juni 2026 &mdash; Sesi New York &mdash; Pre-NFP Softening Signal</span>
+    </div>
+    <div class="intraweek-body">
+
+      <div class="intraweek-section-label">Data yang Diproses Hari Ini</div>
+      <div class="iw-prose">
+        <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:14px;">
+          <thead>
+            <tr style="background:rgba(245,200,66,0.07);">
+              <th style="padding:8px 10px;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid rgba(245,200,66,0.2);">Kode</th>
+              <th style="padding:8px 10px;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid rgba(245,200,66,0.2);">Event</th>
+              <th style="padding:8px 10px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid rgba(245,200,66,0.2);">Kons.</th>
+              <th style="padding:8px 10px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid rgba(245,200,66,0.2);">Aktual</th>
+              <th style="padding:8px 10px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid rgba(245,200,66,0.2);">Label</th>
+              <th style="padding:8px 10px;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid rgba(245,200,66,0.2);">Tier</th>
+              <th style="padding:8px 10px;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid rgba(245,200,66,0.2);">Cabang</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(245,200,66,0.1);">
+              <td style="padding:8px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--white);">15</td>
+              <td style="padding:8px 10px;font-size:12.5px;color:var(--text);">Initial Jobless Claims MAY/30</td>
+              <td style="padding:8px 10px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;">213K</td>
+              <td style="padding:8px 10px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);">225K</td>
+              <td style="padding:8px 10px;text-align:center;"><span class="iw-label miss">MISS 🔻 +12K</span></td>
+              <td style="padding:8px 10px;"><span class="iw-utama">KEPING UTAMA</span></td>
+              <td style="padding:8px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);">CABANG B</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(245,200,66,0.1);">
+              <td style="padding:8px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--white);">16</td>
+              <td style="padding:8px 10px;font-size:12.5px;color:var(--text);">Nonfarm Productivity QoQ Final Q1</td>
+              <td style="padding:8px 10px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;">0.5%</td>
+              <td style="padding:8px 10px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);">0.3%</td>
+              <td style="padding:8px 10px;text-align:center;"><span class="iw-label miss-4jun">MISS 🔻 &minus;0.2ppt</span></td>
+              <td style="padding:8px 10px;"><span class="iw-pelengkap">KEPING PELENGKAP</span></td>
+              <td style="padding:8px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);">CABANG E</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--white);">17</td>
+              <td style="padding:8px 10px;font-size:12.5px;color:var(--text);">Unit Labour Costs QoQ Final Q1</td>
+              <td style="padding:8px 10px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;">2.5%</td>
+              <td style="padding:8px 10px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green);">1.8%</td>
+              <td style="padding:8px 10px;text-align:center;"><span class="iw-label miss-4jun">MISS 🔻 &minus;0.7ppt</span></td>
+              <td style="padding:8px 10px;"><span class="iw-pelengkap">KEPING PELENGKAP</span></td>
+              <td style="padding:8px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);">CABANG E</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:11px;color:var(--text3);font-family:'IBM Plex Mono',monospace;font-style:italic;">Catatan ULC: Aktual 1.8% secara absolut naik dari previous 2.1% (rev), namun jauh di bawah konsensus 2.5% → wage pressure lebih rendah dari yang dikhawatirkan pasar = MISS hawkish.</p>
+      </div>
+
+      <div class="intraweek-section-label">Repricing yang Terjadi (Aturan 5A)</div>
+      <div class="iw-prose">
+        <p><strong>Event 15 — Initial Jobless Claims MISS 225K vs 213K (Cabang B — Keping Utama):</strong></p>
+        <p>Ini adalah sinyal <strong>bearish USD yang pertama dalam sepekan</strong> dari data labor market — membalik tren positif yang sebelumnya dibangun oleh JOLTs 7.618M (2 Jun) dan ADP 122K (3 Jun). Claims 225K merupakan lonjakan signifikan (+12K vs konsensus, +13K vs previous 212K), melampaui threshold 225K yang sudah diantisipasi sebagai "counter-JOLTs narrative."</p>
+        <p>Repricing yang mulai terbentuk: <em>Probabilitas hike Desember 2026 tertekan ke bawah dari estimasi 58-62% kemarin</em>. Pasar mulai mempertanyakan apakah kekuatan labor market yang diindikasikan oleh JOLTs dan ADP sudah merefleksikan kondisi terkini (Mei akhir) atau masih lagging.</p>
+        <p style="margin-top:8px;"><strong>Event 16 — Nonfarm Productivity MISS 0.3% vs 0.5% (Cabang E — Pelengkap):</strong><br>
+        Produktivitas lebih rendah dari ekspektasi. Bukan trigger entry sendiri. Namun bersama Claims MISS, menambahkan kesan bahwa activity data minggu ini (ISM Services 54.5) mungkin belum ditransmisikan menjadi efisiensi yang lebih tinggi.</p>
+        <p style="margin-top:8px;"><strong>Event 17 — Unit Labour Costs MISS 1.8% vs 2.5% (Cabang E — Pelengkap):</strong><br>
+        Ini adalah data yang <em>dovish secara struktural</em> — wage cost per unit output lebih rendah dari yang dikhawatirkan pasar. Meski angka absolut 1.8% masih menunjukkan kenaikan, jauh di bawah konsensus 2.5% berarti <strong>tekanan inflasi berbasis upah lebih terkendali dari ekspektasi</strong>. Ini melemahkan argumen stagflasi wage-driven yang menjadi kekhawatiran utama Fed.</p>
+        <p style="margin-top:8px;color:var(--yellow);font-family:'IBM Plex Mono',monospace;font-size:11px;">NET REPRICING HARI INI: Sinyal DOVISH — Claims MISS (Utama) + Productivity MISS (Pelengkap) + ULC MISS (Pelengkap) = tiga data melemah secara bersamaan. Namun repricing terbatas karena NFP Jumat adalah verdict final. Pasar tidak akan bergerak besar dari data pre-NFP.</p>
+      </div>
+
+      <div class="intraweek-section-label">Risiko Terhadap Repricing (Aturan 5B)</div>
+      <div class="iw-prose">
+        <p>Repricing dovish hari ini dapat <strong>dibalik sepenuhnya</strong> oleh NFP Jumat (5 Jun, 19:30 WIB) jika:</p>
+        <ul style="padding-left:18px;margin:8px 0;">
+          <li style="margin-bottom:5px;">NFP <strong>&gt;130K</strong> — konfirmasi semua sinyal activity minggu ini; Claims tinggi terlihat sebagai noise seasonal</li>
+          <li style="margin-bottom:5px;">AHE MoM <strong>&ge;0.4%</strong> — membuktikan wage pressure kuat meski ULC moderat; Fed kembali hawkish</li>
+          <li style="margin-bottom:5px;">Unemployment Rate <strong>turun ke 4.2% atau di bawah konsensus 4.3%</strong> — labor market lebih ketat dari yang terlihat</li>
+        </ul>
+        <p>Sebaliknya, jika NFP <strong>&lt;70K</strong> + AHE lemah: Claims MISS hari ini terbukti sebagai leading indicator yang akurat, bukan noise — dovish repricing diperkuat besar-besaran.</p>
+      </div>
+
+      <div class="intraweek-section-label">Perubahan Skenario</div>
+      <div class="iw-prose">
+        <p><strong>USD — TIDAK BERUBAH ARAH, TAPI MELEMAH:</strong> Skenario hawkish USD tetap base case (ISM Services 54.5 + JOLTs 7.618M masih dominan), namun Claims MISS menambahkan uncertainty menjelang NFP. Status puzzle: masih menunggu keping final (NFP). Tidak ada perubahan skenario; hanya penambahan catatan keraguan pre-NFP.</p>
+        <p style="margin-top:8px;"><strong>AUD/JPY dan EUR/AUD — TIDAK BERUBAH:</strong> Claims MISS tidak mempengaruhi skenario AUD bearish (fundamental AUD driven by GDP MISS, bukan USD dynamics) atau JPY bullish (driven by BOJ hawkish). Kedua trade tetap valid. Repricing hari ini hanya relevan untuk USD-denominated pairs.</p>
+        <p style="margin-top:8px;"><strong>Gold — MODERAT POSITIF:</strong> Claims MISS + ULC MISS = real yield mungkin sedikit tertekan → marginal positif untuk gold. Namun efek terbatas menjelang NFP. Range $4,470–$4,550 tetap berlaku.</p>
+      </div>
+
+      <div class="intraweek-section-label">Status Puzzle Keseluruhan</div>
+      <div class="iw-prose">
+        <p>Puzzle USD hari ini bergerak <strong>sedikit lebih dovish</strong> dari kemarin, namun tidak cukup signifikan untuk mengubah posisi atau arah. Tiga data hari ini semuanya meleset (dua pelengkap, satu utama), memberikan sinyal pre-NFP yang lebih dovish dari ekspektasi. <strong>Namun NFP Jumat tetap merupakan satu-satunya keping yang menentukan.</strong></p>
+        <p style="margin-top:8px;">Status puzzle AUD/JPY dan EUR/AUD: <strong>TIDAK BERUBAH — tetap SANGAT LENGKAP untuk entry SHORT AUD/JPY dan LONG EUR/AUD.</strong> Watchpoint terakhir: RBA Bullock speech (jika ada update hari ini atau Kamis) dan Japan AHE Jumat pagi.</p>
+      </div>
+
+      <div class="intraweek-section-label">Kaitan dengan Macro Regime</div>
+      <div class="iw-prose">
+        <p><strong>AS (Stagflation):</strong> ULC MISS 1.8% vs kons 2.5% adalah sinyal pertama bahwa <em>komponen "wage-driven inflation" dari stagflasi AS mungkin lebih terkendali dari yang dikhawatirkan</em>. Ini tidak membatalkan stagflasi (ISM Services Prices 71.3 naik kemarin masih solid), tapi mengurangi intensitasnya. Claims MISS menambah keraguan pada labor market strength. Regime Stagflation <strong>tetap berlaku</strong> tapi dengan tanda tanya lebih besar menjelang NFP.</p>
+      </div>
+
+      <!-- BLACKOUT BOX -->
+      <div class="blackout-box">
+        <div class="blackout-header">⛔ BLACKOUT WARNING — BERLAKU SEKARANG (KAMIS MALAM → JUMAT)</div>
+        <div class="blackout-item">
+          <span class="when">Jumat 5 Jun, 06:30 WIB</span>
+          <span>Japan Average Cash Earnings YoY APR — <strong>KEPING FINAL JPY</strong>. BEAT &ge;3.5% = SHORT AUD/JPY dari sisi JPY sangat solid; MISS &lt;2.5% = kurangi exposure JPY bullish.</span>
+        </div>
+        <div class="blackout-item">
+          <span class="when">Jumat 5 Jun, 19:30 WIB</span>
+          <span>US Non Farm Payrolls MAY — <strong>⛔ BLACKOUT USD + CAD. JANGAN ENTRY ARAH BARU USD atau CAD dari sekarang.</strong> NFP adalah verdict final minggu ini. Threshold: BEAT &gt;130K vs MISS &lt;70K.</span>
+        </div>
+        <div class="blackout-item">
+          <span class="when">Jumat 5 Jun, 19:30 WIB</span>
+          <span>Canada Employment Change MAY — <strong>⛔ BLACKOUT CAD dari sekarang.</strong> MISS → EUR/CAD LONG + SHORT CAD/JPY valid; BEAT → CAD bounce sementara.</span>
+        </div>
+        <p style="font-size:12px;color:var(--red);margin-top:10px;font-family:'IBM Plex Mono',monospace;">⚠️ Catatan: Claims MISS hari ini TIDAK menghapus BLACKOUT — justru mengkonfirmasi bahwa uncertainty pre-NFP semakin tinggi. Hindari entry arah baru USD mulai dari sekarang.</p>
+      </div>
+
+    </div>
+  </div>
+  <!-- END UPDATE 4 JUN -->
+
+  <!-- SECTION 00 -->
+  <section class="section" id="katalis">
+    <div class="section-header">
+      <span class="section-num">LANGKAH 00</span>
+      <h2 class="section-title">Katalis Tracker &amp; Data Market Baseline</h2>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Data Market Penutup &mdash; 29 Mei 2026</div>
+      <div class="market-banner">
+        <div class="market-item"><div class="market-item-label">DXY</div><div class="market-item-val">98.94</div><div class="market-item-sub">Low 2-minggu; +~1% MTD</div></div>
+        <div class="market-item"><div class="market-item-label">US 10Y Yield</div><div class="market-item-val">4.45%</div><div class="market-item-sub">Low 3-minggu; +~7bps MTD</div></div>
+        <div class="market-item"><div class="market-item-label">VIX</div><div class="market-item-val">15.32</div><div class="market-item-sub">Rendah &mdash; Risk-On moderat</div></div>
+        <div class="market-item"><div class="market-item-label">S&amp;P 500</div><div class="market-item-val">7,580.06</div><div class="market-item-sub">+0.22% hari ini</div></div>
+        <div class="market-item"><div class="market-item-label">Nasdaq</div><div class="market-item-val">26,972.62</div><div class="market-item-sub">+0.20%</div></div>
+        <div class="market-item"><div class="market-item-label">Brent Oil</div><div class="market-item-val">$91.12</div><div class="market-item-sub">Turun; sinyal de-eskalasi Timur Tengah</div></div>
+        <div class="market-item"><div class="market-item-label">XAUUSD</div><div class="market-item-val">~$4,540</div><div class="market-item-sub">52W: $3,247&ndash;$5,595</div></div>
+        <div class="market-item"><div class="market-item-label">Bitcoin</div><div class="market-item-val">~$73,820</div><div class="market-item-sub">Dom. 61%; ETF outflow 9 hari</div></div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">Katalis Dominan Minggu Ini (Update 4 Jun)</div>
+      <div class="katalis-row"><div class="katalis-label">#1 US NFP May &mdash; Jumat 5 Jun, 19:30 WIB ⛔ BLACKOUT</div><div class="katalis-track"><div class="katalis-fill" style="width:95%;background:var(--red);"></div></div><div class="katalis-pct">95%</div></div>
+      <div class="katalis-row"><div class="katalis-label">#2 AU GDP Q1 &mdash; Rab 3 Jun &#10003; RILIS (QoQ 0.3% MISS; YoY 2.5% MISS)</div><div class="katalis-track"><div class="katalis-fill" style="width:85%;background:var(--red);"></div></div><div class="katalis-pct">&#10003;</div></div>
+      <div class="katalis-row"><div class="katalis-label">#3 BOJ Gov Ueda Speech &mdash; Rab 3 Jun &#10003; RILIS (Hawkish Kondisional)</div><div class="katalis-track"><div class="katalis-fill" style="width:80%;background:var(--green);"></div></div><div class="katalis-pct">&#10003;</div></div>
+      <div class="katalis-row"><div class="katalis-label">#4 ISM Services PMI May &mdash; Rab 3 Jun &#10003; RILIS (54.5 BEAT)</div><div class="katalis-track"><div class="katalis-fill" style="width:75%;background:var(--green);"></div></div><div class="katalis-pct">&#10003;</div></div>
+      <div class="katalis-row"><div class="katalis-label">#5 EA CPI Flash May &mdash; Sel 2 Jun &#10003; RILIS (Headline IN-LINE 3.2%; Core BEAT 2.5%)</div><div class="katalis-track"><div class="katalis-fill" style="width:70%;background:var(--green);"></div></div><div class="katalis-pct">&#10003;</div></div>
+      <div class="katalis-row"><div class="katalis-label">#6 JOLTs APR &mdash; Sel 2 Jun &#10003; RILIS (7.618M KEJUTAN BESAR vs kons 6.88M)</div><div class="katalis-track"><div class="katalis-fill" style="width:75%;background:var(--amber);"></div></div><div class="katalis-pct">&#9889;</div></div>
+      <div class="katalis-row"><div class="katalis-label">#6b Jobless Claims MAY/30 &mdash; Kam 4 Jun &#10003; RILIS (225K MISS vs kons 213K)</div><div class="katalis-track"><div class="katalis-fill" style="width:60%;background:var(--red);"></div></div><div class="katalis-pct">&#10003;</div></div>
+      <div class="katalis-row"><div class="katalis-label">#7 Japan AHE APR &mdash; Jumat 5 Jun, 06:30 WIB ⛔ BLACKOUT</div><div class="katalis-track"><div class="katalis-fill" style="width:70%;background:var(--yellow);"></div></div><div class="katalis-pct">70%</div></div>
+      <div class="katalis-row"><div class="katalis-label">Geopolitik Timur Tengah (Ceasefire Risk)</div><div class="katalis-track"><div class="katalis-fill" style="width:75%;background:var(--gold);"></div></div><div class="katalis-pct">75%</div></div>
+    </div>
+  </section>
+
+  <!-- SECTION 01 -->
+  <section class="section" id="langkah1">
+    <div class="section-header">
+      <span class="section-num">LANGKAH 01</span>
+      <h2 class="section-title">Kondisi Pasar Baseline</h2>
+    </div>
+    <div class="sub-section" id="s1a">
+      <div class="sub-section-title">1A &mdash; Tabel Postur Kebijakan Moneter Global</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Bank Sentral</th><th>Mata Uang</th><th>Rate Saat Ini</th><th>Bias</th><th>Next Meeting</th><th>Prob Hike/Hold/Cut</th><th>Track Record</th></tr></thead>
+          <tbody>
+            <tr class="updated-row"><td>Fed</td><td>USD</td><td class="mono">3.50&ndash;3.75%</td><td><span class="badge-hawkish">Hawkish Stagflasi — Pre-NFP Softening</span></td><td class="mono">17 Jun 2026</td><td>Hold ~99% Jun<br><span class="update-dot"></span>Hike Des: ~55-60% <span style="font-size:9.5px;color:var(--red);">(tertekan dari 58-62% kemarin pasca Claims 225K MISS + ULC 1.8% di bawah kons, 4 Jun)</span></td><td>&#9888;&#65039; Claims 225K MISS (4 Jun) — sinyal bearish pertama labor dari JOLTs &amp; ADP kuat (3 Jun). NFP Jumat = verdict final.</td></tr>
+            <tr class="updated-row"><td>ECB</td><td>EUR</td><td class="mono">2.00%</td><td><span class="badge-hawkish">Hawkish +</span></td><td class="mono">11 Jun 2026</td><td>Hike 25bps ~93&ndash;94%</td><td>&#10003;&#65039; KONSISTEN &mdash; Core CPI 2 Jun BEAT 2.5% vs kons 2.4%</td></tr>
+            <tr><td>BOE</td><td>GBP</td><td class="mono">3.75%</td><td><span class="badge-hawkish">Hawkish-Hold</span></td><td class="mono">Juli 2026*</td><td>Hold moderat; hike opsi terbuka</td><td>&#9888;&#65039; 1&times; MELESET &mdash; data tenaga kerja melemah</td></tr>
+            <tr class="updated-row"><td>BOJ</td><td>JPY</td><td class="mono">0.75%</td><td><span class="badge-hawkish">Hawkish Terkonfirmasi</span></td><td class="mono">15&ndash;16 Jun 2026</td><td>Hike 25bps ~87.5% Jun<br><span class="update-dot"></span><span style="font-size:9.5px;color:var(--green);">Ueda 3 Jun: hawkish kondisional — semua skenario tidak menutup kemungkinan hike</span></td><td>&#10003;&#65039; KONSISTEN &mdash; Ueda speech 3 Jun terkonfirmasi hawkish; hike Jun sangat solid. Claims MISS 4 Jun tidak berdampak pada BOJ bias.</td></tr>
+            <tr class="updated-row"><td>RBA</td><td>AUD</td><td class="mono">4.35%</td><td><span class="badge-dovish">Hawkish Terancam</span></td><td class="mono">Jul 2026*</td><td>Hold kuat; hike lanjutan ~0-2%<br><span class="update-dot"></span><span style="font-size:9.5px;color:var(--red);">GDP QoQ 0.3% MISS + GDP YoY 2.5% MISS (3 Jun) → RBA hawkish kehilangan justifikasi growth. USD Claims MISS 4 Jun tidak berubah outlook RBA.</span></td><td>&#128310; 4&times; BERUNTUN &mdash; CPI MoM MISS + CPI YoY MISS + GDP QoQ MISS + GDP YoY MISS = spiral data melemah</td></tr>
+            <tr><td>RBNZ</td><td>NZD</td><td class="mono">2.25%</td><td><span class="badge-hawkish">Hawkish-Leaning</span></td><td class="mono">Juli 2026*</td><td>Hike mungkin lebih awal</td><td>&#10003;&#65039; KONSISTEN &mdash; hold dengan guidance agresif</td></tr>
+            <tr><td>BOC</td><td>CAD</td><td class="mono">2.25%</td><td><span class="badge-dovish">Dovish-Neutral</span></td><td class="mono">Juni 2026*</td><td>Hold; price-in cut bertahap</td><td>&#10003;&#65039; KONSISTEN &mdash; GDP Q1 kontraksi; core CPI melambat. ⛔ BLACKOUT CAD menjelang Employment Jumat.</td></tr>
+            <tr><td>SNB</td><td>CHF</td><td class="mono">0.00%</td><td><span class="badge-neutral">Neutral-Dovish</span></td><td class="mono">Jun/Sep 2026*</td><td>Hold</td><td>&#10003;&#65039; KONSISTEN &mdash; inflasi rendah (0.1% Feb)</td></tr>
+            <tr><td>PBoC</td><td>CNY</td><td class="mono">LPR 3.0% (1Y)</td><td><span class="badge-neutral">Dovish-Neutral</span></td><td class="mono">Bulanan</td><td>Hold ke-12 bulan beruntun</td><td>&#10003;&#65039; KONSISTEN &mdash; kebijakan "moderately loose" dilanjutkan</td></tr>
+            <tr class="updated-row"><td>Bank Indonesia</td><td>IDR</td><td class="mono">5.25%</td><td><span class="badge-hawkish">Hawkish +</span></td><td class="mono">Jun/Jul 2026*</td><td>Hold; bias hawkish dikonfirmasi</td><td>&#10003;&#65039; KONSISTEN &mdash; hike 50bps Mei + CPI May 3.08% BEAT tipis (2 Jun). Claims MISS 4 Jun memberikan sedikit ruang bagi EM karena USD sedikit tertekan.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="softening-box">
+        <div class="softening-header">&#128993; UPDATE 4 Jun (NY) &mdash; Pre-NFP Softening Signal</div>
+        <p style="font-size:12.5px;color:var(--text);line-height:1.6;margin:0;"><strong>Claims 225K MISS</strong> (vs kons 213K, Cabang B) + <strong>Productivity 0.3% MISS</strong> (vs kons 0.5%, Cabang E) + <strong>ULC 1.8% MISS</strong> (vs kons 2.5%, Cabang E): tiga data semuanya melemah dari ekspektasi. Ini adalah sinyal pre-NFP yang memberi <em>sedikit keraguan</em> terhadap narasi hawkish yang kuat dibangun sepanjang minggu ini. Estimasi hike Des 2026 tertekan ke bawah dari ~58-62% ke ~55-60%. Namun <strong>TIDAK ada perubahan arah skenario</strong> &mdash; NFP Jumat adalah satu-satunya data yang bisa mengkonfirmasi atau membalik narrative. <strong>⛔ BLACKOUT USD + CAD berlaku dari sekarang.</strong></p>
+      </div>
+      <div class="info-box warn">
+        <strong>Konteks Macro Regime AS (Updated 4 Jun):</strong> ULC Final Q1 lebih rendah dari konsensus (1.8% vs 2.5%) adalah <em>bearish untuk stagflasi wage-driven thesis</em> — komponen inflasi berbasis upah ternyata lebih moderat. Namun ini adalah data <em>final revisi Q1</em>, bukan kondisi real-time. ISM Services Prices 71.3 (3 Jun) sebagai indikator forward-looking tetap lebih relevan untuk ekspektasi inflasi ke depan. Net: stagflasi kompleks masih berlaku tapi dengan dua komponen (wage-ULC dan leading labor dari Claims) yang sedikit melemah menjelang NFP.
+      </div>
+      <div class="tbl-wrap" style="margin-top:16px;">
+        <table>
+          <thead><tr><th>Negara</th><th>Mata Uang</th><th>Macro Regime</th><th>Implikasi Bias Aset</th><th>Regime Alignment (Update 4 Jun)</th></tr></thead>
+          <tbody>
+            <tr class="updated-row-4jun"><td>USA</td><td>USD</td><td><span class="regime-badge regime-stagflation">STAGFLATION</span></td><td>Ekuitas tertekan; FX volatil; gold headwind</td><td class="amber-c"><span class="update-dot-4jun"></span>PRE-NFP UNCERTAINTY: Claims 225K MISS + ULC 1.8% vs kons 2.5% MISS = dua counter-sinyal pertama minggu ini. Stagflasi tetap dominan tapi intensitas wage-driven berkurang. NFP Jumat determinatif.</td></tr>
+            <tr><td>Eurozone</td><td>EUR</td><td><span class="regime-badge regime-stagflation">STAGFLATION</span></td><td>ECB hawkish; EUR mendapat bid; ekuitas under pressure</td><td class="bull">DIKONFIRMASI &mdash; Core CPI 2.5% BEAT (2 Jun); ECB hike ~93-94%</td></tr>
+            <tr><td>Japan</td><td>JPY</td><td><span class="regime-badge regime-reflation">REFLATION</span></td><td>JPY menguat; yield naik bertahap; risk-on bullish</td><td class="bull">DIKONFIRMASI — Ueda speech 3 Jun hawkish kondisional; BOJ hike Jun tetap 87.5%; Claims MISS AS tidak berdampak pada BOJ.</td></tr>
+            <tr><td>Australia</td><td>AUD</td><td><span class="regime-badge regime-stagflation">STAGFLATION DEEPENING</span></td><td>Tertekan kuat; RBA dalam dilema stagflasi</td><td class="bear">MEMBURUK (tidak berubah 4 Jun) — GDP QoQ 0.3% MISS + GDP YoY 2.5% MISS (3 Jun) = 4 data beruntun MISS; AUD paling bearish minggu ini. Claims USD tidak mengubah outlook AUD.</td></tr>
+            <tr><td>Indonesia</td><td>IDR</td><td><span class="regime-badge regime-reflation">REFLATION</span></td><td>IDR menguat marginal; BI hawkish terkonfirmasi</td><td class="bull">ALIGNED + SEDIKIT TERBANTU &mdash; Claims MISS memberikan sedikit ruang bagi USD untuk melemah → IDR mendapat marginal relief.</td></tr>
+            <tr><td>China</td><td>CNY</td><td><span class="regime-badge regime-reflation">REFLATION</span></td><td>CNY stabil; stimulus selektif; commodity demand</td><td class="neutral-c">DIVERGING &mdash; PBoC dovish vs Industrial Profits kuat + PMI BEAT</td></tr>
+            <tr><td>UK</td><td>GBP</td><td><span class="regime-badge regime-expansion">EXPANSION</span></td><td>GBP menguat moderat; yield naik; risk-on</td><td class="neutral-c">UNCERTAIN &mdash; BOE hawkish-hold; labour melemah</td></tr>
+            <tr><td>Canada</td><td>CAD</td><td><span class="regime-badge regime-deflation">DEFLATION</span></td><td>CAD tertekan; yield turun; safe haven demand naik</td><td class="bull">ALIGNED &mdash; BOC dovish sangat konsisten; GDP annualized kontraksi. ⛔ BLACKOUT menjelang Employment Jumat.</td></tr>
+            <tr><td>New Zealand</td><td>NZD</td><td><span class="regime-badge regime-reflation">REFLATION</span></td><td>NZD menguat bertahap; yield naik moderat</td><td class="bull">ALIGNED &mdash; RBNZ hawkish-leaning konsisten</td></tr>
+            <tr><td>Switzerland</td><td>CHF</td><td><span class="regime-badge regime-stagflation">STAGFLATION</span></td><td>CHF volatile dua arah; gold bullish</td><td class="neutral-c">UNCERTAIN &mdash; Claims MISS bisa sedikit mengangkat CHF safe haven bid pre-NFP.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 -->
+  <section class="section" id="langkah2">
+    <div class="section-header">
+      <span class="section-num">LANGKAH 02</span>
+      <h2 class="section-title">Kalender Ekonomi (Dual Layer)</h2>
+    </div>
+    <div class="sub-section" id="s2a">
+      <div class="sub-section-title">2A &mdash; Review Minggu Lalu (Baseline 25&ndash;29 Mei 2026)</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>No</th><th>Tanggal</th><th>Ccy</th><th>Event</th><th>Kons.</th><th>Aktual</th><th>Deviasi</th><th>Status</th><th>Implikasi Forward</th></tr></thead>
+          <tbody>
+            <tr><td class="tbl-num">01</td><td class="mono">26/05 Sel</td><td>USD</td><td>CB Consumer Confidence MAY</td><td class="mono">92.0</td><td class="mono bull">93.1</td><td class="bull">+1.1</td><td><span class="badge-hawkish">&#128314; BEAT</span></td><td>Sentimen konsumen lebih kuat; dikonfirmasi ISM Services BEAT minggu ini.</td></tr>
+            <tr><td class="tbl-num">02</td><td class="mono">27/05 Rab</td><td>AUD</td><td>CPI MoM APR</td><td class="mono">0.7%</td><td class="mono bear">0.4%</td><td class="bear">&minus;0.3ppt</td><td><span class="badge-dovish">&#128316; MISS</span></td><td>Disinflasi AUD → dikonfirmasi GDP MISS minggu ini. AUD bearish spiral terpasang.</td></tr>
+            <tr><td class="tbl-num">03</td><td class="mono">27/05 Rab</td><td>AUD</td><td>CPI YoY APR</td><td class="mono">4.6%</td><td class="mono bear">4.2%</td><td class="bear">&minus;0.4ppt</td><td><span class="badge-dovish">&#128316; MISS</span></td><td>Konfirmasi tekanan harga melambat; RBA dilema semakin dalam pasca GDP MISS.</td></tr>
+            <tr><td class="tbl-num">04</td><td class="mono">27/05 Rab</td><td>AUD</td><td>RBA Trimmed Mean CPI YoY APR</td><td class="mono">3.4%</td><td class="mono neutral-c">3.4%</td><td class="neutral-c">0</td><td><span class="badge-neutral">&#10003; IN-LINE</span></td><td>Inflasi inti tepat konsensus; underlying tidak memburuk.</td></tr>
+            <tr><td class="tbl-num">05</td><td class="mono">27/05 Rab</td><td>NZD</td><td>RBNZ Rate Decision + Konpers</td><td class="mono">2.25%</td><td class="mono bull">2.25% + Hawkish!</td><td class="bull">IN-LINE + Hawkish</td><td><span class="badge-hawkish">&#9889; HAWKISH</span></td><td>RBNZ hold tapi tone sangat hawkish — signaling hike lebih awal. NZD menguat.</td></tr>
+            <tr><td class="tbl-num">06</td><td class="mono">27/05 Rab</td><td>JPY</td><td>BOJ Gov Ueda Speech</td><td class="mono">&mdash;</td><td class="mono bull">Hawkish</td><td class="bull">+++</td><td><span class="badge-hawkish">&#9889; HAWKISH KUAT</span></td><td>Ueda soroti risiko inflasi; dikonfirmasi kembali 3 Jun dengan tone hawkish kondisional.</td></tr>
+            <tr><td class="tbl-num">07</td><td class="mono">27/05 Rab</td><td>CNY</td><td>Industrial Profits (YTD) YoY</td><td class="mono">12.0%</td><td class="mono bull">18.2%</td><td class="bull">+6.2ppt</td><td><span class="badge-hawkish">&#9889; KEJUTAN BESAR</span></td><td>Reflation China dikonfirmasi oleh PMI 51.8 BEAT (1 Jun).</td></tr>
+            <tr><td class="tbl-num">08</td><td class="mono">28/05 Kam</td><td>USD</td><td>Core PCE Price Index MoM APR</td><td class="mono">0.3%</td><td class="mono bear">0.2%</td><td class="bear">&minus;0.1ppt</td><td><span class="badge-dovish">&#128316; MISS</span></td><td>Diimbangi ISM Services Prices 71.3 naik (3 Jun). Stagflasi tetap dominan.</td></tr>
+            <tr><td class="tbl-num">09</td><td class="mono">28/05 Kam</td><td>USD</td><td>GDP QoQ 2nd Est Q1</td><td class="mono">2.0%</td><td class="mono bear">1.6%</td><td class="bear">&minus;0.4ppt</td><td><span class="badge-dovish">&#128316; MISS</span></td><td>Growth AS melambat. ISM Services PMI BEAT (54.5) memberikan counter-signal kuat.</td></tr>
+            <tr><td class="tbl-num">10</td><td class="mono">29/05 Jum</td><td>JPY</td><td>Tokyo Core CPI YoY MAY</td><td class="mono">1.5%</td><td class="mono bear">1.3%</td><td class="bear">&minus;0.2ppt</td><td><span class="badge-dovish">&#128316; MISS</span></td><td>MISS pertama; koreksi, bukan pivot. Ueda speech 3 Jun hawkish kondisional = BOJ tidak terpengaruh.</td></tr>
+            <tr><td class="tbl-num">11</td><td class="mono">29/05 Jum</td><td>CAD</td><td>GDP QoQ Q1</td><td class="mono">&mdash;</td><td class="mono neutral-c">0.0%</td><td class="neutral-c">+0.2ppt vs prev</td><td><span class="badge-neutral">&#128314; RECOVERY PARSIAL</span></td><td>Recovery parsial positif, tapi annualized jauh lebih buruk.</td></tr>
+            <tr><td class="tbl-num">12</td><td class="mono">29/05 Jum</td><td>CAD</td><td>GDP Annualized Q1</td><td class="mono">1.5%</td><td class="mono bear">&minus;0.1%</td><td class="bear">&minus;1.6ppt</td><td><span class="badge-dovish">&#9889; KEJUTAN BESAR</span></td><td>MISS terbesar minggu lalu. CAD bearish dikonfirmasi. EUR/CAD LONG valid.</td></tr>
+            <tr><td class="tbl-num">13</td><td class="mono">29/05 Jum</td><td>GBP</td><td>BOE Gov Bailey Speech</td><td class="mono">&mdash;</td><td class="mono bear">&#128308; GBP</td><td>&mdash;</td><td><span class="badge-neutral">&mdash;</span></td><td>Bailey tone hati-hati. GBP merespons negatif.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="sub-section" id="s2b">
+      <div class="sub-section-title">2B &mdash; Agenda Minggu Ini: Forward Calendar (1&ndash;5 Juni 2026) — Update 4 Jun</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>No</th><th>Tanggal</th><th>WIB</th><th>Ccy</th><th>Event</th><th>Kons.</th><th>Aktual</th><th>Deviasi</th><th>Price-In Status</th><th>Implikasi Forward</th></tr></thead>
+          <tbody>
+            <tr><td class="tbl-num">01</td><td class="mono">01 Jun Sn</td><td class="mono">06:00</td><td>AUD</td><td>S&amp;P Global Mfg PMI Final MAY</td><td class="mono">50.2</td><td class="mono bull">50.7</td><td><span class="iw-label beat" style="font-size:9.5px;">BEAT +0.5 (D)</span></td><td style="font-size:11.5px;color:var(--text2);">CABANG D — konfirmasi parsial lemah. Tidak mengubah narrative bearish AUD.</td><td style="font-size:11.5px;">Manufaktur masih ekspansi tapi melambat. Dikontraskan oleh GDP MISS (3 Jun).</td></tr>
+            <tr><td class="tbl-num">02</td><td class="mono">01 Jun Sn</td><td class="mono">08:45</td><td>CNY</td><td>Manufacturing PMI MAY</td><td class="mono">51.4</td><td class="mono bull">51.8</td><td><span class="iw-label beat" style="font-size:9.5px;">BEAT +0.4 (D)</span></td><td style="font-size:11.5px;color:var(--text2);">CABANG D — konfirmasi Reflation China parsial.</td><td style="font-size:11.5px;">Mengkonfirmasi Industrial Profits BEAT. China Reflation semakin solid.</td></tr>
+            <tr class="updated-row"><td class="tbl-num">03</td><td class="mono">01 Jun Sn</td><td class="mono">21:00</td><td>USD</td><td><span class="update-dot"></span>ISM Manufacturing PMI MAY</td><td class="mono">53.0</td><td class="mono bull"><strong>54.0</strong></td><td><span class="iw-label beat" style="font-size:9.5px;">BEAT +1.0 (A)</span></td><td style="font-size:11.5px;">CABANG A. Dikonfirmasi ISM Services PMI BEAT (3 Jun). Stagflasi AS solid.</td><td style="font-size:11.5px;">Growth manufaktur AS resilient. Hike Des ~55-60% (pasca Claims MISS 4 Jun menekan dari 58-62%).</td></tr>
+            <tr class="updated-row"><td class="tbl-num">04</td><td class="mono">01 Jun Sn</td><td class="mono">21:00</td><td>USD</td><td><span class="update-dot"></span>ISM Manufacturing Prices MAY</td><td class="mono">85.5</td><td class="mono bear"><strong>82.1</strong></td><td><span class="iw-label miss" style="font-size:9.5px;">MISS &minus;3.4 (B)</span></td><td style="font-size:11.5px;">CABANG B. Disinflasi input MANUFAKTUR. ISM Services Prices 71.3 NAIK (3 Jun) = outlier sektor. ULC MISS 4 Jun juga konsisten dengan tekanan harga lebih rendah dari ekspektasi.</td><td style="font-size:11.5px;">Inflasi harga jasa tetap meningkat meski input manufaktur dan ULC lebih rendah dari kons. Stagflasi kompleks — tidak seragam.</td></tr>
+            <tr class="updated-row"><td class="tbl-num">05</td><td class="mono">02 Jun Sl</td><td class="mono">11:00</td><td>IDR</td><td><span class="update-dot"></span>Inflation Rate YoY MAY</td><td class="mono">2.97%</td><td class="mono bull"><strong>3.08%</strong></td><td><span class="iw-label beat" style="font-size:9.5px;">BEAT +0.11ppt (A)</span></td><td style="font-size:11.5px;">CABANG A — BI hawkish terkonfirmasi. Claims MISS AS sedikit meringankan tekanan eksternal IDR.</td><td style="font-size:11.5px;">BI hawkish terkonfirmasi. IDR mendapat support marginal. Claims MISS 4 Jun memberikan sedikit relief USD → IDR sedikit lebih baik jangka pendek.</td></tr>
+            <tr class="updated-row"><td class="tbl-num">06</td><td class="mono">02 Jun Sl</td><td class="mono">16:00</td><td>EUR</td><td><span class="update-dot"></span>CPI Flash YoY MAY</td><td class="mono">3.2%</td><td class="mono neutral-c"><strong>3.2%</strong></td><td><span class="iw-label inline" style="font-size:9.5px;">IN-LINE (C)</span></td><td style="font-size:11.5px;">CABANG C — fully price-in. ECB hike Juni tetap intact.</td><td style="font-size:11.5px;">Tidak ada trigger baru dari headline. ECB hike Jun ~93-94%.</td></tr>
+            <tr class="updated-row"><td class="tbl-num">07</td><td class="mono">02 Jun Sl</td><td class="mono">16:00</td><td>EUR</td><td><span class="update-dot"></span>Core CPI Flash YoY MAY</td><td class="mono">2.4%</td><td class="mono bull"><strong>2.5%</strong></td><td><span class="iw-label beat" style="font-size:9.5px;">BEAT +0.1ppt (A)</span></td><td style="font-size:11.5px;">CABANG A — ECB hawkish diperkuat. Entry EUR/AUD dan EUR/CAD LONG. Claims MISS 4 Jun tidak mengubah outlook ECB.</td><td style="font-size:11.5px;">Core CPI lebih persisten. ECB hike Jun ~93-94%. EUR/AUD LONG tetap sangat valid.</td></tr>
+            <tr class="updated-row"><td class="tbl-num">08</td><td class="mono">02 Jun Sl</td><td class="mono">21:00</td><td>USD</td><td><span class="update-dot"></span>JOLTs Job Openings APR</td><td class="mono">6.88M</td><td class="mono bull"><strong>7.618M</strong></td><td><span class="iw-label kjut-big" style="font-size:9.5px;">&#9889; KEJUTAN BESAR +0.738M (G)</span></td><td style="font-size:11.5px;">CABANG G (override) — hawkish dikonfirmasi ISM Services (3 Jun). Claims MISS 4 Jun (225K) adalah counter-signal pertama. NFP Jumat = verdict.</td><td style="font-size:11.5px;">Labor demand sangat tinggi per April. Claims MISS 25K di atas kons memberikan tanda tanya apakah kondisi memburuk di akhir Mei. NFP Jumat determinatif.</td></tr>
+            <tr class="updated-row"><td class="tbl-num">09</td><td class="mono">03 Jun Rb</td><td class="mono">08:30</td><td>AUD</td><td><span class="update-dot"></span>GDP Growth Rate QoQ Q1</td><td class="mono">0.5%</td><td class="mono bear"><strong>0.3%</strong></td><td><span class="iw-label miss" style="font-size:9.5px;">MISS 🔻 &minus;0.2ppt (B)</span></td><td style="font-size:11.5px;">CABANG B &mdash; BEARISH AUD terkonfirmasi. SHORT AUD/JPY VALID. LONG EUR/AUD tambah sizing VALID. Tidak berubah 4 Jun.</td><td style="font-size:11.5px;">Keping ke-4 bearish AUD. RBA hawkish kehilangan justifikasi. Tetap berlaku meski USD Claims MISS 4 Jun memberikan sedikit relief tekanan.</td></tr>
+            <tr class="updated-row"><td class="tbl-num">10</td><td class="mono">03 Jun Rb</td><td class="mono">08:30</td><td>AUD</td><td><span class="update-dot"></span>GDP Growth Rate YoY Q1</td><td class="mono">2.7%</td><td class="mono bear"><strong>2.5%</strong></td><td><span class="iw-label miss" style="font-size:9.5px;">MISS 🔻 &minus;0.2ppt (B)</span></td><td style="font-size:11.5px;">CABANG B &mdash; konfirmasi ganda. SHORT AUD/JPY + LONG EUR/AUD VALID. Tidak berubah 4 Jun.</td><td style="font-size:11.5px;">Bearish spiral AUD dikonfirmasi penuh dari dua sudut pandang (QoQ + YoY). Fundamental lemah tidak bergantung pada USD dynamics.</td></tr>
+            <tr class="updated-row"><td class="tbl-num">11</td><td class="mono">03 Jun Rb</td><td class="mono">15:30</td><td>JPY</td><td><span class="update-dot"></span>BOJ Gov Ueda Speech</td><td class="mono">&mdash;</td><td class="mono bull"><strong>Hawkish Kondisional</strong></td><td><span class="iw-label beat" style="font-size:9.5px;">HAWKISH 🔺 (A)</span></td><td style="font-size:11.5px;">CABANG A &mdash; hawkish JPY dikonfirmasi. BOJ hike Jun 87.5% intact. Claims MISS AS tidak mengubah BOJ outlook.</td><td style="font-size:11.5px;">Ueda hawkish dalam semua skenario. SHORT AUD/JPY tetap valid dari sisi JPY. AHE Jumat = keping final.</td></tr>
+            <tr class="updated-row"><td class="tbl-num">12</td><td class="mono">03 Jun Rb</td><td class="mono">19:15</td><td>USD</td><td><span class="update-dot"></span>ADP Employment Change MAY</td><td class="mono">117K</td><td class="mono bull"><strong>122K</strong></td><td><span class="iw-label beat-pelengkap" style="font-size:9.5px;">BEAT +5K (D)</span></td><td style="font-size:11.5px;">CABANG D &mdash; pelengkap. Dikontraskan oleh Claims MISS 225K (4 Jun). Dua sinyal berlawanan; NFP Jumat penentu mana yang benar.</td><td style="font-size:11.5px;">ADP BEAT vs Claims MISS = dua sinyal labor yang bertentangan. Ini justru memperkuat posisi NFP sebagai satu-satunya arbiter. Tidak ada perubahan entry.</td></tr>
+            <tr class="updated-row"><td class="tbl-num">13</td><td class="mono">03 Jun Rb</td><td class="mono">21:00</td><td>USD</td><td><span class="update-dot"></span>ISM Services PMI MAY</td><td class="mono">53.8</td><td class="mono bull"><strong>54.5</strong></td><td><span class="iw-label beat" style="font-size:9.5px;">BEAT 🔺 +0.7 (A)</span></td><td style="font-size:11.5px;">CABANG A &mdash; Stagflasi AS komprehensif. Claims MISS 4 Jun memberikan counter-signal dari labor. NFP Jumat verdict final.</td><td style="font-size:11.5px;">Activity sektor jasa kuat vs labor leading indicator (Claims) melemah. Divergensi intra-data AS menjelang NFP. Tidak ada entry USD baru.</td></tr>
+            <tr class="updated-row"><td class="tbl-num">14</td><td class="mono">03 Jun Rb</td><td class="mono">21:00</td><td>USD</td><td><span class="update-dot"></span>ISM Services Prices MAY</td><td class="mono">prev 70.7</td><td class="mono bull"><strong>71.3</strong></td><td><span class="iw-label beat-pelengkap" style="font-size:9.5px;">NAIK dari prev +0.6 (D)</span></td><td style="font-size:11.5px;">CABANG D &mdash; inflasi jasa meningkat. Dikontraskan oleh ULC MISS 4 Jun (wage cost lebih rendah). Dua sinyal inflasi berlawanan: inflasi harga jasa vs inflasi upah. Kompleks.</td><td style="font-size:11.5px;">ISM Services Prices vs ULC MISS = stagflasi kompleks. Inflasi driven by demand-pull (Services) bukan cost-push (wages). Fed harus tetap waspada tapi magnitude lebih rendah dari skenario wage-driven.</td></tr>
+            <!-- 4 JUN DATA — UPDATED -->
+            <tr class="updated-row-4jun"><td class="tbl-num">15</td><td class="mono">04 Jun Km</td><td class="mono">19:30</td><td>USD</td><td><span class="update-dot-4jun"></span>Initial Jobless Claims MAY/30</td><td class="mono">213K</td><td class="mono bear"><strong>225K</strong></td><td><span class="iw-label miss">MISS 🔻 +12K (B)</span></td><td style="font-size:11.5px;"><strong>CABANG B — Keping Utama MISS.</strong> Sinyal bearish labor pertama minggu ini. Counter-JOLTs narrative terkonfirmasi. Hike Des tertekan dari 58-62% ke ~55-60%. <strong>⛔ BLACKOUT USD aktif — tidak ada entry baru.</strong></td><td style="font-size:11.5px;color:var(--red);">Claims di atas threshold 225K = tanda-tanda labor market mulai mendingin. Dikombinasikan dengan ULC MISS (1.8% vs 2.5%), hawkish stagflasi thesis AS kehilangan dua pilar: wage inflation dan labor tightness. NFP Jumat adalah arbitrase akhir — apakah Claims ini noise atau signal.</td></tr>
+            <tr class="updated-row-4jun"><td class="tbl-num">16</td><td class="mono">04 Jun Km</td><td class="mono">19:30</td><td>USD</td><td><span class="update-dot-4jun"></span>Nonfarm Productivity QoQ Final Q1</td><td class="mono">0.5%</td><td class="mono bear"><strong>0.3%</strong></td><td><span class="iw-label miss-4jun">MISS 🔻 &minus;0.2ppt (E)</span></td><td style="font-size:11.5px;">CABANG E — Pelengkap MISS. TIDAK ENTRY. Catatan: produktivitas lebih rendah dari ekspektasi mengurangi argumentasi supply-side growth AS. Menambah kesan bahwa activity data ISM mungkin tidak ditranslasikan ke output riil efisien.</td><td style="font-size:11.5px;color:var(--text2);">Data revisi final — bukan leading indicator. Namun konsisten dengan narrative bahwa growth momentum AS Q1 lebih lemah dari yang terlihat di permukaan. Tidak ada perubahan entry; catat sebagai keping pelengkap melemahkan.</td></tr>
+            <tr class="updated-row-4jun"><td class="tbl-num">17</td><td class="mono">04 Jun Km</td><td class="mono">19:30</td><td>USD</td><td><span class="update-dot-4jun"></span>Unit Labour Costs QoQ Final Q1</td><td class="mono">2.5%</td><td class="mono bear"><strong>1.8%</strong></td><td><span class="iw-label miss-4jun">MISS 🔻 &minus;0.7ppt (E)</span></td><td style="font-size:11.5px;">CABANG E — Pelengkap MISS. TIDAK ENTRY. ULC 1.8% jauh di bawah kons 2.5% = wage cost per unit output lebih terkendali dari yang dikhawatirkan. Ini melemahkan thesis stagflasi wage-driven. Diinterpretasikan dovish oleh pasar.</td><td style="font-size:11.5px;color:var(--text2);">ULC lebih rendah dari kons adalah berita baik bagi Fed: tekanan inflasi dari sisi biaya upah tidak se-ekstrem yang ditakuti. Namun ISM Services Prices 71.3 (kemarin) menunjukkan demand-side inflation masih aktif. Fed menghadapi inflasi yang <em>tidak lagi wage-driven</em> tapi <em>tetap demand-driven</em> dari jasa. Komposisi berubah, tetapi inflasi tetap ada.</td></tr>
+            <!-- EVENTS 18-23: PENDING -->
+            <tr><td class="tbl-num">18</td><td class="mono">05 Jun Jum</td><td class="mono">06:30</td><td>JPY</td><td>Average Cash Earnings YoY APR</td><td class="mono">3.2%</td><td class="mono">&mdash;</td><td>&mdash;</td><td style="font-size:11.5px;color:var(--text3);">Belum rilis</td><td class="impact-high">&#128308; PENDING &mdash; keping final JPY; BEAT ≥3.5% = SHORT AUD/JPY dari dua sisi sangat solid</td></tr>
+            <tr><td class="tbl-num">19</td><td class="mono">05 Jun Jum</td><td class="mono">19:30</td><td>CAD</td><td>Employment Change MAY</td><td class="mono">+10.2K</td><td class="mono">&mdash;</td><td>&mdash;</td><td style="font-size:11.5px;color:var(--text3);">Belum rilis</td><td class="impact-high">&#128308; PENDING &mdash; ⛔ BLACKOUT CAD dari sekarang</td></tr>
+            <tr><td class="tbl-num">20</td><td class="mono">05 Jun Jum</td><td class="mono">19:30</td><td>USD</td><td>Non Farm Payrolls MAY</td><td class="mono">96K</td><td class="mono">&mdash;</td><td>&mdash;</td><td style="font-size:11.5px;color:var(--text3);">Belum rilis</td><td class="impact-high">&#128308; VERDICT FINAL. ⛔ BLACKOUT USD. Claims MISS 225K membuat NFP semakin krusial: konfirmasi atau bantah signal pre-NFP softening ini.</td></tr>
+            <tr><td class="tbl-num">21</td><td class="mono">05 Jun Jum</td><td class="mono">19:30</td><td>USD</td><td>Unemployment Rate MAY</td><td class="mono">4.3%</td><td class="mono">&mdash;</td><td>&mdash;</td><td style="font-size:11.5px;color:var(--text3);">Belum rilis</td><td class="impact-high">&#128308; PENDING — pantau bersama NFP</td></tr>
+            <tr><td class="tbl-num">22</td><td class="mono">05 Jun Jum</td><td class="mono">19:30</td><td>USD</td><td>Average Hourly Earnings MoM MAY</td><td class="mono">0.3%</td><td class="mono">&mdash;</td><td>&mdash;</td><td style="font-size:11.5px;color:var(--text3);">Belum rilis</td><td class="impact-high">&#128308; PENDING &mdash; BEAT ≥0.4% membuktikan ULC MISS adalah timing issue; MISS <0.2% konfirmasi wage disinflasi</td></tr>
+            <tr><td class="tbl-num">23</td><td class="mono">05 Jun Jum</td><td class="mono">16:00</td><td>EUR</td><td>GDP Growth Rate QoQ 3rd Est Q1</td><td class="mono">0.1%</td><td class="mono">&mdash;</td><td>&mdash;</td><td style="font-size:11.5px;color:var(--text3);">Belum rilis</td><td class="impact-med">&#128993; PENDING</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 -->
+  <section class="section" id="langkah3">
+    <div class="section-header">
+      <span class="section-num">LANGKAH 03</span>
+      <h2 class="section-title">Skenario Per Mata Uang</h2>
+    </div>
+
+    <!-- USD -->
+    <div class="currency-card open" id="usd">
+      <div class="currency-card-header" onclick="toggleCard(this)">
+        <div class="currency-flag-title"><span class="currency-flag">&#127482;&#127480;</span><div><div class="currency-name">US Dollar</div><div class="currency-pair">USD &middot; DXY &middot; USD/JPY &middot; USD/CAD</div></div></div>
+        <div class="currency-bias-badge"><span class="badge-hawkish">Hawkish Stagflasi — Pre-NFP Uncertainty; Claims MISS 225K; ⛔ BLACKOUT</span> <span class="toggle-icon">&#9660;</span></div>
+      </div>
+      <div class="currency-card-body">
+        <div style="border:1px solid rgba(245,200,66,0.4);border-left:4px solid var(--yellow);background:rgba(245,200,66,0.04);border-radius:3px;padding:12px 16px;margin-bottom:12px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;"><span class="update-dot-4jun"></span> UPDATE INTRAWEEK &mdash; 4 Juni 2026 (Sesi NY)</div>
+          <p style="font-size:12.5px;color:var(--text);line-height:1.6;margin:0;"><strong>Initial Jobless Claims MAY/30: MISS 225K</strong> (vs kons 213K, +12K, Cabang B) — sinyal bearish pertama dari labor market minggu ini, membalik tren positif JOLTs + ADP. <strong>Nonfarm Productivity: MISS 0.3%</strong> (vs kons 0.5%, Cabang E). <strong>Unit Labour Costs: MISS 1.8%</strong> (vs kons 2.5%, Cabang E) — wage cost lebih terkendali dari ekspektasi pasar, melemahkan stagflasi wage-driven thesis. Net: tiga data bersamaan melemah = <em>pre-NFP softening signal</em>. Estimasi hike Des 2026 tertekan dari ~58-62% ke ~55-60%. <strong>⛔ BLACKOUT USD dari sekarang — TIDAK ada entry arah baru menjelang NFP Jumat.</strong></p>
+        </div>
+        <div style="border:1px solid rgba(232,150,42,0.4);border-left:4px solid var(--amber);background:rgba(232,150,42,0.05);border-radius:3px;padding:12px 16px;margin-bottom:12px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">&#9889; UPDATE INTRAWEEK &mdash; 3 Juni 2026 (Sesi NY)</div>
+          <p style="font-size:12.5px;color:var(--text);line-height:1.6;margin:0;"><strong>ISM Services PMI MAY: BEAT 54.5</strong> (vs kons 53.8, Cabang A) + <strong>ISM Services Prices MAY: NAIK ke 71.3</strong> (dari prev 70.7, Cabang D) + <strong>ADP MAY: BEAT 122K</strong> (vs kons 117K, Cabang D). Stagflasi AS dikonfirmasi dari empat sudut. Hike Des naik ke ~58-62% (sebelum tertekan oleh Claims 4 Jun).</p>
+        </div>
+        <div class="snapshot-grid">
+          <div class="snapshot-item"><div class="snapshot-label">Macro Regime</div><div class="snapshot-val"><span class="regime-badge regime-stagflation">STAGFLATION</span></div></div>
+          <div class="snapshot-item"><div class="snapshot-label">ISM Services PMI 3 Jun</div><div class="snapshot-val bull">54.5 BEAT &#10003;</div></div>
+          <div class="snapshot-item"><div class="snapshot-label">JOLTs 2 Jun</div><div class="snapshot-val amber-c">7.618M &#9889; KEJUTAN BESAR</div></div>
+          <div class="snapshot-item" style="border-color:rgba(245,200,66,0.3);"><div class="snapshot-label"><span class="update-dot-4jun"></span>Claims 4 Jun</div><div class="snapshot-val bear">225K MISS 🔻</div></div>
+          <div class="snapshot-item" style="border-color:rgba(245,200,66,0.3);"><div class="snapshot-label"><span class="update-dot-4jun"></span>ULC Final Q1 4 Jun</div><div class="snapshot-val neutral-c">1.8% MISS vs 2.5% kons 🔻</div></div>
+          <div class="snapshot-item"><div class="snapshot-label">Hike Dec 2026 Prob</div><div class="snapshot-val neutral-c">~55-60% (dari 58-62% kemarin)</div></div>
+          <div class="snapshot-item"><div class="snapshot-label">NFP Konsensus Jumat</div><div class="snapshot-val">96K | UE 4.3% | AHE 0.3%</div></div>
+          <div class="snapshot-item"><div class="snapshot-label">Blackout Status</div><div class="snapshot-val bear">⛔ AKTIF DARI SEKARANG</div></div>
+        </div>
+        <div class="info-box warn">
+          <strong>Assessment (Updated 4 Jun):</strong> Sinyal labor market AS sekarang <em>terpecah dua</em>: JOLTs 7.618M + ADP 122K (bullish) vs Claims 225K (bearish). ULC 1.8% vs kons 2.5% menambahkan sinyal bahwa tekanan wage-driven lebih rendah dari ekspektasi. Ini adalah konfigurasi pre-NFP yang paling tidak jelas dalam satu minggu — stagflasi tetap base case tapi dengan lebih banyak uncertainty. <strong>⛔ BLACKOUT USD dari sekarang. Jangan entry arah baru apapun untuk USD.</strong>
+        </div>
+        <div class="scenario-grid">
+          <div class="scenario-block bull"><div class="scenario-title">&#128002; Skenario Bull (Dikonfirmasi Jika...)</div><p><strong>Trigger:</strong> NFP &gt;130K + AHE MoM &ge;0.4% → Claims 225K terbukti noise seasonal; ULC revisi tidak mencerminkan kondisi Mei.</p><ul><li>Hike Des kembali ke &gt;60-65%</li><li>DXY break di atas 100.50; ISM Services BEAT dikonfirmasi sebagai leading</li></ul></div>
+          <div class="scenario-block bear"><div class="scenario-title">&#128021; Skenario Bear (Claims Dikonfirmasi)</div><p><strong>Trigger:</strong> NFP &lt;70K → Claims MISS terbukti sebagai signal akurat; ADP lagging; ISM activity signals seluruhnya lagging.</p><ul><li>Hike Des turun ke bawah 35%</li><li>DXY turun tajam; semua narrative hawkish minggu ini runtuh</li></ul></div>
+          <div class="scenario-block neut"><div class="scenario-title">&#10145;&#65039; Skenario Netral (Paling Mungkin — 40%)</div><p><strong>Kondisi:</strong> NFP ~70-100K; UE 4.3%; AHE 0.3%.</p><ul><li>Claims MISS = early signal yang valid; labor melambat tapi tidak kolaps</li><li>DXY range-bound; stagflasi ringan; hike Des ~50-55%</li></ul></div>
+          <div class="scenario-block tail"><div class="scenario-title">&#9888;&#65039; Tail Risk</div><p>Claims MISS 225K + NFP Miss (bawah 60K) + AHE lemah = triple bearish USD. Semua sinyal activity minggu ini (ISM, JOLTs, ADP) terbukti lagging → massive dovish repricing. DXY bisa jatuh ke 96-97.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EUR -->
+    <div class="currency-card open" id="eur">
+      <div class="currency-card-header" onclick="toggleCard(this)">
+        <div class="currency-flag-title"><span class="currency-flag">&#127466;&#127482;</span><div><div class="currency-name">Euro</div><div class="currency-pair">EUR &middot; EUR/USD &middot; EUR/AUD &middot; EUR/CAD</div></div></div>
+        <div class="currency-bias-badge"><span class="badge-hawkish">Bullish Diperkuat — Core CPI BEAT; USD Claims MISS Tambahkan EUR/USD Support Marginal</span> <span class="toggle-icon">&#9660;</span></div>
+      </div>
+      <div class="currency-card-body">
+        <div style="border:1px solid rgba(245,200,66,0.35);border-left:3px solid var(--yellow);background:rgba(245,200,66,0.03);border-radius:3px;padding:10px 14px;margin-bottom:12px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px;"><span class="update-dot-4jun"></span> UPDATE MINOR &mdash; 4 Juni 2026</div>
+          <p style="font-size:12.5px;color:var(--text);line-height:1.6;margin:0;">Tidak ada data EUR baru 4 Jun. Claims MISS AS memberikan <em>marginal positive</em> untuk EUR/USD (USD sedikit tertekan). EUR/AUD dan EUR/CAD LONG tidak terpengaruh oleh Claims — driven oleh divergensi AUD dan CAD bearish, bukan USD dynamics. <strong>Tidak ada perubahan rekomendasi. EUR/AUD LONG dan EUR/CAD LONG tetap valid untuk entry.</strong></p>
+        </div>
+        <div class="info-box bull-box">
+          <strong>LONG EUR/AUD — Conviction &#9733;&#9733;&#9733;&#9733;&#9733; — TETAP VALID:</strong> ECB: Core CPI BEAT (2.5%) → ECB hike Jun ~93-94%. AUD: GDP MISS ×4 beruntun. USD Claims MISS tidak berdampak pada pair ini — AUD bearish adalah fundamental story independent dari USD.
+        </div>
+        <div class="scenario-grid">
+          <div class="scenario-block bull"><div class="scenario-title">&#128002; Skenario Bull EUR/AUD</div><p>ECB hawkish (Core CPI) + RBA goyah (GDP MISS ganda) = entry sekarang valid. AHE Japan Jumat tidak mempengaruhi pair ini langsung.</p></div>
+          <div class="scenario-block bear"><div class="scenario-title">&#128021; Skenario Bear EUR/AUD (Risiko)</div><p>RBA Bullock hawkish defiance kuat + ECB 11 Jun "one and done" guidance. SL dipasang.</p></div>
+          <div class="scenario-block neut"><div class="scenario-title">&#10145;&#65039; Skenario Netral</div><p>AUD konsolidasi pre-NFP; EUR sideways. Range-bound jangka pendek sebelum NFP.</p></div>
+          <div class="scenario-block tail"><div class="scenario-title">&#9888;&#65039; Tail Risk</div><p>NFP MISS → risk-off global → EUR juga jual (tidak hanya AUD). Claims MISS memberikan sinyal awal bahwa NFP mungkin MISS juga → heightened uncertainty.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GBP -->
+    <div class="currency-card" id="gbp">
+      <div class="currency-card-header" onclick="toggleCard(this)">
+        <div class="currency-flag-title"><span class="currency-flag">&#127468;&#127463;</span><div><div class="currency-name">British Pound</div><div class="currency-pair">GBP &middot; GBP/USD &middot; GBP/AUD &middot; GBP/CAD</div></div></div>
+        <div class="currency-bias-badge"><span class="badge-neutral">Netral &mdash; Claims MISS Memberikan Sedikit Relief GBP/USD Jangka Pendek</span> <span class="toggle-icon">&#9660;</span></div>
+      </div>
+      <div class="currency-card-body">
+        <div class="info-box warn">Tidak ada data Tier-1 GBP minggu ini. Claims MISS (USD sedikit tertekan) memberikan sedikit relief untuk GBP/USD jangka sangat pendek. AUD GDP MISS bisa membuat GBP/AUD menarik (GBP relatif lebih kuat). Skenario tidak berubah dari baseline; NFP Jumat tetap driver utama GBP/USD.</div>
+        <div class="scenario-grid">
+          <div class="scenario-block bull"><div class="scenario-title">&#128002; Skenario Bull GBP</div><p>NFP MISS (dikonfirmasi Claims) → USD turun → GBP/USD naik. Claims 225K memberikan probabilitas NFP MISS lebih tinggi dari sebelumnya.</p></div>
+          <div class="scenario-block bear"><div class="scenario-title">&#128021; Skenario Bear GBP</div><p>NFP BEAT (Claims terbukti noise) → USD kuat → GBP/USD turun. Claims MISS tidak mengubah skenario ini jika NFP solid.</p></div>
+          <div class="scenario-block neut"><div class="scenario-title">&#10145;&#65039; Skenario Netral</div><p>Paling mungkin — GBP range-bound menunggu NFP. Claims MISS tidak cukup kuat untuk menggerakkan GBP sendiri.</p></div>
+          <div class="scenario-block tail"><div class="scenario-title">&#9888;&#65039; Tail Risk</div><p>BOE surprise statement; NFP extreme miss.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JPY -->
+    <div class="currency-card open" id="jpy">
+      <div class="currency-card-header" onclick="toggleCard(this)">
+        <div class="currency-flag-title"><span class="currency-flag">&#127471;&#127477;</span><div><div class="currency-name">Japanese Yen</div><div class="currency-pair">JPY &middot; USD/JPY &middot; EUR/JPY &middot; AUD/JPY</div></div></div>
+        <div class="currency-bias-badge"><span class="badge-hawkish">Bullish Terkonfirmasi &mdash; Ueda Hawkish; Claims MISS USD = SHORT USD/JPY Lebih Valid; AHE Jumat Final</span> <span class="toggle-icon">&#9660;</span></div>
+      </div>
+      <div class="currency-card-body">
+        <div style="border:1px solid rgba(245,200,66,0.35);border-left:3px solid var(--yellow);background:rgba(245,200,66,0.03);border-radius:3px;padding:10px 14px;margin-bottom:12px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px;"><span class="update-dot-4jun"></span> UPDATE MINOR &mdash; 4 Juni 2026</div>
+          <p style="font-size:12.5px;color:var(--text);line-height:1.6;margin:0;">Claims MISS 225K (USD bearish sinyal pre-NFP) + BOJ hawkish tetap intact = <strong>SHORT USD/JPY sekarang lebih valid dari kemarin</strong>. Namun ⛔ BLACKOUT USD berlaku — tidak ada entry USD baru termasuk SHORT USD/JPY menjelang NFP. <strong>SHORT AUD/JPY tetap trade terbaik untuk ekspresi JPY bullish</strong> karena tidak bergantung pada USD dynamics.</p>
+        </div>
+        <div class="snapshot-grid">
+          <div class="snapshot-item"><div class="snapshot-label">Macro Regime</div><div class="snapshot-val"><span class="regime-badge regime-reflation">REFLATION</span></div></div>
+          <div class="snapshot-item"><div class="snapshot-label">BOJ Hike Jun Prob</div><div class="snapshot-val bull">~87.5% (Tidak Berubah)</div></div>
+          <div class="snapshot-item"><div class="snapshot-label">Ueda Speech 3 Jun</div><div class="snapshot-val bull">Hawkish Kondisional &#10003;</div></div>
+          <div class="snapshot-item"><div class="snapshot-label">USD Claims 4 Jun</div><div class="snapshot-val neutral-c">225K MISS → Support JPY marginal</div></div>
+          <div class="snapshot-item"><div class="snapshot-label">AHE Apr Konsensus</div><div class="snapshot-val">3.2% (Jumat, keping final)</div></div>
+          <div class="snapshot-item"><div class="snapshot-label">Best JPY Trade</div><div class="snapshot-val bear">SHORT AUD/JPY (tidak bergantung USD)</div></div>
+        </div>
+        <div class="info-box bull-box">
+          <strong>Assessment (Updated 4 Jun):</strong> BOJ hawkish thesis tidak terpengaruh sama sekali oleh Claims MISS AS. BOJ hike Jun 87.5% intact. Justru Claims MISS memberikan sinyal bahwa USD mungkin melemah post-NFP → memperkuat SHORT USD/JPY sebagai skenario post-NFP. Namun karena BLACKOUT berlaku, ekspresi terbaik JPY bullish tetap SHORT AUD/JPY (AUD bearish tidak bergantung NFP). Keping final JPY: AHE April Jumat pagi.
+        </div>
+        <div class="scenario-grid">
+          <div class="scenario-block bull"><div class="scenario-title">&#128002; Skenario Bull (JPY Menguat)</div><p><strong>Berlaku sekarang:</strong> Ueda hawkish + AUD GDP MISS = SHORT AUD/JPY valid.</p><ul><li>AHE APR Jumat ≥3.2% → BOJ hike Jun sangat solid</li><li>NFP MISS (dikonfirmasi Claims 225K) → USD turun + JPY naik = SHORT USD/JPY sangat valid post-NFP</li></ul></div>
+          <div class="scenario-block bear"><div class="scenario-title">&#128021; Skenario Bear (JPY Melemah)</div><p><strong>Trigger:</strong> AHE APR &lt;2.5% DAN NFP BEAT kuat DAN Claims terbukti noise.</p><ul><li>Hike Jun turun dari 87.5% ke &lt;50%</li><li>USD/JPY balik ke 153-156</li></ul></div>
+          <div class="scenario-block neut"><div class="scenario-title">&#10145;&#65039; Skenario Netral</div><p>AHE in-line; NFP in-line; USD/JPY range-bound menunggu BOJ meeting 15-16 Juni. Ueda + Claims MISS sudah partially priced.</p></div>
+          <div class="scenario-block tail"><div class="scenario-title">&#9888;&#65039; Tail Risk</div><p>NFP BEAT kuat + Claims terbukti outlier → USD/JPY naik ke 153+. Atau ceasefire penuh → oil kolaps → inflasi Jepang jatuh → BOJ pause mendadak.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUD -->
+    <div class="currency-card open" id="aud">
+      <div class="currency-card-header" onclick="toggleCard(this)">
+        <div class="currency-flag-title"><span class="currency-flag">&#127462;&#127482;</span><div><div class="currency-name">Australian Dollar</div><div class="currency-pair">AUD &middot; AUD/USD &middot; AUD/JPY &middot; AUD/NZD</div></div></div>
+        <div class="currency-bias-badge"><span class="badge-dovish">Bearish Spiral — Tidak Ada Perubahan; SHORT AUD/JPY + LONG EUR/AUD Tetap Valid</span> <span class="toggle-icon">&#9660;</span></div>
+      </div>
+      <div class="currency-card-body">
+        <div class="critical-box">
+          <div class="critical-header">&#128308; UPDATE INTRAWEEK — 3 Juni 2026 — AUD BEARISH SPIRAL DIKONFIRMASI PENUH</div>
+          <p style="font-size:12.5px;color:var(--text);line-height:1.6;margin:0;"><strong>GDP QoQ Q1: 0.3% MISS + GDP YoY Q1: 2.5% MISS.</strong> Keping keempat beruntun miss untuk AUD. RBA hawkish kehilangan justifikasi growth. <strong>SHORT AUD/JPY dan LONG EUR/AUD VALID — berlaku dari 3 Jun dan tetap berlaku 4 Jun.</strong></p>
+        </div>
+        <div style="border:1px solid rgba(245,200,66,0.25);border-left:3px solid var(--yellow);background:rgba(245,200,66,0.02);border-radius:3px;padding:10px 14px;margin-bottom:12px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--yellow);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px;"><span class="update-dot-4jun"></span> UPDATE MINOR &mdash; 4 Juni 2026</div>
+          <p style="font-size:12.5px;color:var(--text);line-height:1.6;margin:0;">Tidak ada data AUD baru 4 Jun. Data USD hari ini (Claims MISS, ULC MISS) tidak berdampak pada fundamental AUD. <strong>Outlook AUD tidak berubah — SHORT AUD/JPY dan LONG EUR/AUD tetap berlaku.</strong> USD Claims MISS mungkin memberikan sedikit bounce teknikal AUD jangka pendek (short covering via AUD/USD), tapi tidak mengubah fundamental thesis. Monitor RBA Bullock jika ada statement hari ini atau besok.</p>
+        </div>
+        <div class="scenario-grid">
+          <div class="scenario-block bull"><div class="scenario-title">&#128002; Skenario Bull AUD (Hanya Jika...)</div><p>RBA Bullock hawkish defiance + China stimulus besar + NFP MISS (risk-on setelah relief). Bounce sementara; bukan reversal.</p></div>
+          <div class="scenario-block bear"><div class="scenario-title">&#128021; Skenario Bear (Base Case)</div><p>4 data MISS fundamental + RBA tanpa justifikasi hike. NFP MISS (dikonfirmasi Claims) → risk-off global → AUD terseret lebih dalam.</p></div>
+          <div class="scenario-block neut"><div class="scenario-title">&#10145;&#65039; Skenario Netral</div><p>Short covering teknikal pre-NFP sedikit mengangkat AUD. Konsolidasi sebelum NFP Jumat. Trend tetap bearish.</p></div>
+          <div class="scenario-block tail"><div class="scenario-title">&#9888;&#65039; Tail Risk</div><p>NFP MISS → risk-off global → AUD terseret bersama EM. Claims 225K memberikan probabilitas skenario ini lebih tinggi dari kemarin.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NZD -->
+    <div class="currency-card" id="nzd">
+      <div class="currency-card-header" onclick="toggleCard(this)">
+        <div class="currency-flag-title"><span class="currency-flag">&#127475;&#127487;</span><div><div class="currency-name">New Zealand Dollar</div><div class="currency-pair">NZD &middot; NZD/USD &middot; NZD/JPY &middot; NZD/CAD</div></div></div>
+        <div class="currency-bias-badge"><span class="badge-hawkish">Bullish Moderat &mdash; Tidak Berubah; Claims MISS Sedikit Positif via USD Weakness</span> <span class="toggle-icon">&#9660;</span></div>
+      </div>
+      <div class="currency-card-body">
+        <div class="info-box bull-box">RBNZ hawkish kuat. Claims MISS AS (USD sedikit tertekan) memberikan marginal support untuk NZD/USD. AUD/NZD SHORT tetap valid (AUD bearish spiral dikonfirmasi). Skenario tidak berubah; NFP Jumat tetap driver utama.</div>
+        <div class="scenario-grid">
+          <div class="scenario-block bull"><div class="scenario-title">&#128002; Skenario Bull NZD</div><p>NZD/CAD LONG + AUD/NZD SHORT semakin valid. Claims MISS → NFP MISS probability naik → NZD/USD juga bisa naik.</p></div>
+          <div class="scenario-block bear"><div class="scenario-title">&#128021; Skenario Bear NZD</div><p>NFP BEAT (Claims terbukti noise) → USD kuat → NZD tertekan.</p></div>
+          <div class="scenario-block neut"><div class="scenario-title">&#10145;&#65039; Skenario Netral</div><p>NZD/CAD dan AUD/NZD tetap pair terbaik. Claims MISS sudah partially priced.</p></div>
+          <div class="scenario-block tail"><div class="scenario-title">&#9888;&#65039; Tail Risk</div><p>NFP MISS besar → risk-off → NZD terseret EM selloff meski RBNZ hawkish.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAD -->
+    <div class="currency-card" id="cad">
+      <div class="currency-card-header" onclick="toggleCard(this)">
+        <div class="currency-flag-title"><span class="currency-flag">&#127464;&#127462;</span><div><div class="currency-name">Canadian Dollar</div><div class="currency-pair">CAD &middot; USD/CAD &middot; CAD/JPY &middot; EUR/CAD</div></div></div>
+        <div class="currency-bias-badge"><span class="badge-dovish">Bearish Struktural &mdash; Claims MISS Memberikan Sedikit Relief tapi ⛔ BLACKOUT CAD Berlaku</span> <span class="toggle-icon">&#9660;</span></div>
+      </div>
+      <div class="currency-card-body">
+        <div class="info-box bear-box">GDP Annualized Q1 &minus;0.1% (miss terbesar minggu lalu). Claims MISS AS sedikit menekan USD → USD/CAD menurun tipis. Namun ini bukan perubahan fundamental untuk CAD. <strong>⛔ BLACKOUT CAD dari sekarang menjelang Canada Employment Jumat 19:30 WIB.</strong> EUR/CAD LONG tetap valid; TIDAK tambah sizing atau entry baru menjelang data Jumat.</div>
+        <div class="scenario-grid">
+          <div class="scenario-block bull"><div class="scenario-title">&#128002; Skenario Bull CAD (Bounce)</div><p>Employment +30K+ DAN Claims AS terbukti noise (NFP BEAT) → USD/CAD turun. Tidak sustainable fundamental.</p></div>
+          <div class="scenario-block bear"><div class="scenario-title">&#128021; Skenario Bear (Diperdalam)</div><p>Employment negatif + NFP MISS → risk-off + CAD fundamental lemah = USD/CAD volatile tapi akhirnya naik.</p></div>
+          <div class="scenario-block neut"><div class="scenario-title">&#10145;&#65039; Skenario Netral</div><p>Employment near consensus; Claims MISS AS memberikan sedikit relief. USD/CAD range-bound pre-data.</p></div>
+          <div class="scenario-block tail"><div class="scenario-title">&#9888;&#65039; Tail Risk</div><p>NFP MISS besar + Employment MISS = USD/CAD collapse karena dua driver bergerak bersama (USD turun + CAD sedikit naik).</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHF -->
+    <div class="currency-card" id="chf">
+      <div class="currency-card-header" onclick="toggleCard(this)">
+        <div class="currency-flag-title"><span class="currency-flag">&#127464;&#127469;</span><div><div class="currency-name">Swiss Franc</div><div class="currency-pair">CHF &middot; USD/CHF &middot; EUR/CHF</div></div></div>
+        <div class="currency-bias-badge"><span class="badge-neutral">Netral — Claims MISS Berikan Sedikit Safe Haven Bid Pre-NFP</span> <span class="toggle-icon">&#9660;</span></div>
+      </div>
+      <div class="currency-card-body">
+        <div class="info-box warn">Claims MISS 225K (USD uncertainty) + ULC MISS (hawkish stagflasi thesis melemah) = sedikit meningkatkan safe haven demand CHF pre-NFP. Namun tidak cukup untuk entry. NFP Jumat tetap trigger utama. Skenario tidak berubah signifikan.</div>
+        <div class="scenario-grid">
+          <div class="scenario-block bull"><div class="scenario-title">&#128002; Skenario Bull CHF</div><p>NFP MISS (dikonfirmasi Claims) → global risk-off → CHF safe haven bid kuat.</p></div>
+          <div class="scenario-block bear"><div class="scenario-title">&#128021; Skenario Bear CHF</div><p>NFP BEAT kuat (Claims terbukti noise) → hawkish Fed → USD/CHF naik, EUR/CHF naik.</p></div>
+          <div class="scenario-block neut"><div class="scenario-title">&#10145;&#65039; Skenario Netral</div><p>NFP in-line; CHF range-bound. Claims memberikan sedikit pre-NFP uncertainty premium.</p></div>
+          <div class="scenario-block tail"><div class="scenario-title">&#9888;&#65039; Tail Risk</div><p>SNB FX intervention; geopolitik re-eskalasi → CHF spike.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CNY -->
+    <div class="currency-card" id="cny">
+      <div class="currency-card-header" onclick="toggleCard(this)">
+        <div class="currency-flag-title"><span class="currency-flag">&#127464;&#127475;</span><div><div class="currency-name">Chinese Yuan</div><div class="currency-pair">CNY &middot; USD/CNY &middot; AUD/CNY</div></div></div>
+        <div class="currency-bias-badge"><span class="badge-hawkish">Bullish Moderat &mdash; Reflation Intact; Claims MISS AS Memberikan Marginal Relief USD/CNY</span> <span class="toggle-icon">&#9660;</span></div>
+      </div>
+      <div class="currency-card-body">
+        <div class="info-box bull-box">PMI Mfg 51.8 BEAT + Industrial Profits +18.2% = Reflation China solid. Claims MISS AS (USD sedikit tertekan) → USD/CNY menurun marginally. Outlook tidak berubah. NFP Jumat penentu arah USD/CNY jangka pendek.</div>
+        <div class="scenario-grid">
+          <div class="scenario-block bull"><div class="scenario-title">&#128002; Skenario Bull CNY</div><p>NFP MISS (Claims dikonfirmasi) → USD turun → USD/CNY turun → CNY menguat.</p></div>
+          <div class="scenario-block bear"><div class="scenario-title">&#128021; Skenario Bear CNY</div><p>NFP BEAT → USD kuat → tekanan USD/CNY naik.</p></div>
+          <div class="scenario-block neut"><div class="scenario-title">&#10145;&#65039; Skenario Netral</div><p>CNY stabil; menunggu NFP Jumat. Claims MISS sudah partially priced.</p></div>
+          <div class="scenario-block tail"><div class="scenario-title">&#9888;&#65039; Tail Risk</div><p>PBoC tertinggal → inflasi China membangun tekanan tidak ter-price-in.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IDR -->
+    <div class="currency-card" id="idr">
+      <div class="currency-card-header" onclick="toggleCard(this)">
+        <div class="currency-flag-title"><span class="currency-flag">&#127470;&#127465;</span><div><div class="currency-name">Indonesian Rupiah</div><div class="currency-pair">IDR &middot; USD/IDR</div></div></div>
+        <div class="currency-bias-badge"><span class="badge-hawkish">Bullish Marginal &mdash; Claims MISS AS Memberikan Sedikit EM Relief; BI Hawkish Tetap</span> <span class="toggle-icon">&#9660;</span></div>
+      </div>
+      <div class="currency-card-body">
+        <div class="info-box bull-box">
+          <strong>Update 4 Jun:</strong> Claims MISS 225K + ULC MISS 1.8% = USD sedikit tertekan → memberikan marginal relief untuk IDR via USD/IDR turun sedikit. BI hawkish (CPI BEAT 3.08%) tetap intact. Net: <em>dua force mengurangi sedikit tekanan eksternal pada IDR</em>. Namun NFP Jumat tetap determinatif — jika NFP BEAT, tekanan kembali; jika MISS, IDR mendapat support lebih. <strong>Entry IDR kecil yang sudah dibuka dari 2 Jun dapat dipertahankan. Tidak perlu tambah sizing menjelang NFP.</strong>
+        </div>
+        <div class="scenario-grid">
+          <div class="scenario-block bull"><div class="scenario-title">&#128002; Skenario Bull IDR</div><p>NFP MISS (dikonfirmasi Claims 225K) → USD turun signifikan → EM capital inflow + BI hawkish = IDR naik dari dua sisi.</p></div>
+          <div class="scenario-block bear"><div class="scenario-title">&#128021; Skenario Bear IDR</div><p>NFP BEAT (Claims terbukti noise) → USD kuat → capital outflow EM → IDR tertekan meski BI hawkish.</p></div>
+          <div class="scenario-block neut"><div class="scenario-title">&#10145;&#65039; Skenario Netral</div><p>NFP in-line; IDR range-bound. Claims MISS memberikan sedikit relief pre-NFP.</p></div>
+          <div class="scenario-block tail"><div class="scenario-title">&#9888;&#65039; Tail Risk</div><p>Global risk-off dari NFP MISS besar → EM selloff → IDR tertekan meski BI hawkish.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- XAUUSD -->
+    <div class="currency-card" id="xauusd">
+      <div class="currency-card-header" onclick="toggleCard(this)">
+        <div class="currency-flag-title"><span class="currency-flag">&#127945;</span><div><div class="currency-name">Gold &mdash; XAUUSD</div><div class="currency-pair">XAUUSD &middot; Multi-Driver Asset &middot; ~$4,540 saat ini</div></div></div>
+        <div class="currency-bias-badge"><span class="badge-neutral">Bullish Marginal Pre-NFP &mdash; Claims MISS + ULC MISS Sedikit Mengurangi Real Yield Headwind</span> <span class="toggle-icon">&#9660;</span></div>
+      </div>
+      <div class="currency-card-body">
+        <div class="info-box warn">
+          <strong>Update 4 Jun:</strong> Claims MISS 225K (USD uncertainty) + ULC MISS 1.8% (wage inflation lebih terkendali dari ekspektasi) = real yield AS mungkin sedikit tertekan → <strong>marginal positive untuk gold pre-NFP</strong>. Ini bukan trigger masuk; hanya sedikit mengurangi headwind dari kemarin. <strong>Range gold $4,470–$4,560 menjelang NFP Jumat. NFP tetap trigger utama untuk breakout atau breakdown.</strong>
+        </div>
+        <div class="scenario-grid">
+          <div class="scenario-block bull"><div class="scenario-title">&#128002; Skenario Bull Gold</div><p>NFP MISS (dikonfirmasi Claims 225K) → Fed dovish repricing masif → real yield turun → gold breakout ke $4,600+. Probabilitas skenario ini lebih tinggi dari kemarin karena Claims 225K.</p></div>
+          <div class="scenario-block bear"><div class="scenario-title">&#128021; Skenario Bear Gold</div><p>NFP BEAT kuat (Claims terbukti noise) + AHE kuat → ISM Services dikonfirmasi → real yield naik agresif → gold turun ke $4,380-4,400.</p></div>
+          <div class="scenario-block neut"><div class="scenario-title">&#10145;&#65039; Skenario Netral</div><p>NFP in-line; Claims + ULC MISS membuat pasar lebih dovish dari kemarin; gold range <strong>$4,470-$4,560</strong>.</p></div>
+          <div class="scenario-block tail"><div class="scenario-title">&#9888;&#65039; Tail Risk</div><p>Geopolitik re-eskalasi + NFP MISS → gold spike ke $4,700+. Atau NFP + AHE double beat → gold breakdown ke $4,350.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BTC -->
+    <div class="currency-card" id="btc">
+      <div class="currency-card-header" onclick="toggleCard(this)">
+        <div class="currency-flag-title"><span class="currency-flag">&#8383;</span><div><div class="currency-name">Bitcoin</div><div class="currency-pair">BTC &middot; ~$73,820 &middot; Dominance 61%</div></div></div>
+        <div class="currency-bias-badge"><span class="badge-dovish">Bearish-Netral &mdash; Claims MISS Sedikit Mengurangi Tekanan; ETF Outflow Masih Berlanjut</span> <span class="toggle-icon">&#9660;</span></div>
+      </div>
+      <div class="currency-card-body">
+        <div class="info-box bear-box"><strong>Update 4 Jun:</strong> Claims MISS (USD uncertainty) + ULC MISS (hawkish stagflasi berkurang) = sedikit mengurangi headwind BTC dari sisi macro. Namun ETF outflow masih berlanjut dan Ueda hawkish BOJ (yen carry unwind) tetap menekan risk assets. BTC tetap range-bound $72-76K menjelang NFP.</div>
+        <div class="scenario-grid">
+          <div class="scenario-block bull"><div class="scenario-title">&#128002; Skenario Bull BTC</div><p>NFP MISS (dikonfirmasi Claims) → Fed dovish repricing + DXY turun → BTC bounce ke $78-80K. Claims 225K meningkatkan probabilitas skenario ini.</p></div>
+          <div class="scenario-block bear"><div class="scenario-title">&#128021; Skenario Bear BTC</div><p>NFP BEAT (Claims terbukti noise) → real yield naik agresif → BTC tekanan ke $68-70K.</p></div>
+          <div class="scenario-block neut"><div class="scenario-title">&#10145;&#65039; Skenario Netral</div><p>NFP in-line; BTC range $72-76K. Claims MISS parsial memberi sedikit relief tapi ETF outflow masih dominan jangka pendek.</p></div>
+          <div class="scenario-block tail"><div class="scenario-title">&#9888;&#65039; Tail Risk</div><p>Whale transfer ke exchanges trigger sell-off mendadak independent dari macro.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 -->
+  <section class="section" id="langkah4">
+    <div class="section-header">
+      <span class="section-num">LANGKAH 04</span>
+      <h2 class="section-title">Currency Divergence Matrix</h2>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">4A &mdash; Heat Map Divergensi (Pair Terpilih) &mdash; Update 4 Jun</div>
+      <div class="info-box warn" style="margin-bottom:16px;">
+        <strong>&#128993; Note Update 4 Jun:</strong> Claims MISS 225K memberikan sinyal bahwa USD hawkish thesis mungkin lebih fragile dari yang terlihat. Ini <em>tidak mengubah conviction untuk AUD/JPY dan EUR/AUD</em> (driven oleh fundamental AUD + BOJ hawkish, bukan USD dynamics). Namun conviction USD-involved pairs (EUR/USD, USD/CAD) naik sedikit karena USD menjadi lebih uncertain. Tidak ada perubahan ranking.
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Pair</th><th>CB Divergensi</th><th>Carry</th><th>Growth Divergensi</th><th>Regime Divergensi</th><th>Overall Bias</th><th>Conviction</th><th>Event Kritis</th></tr></thead>
+          <tbody>
+            <tr class="updated-row"><td><strong>AUD/JPY</strong></td><td>EKSTREM (RBA goyah 0-2% hike vs BOJ hike Jun 87.5%)</td><td class="mono">4.35%&ndash;0.75% = 3.6%</td><td>AUD: 4 data MISS beruntun vs JP improving</td><td class="heat-strong-bear">SANGAT EKSTREM — AUD Stagfl Deepening vs JPY Reflation</td><td class="bear"><strong>BEARISH AUD/JPY &#9733;&#9733;&#9733;&#9733;&#9733; — ENTRY VALID</strong><br><span style="font-size:10px;color:var(--red);">Claims AS tidak berdampak — driven oleh AUD GDP MISS + Ueda hawkish</span></td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td>AHE Japan (Jum); NFP (Jum)</td></tr>
+            <tr class="updated-row"><td><strong>EUR/AUD</strong></td><td>SANGAT KUAT (ECB hike ~93-94% vs RBA 0-2% hike)</td><td class="mono bear">&minus;2.35%</td><td>EUR stagnasi vs AUD: 4 data MISS beruntun</td><td class="heat-strong-bull">SANGAT EKSTREM (ECB Hawkish + AUD GDP MISS ganda)</td><td class="bull"><strong>BULLISH EUR/AUD &#9733;&#9733;&#9733;&#9733;&#9733; — ENTRY VALID</strong><br><span style="font-size:10px;color:var(--green);">Tidak berubah 4 Jun; Claims AS tidak berdampak</span></td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td>ECB 11 Jun</td></tr>
+            <tr class="updated-row-4jun"><td><strong>USD/JPY</strong></td><td>KUAT (Fed hawkish-hold + ISM Services BEAT vs BOJ hike Jun 87.5%)</td><td class="mono">3.75%&ndash;0.75% = 3%</td><td>USD: Claims MISS (4 Jun) counter-signals ISM Services; JP improving</td><td class="heat-strong-bull">KUAT tapi menurun dari kemarin (USD side weaker)</td><td class="bear"><strong>BEARISH USD/JPY (medium-term — diperkuat 4 Jun)</strong><br><span style="font-size:10px;color:var(--yellow);">Claims MISS → USD lebih lemah; BOJ hawkish intact. Namun ⛔ BLACKOUT, tunggu NFP.</span></td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;</span></td><td>AHE Japan (Jum); NFP (Jum)</td></tr>
+            <tr class="updated-row"><td><strong>EUR/USD</strong></td><td>KUAT (ECB hike ~93-94% vs Fed hold-hawkish)</td><td class="mono bear">&minus;1.625%</td><td>EUR stagnasi vs USD: Claims MISS membuat USD lebih uncertain</td><td class="heat-bull">MENGUAT SEDIKIT (Claims MISS melemahkan USD side)</td><td class="bull"><strong>BULLISH EUR/USD (meningkat tipis 4 Jun)</strong><br><span style="font-size:10px;color:var(--green);">Claims MISS memberikan USD downward bias. Namun ⛔ BLACKOUT USD.</span></td><td><span class="stars">&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;&#9733;</span></td><td>ECB Meeting 11 Jun; NFP (Jum)</td></tr>
+            <tr class="updated-row"><td><strong>USD/CAD</strong></td><td>KUAT (tapi Claims MISS melemahkan sedikit USD side)</td><td class="mono">+1.375%</td><td>USD stagflasi (Claims MISS contra) vs CAD deflasi (GDP kontraksi)</td><td class="heat-bull">KUAT tapi uncertainty bertambah dari Claims MISS</td><td class="bull"><strong>BULLISH USD/CAD (sedikit berkurang dari kemarin)</strong><br><span style="font-size:10px;color:var(--yellow);">⛔ BLACKOUT USD + CAD — tunggu dua data Jumat.</span></td><td><span class="stars">&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;&#9733;</span></td><td>Canada Employment (Jum); NFP (Jum)</td></tr>
+            <tr class="updated-row"><td><strong>EUR/CAD</strong></td><td>KUAT (ECB hike ~93-94% vs BOC dovish)</td><td class="mono">&minus;0.25%</td><td>EUR stagnasi vs CAD deflasi</td><td class="heat-strong-bull">KUAT (ECB hawkish + BOC dovish — tidak berubah)</td><td class="bull"><strong>BULLISH EUR/CAD (tetap valid)</strong><br><span style="font-size:10px;color:var(--yellow);">⛔ BLACKOUT CAD; tunda tambah sizing sampai Employment Jumat.</span></td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;</span></td><td>ECB 11 Jun; Canada Employment (Jum)</td></tr>
+            <tr class="updated-row"><td><strong>AUD/NZD</strong></td><td>SANGAT KUAT (RBA 0-2% hike vs RBNZ hawkish)</td><td class="mono">4.35%&ndash;2.25% = 2.1%</td><td>AUD: 4 data MISS vs NZD recovery</td><td class="heat-bear">KUAT (AUD Stagfl Deepening vs NZD Reflation)</td><td class="bear"><strong>BEARISH AUD/NZD (tidak berubah 4 Jun)</strong></td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;</span></td><td>NFP global sentiment; AHE Japan</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">4B &mdash; Top Divergence Plays Minggu Ini (Update 4 Jun)</div>
+      <div class="play-card" style="border-color:rgba(232,64,64,0.5);">
+        <div class="play-number">PLAY #1 — CONVICTION <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> — ✅ ENTRY VALID (TIDAK BERUBAH 4 JUN)</div>
+        <div class="play-title">SHORT AUD/JPY</div>
+        <div class="play-row"><span class="play-row-label">Status 4 Jun</span><span class="bear"><strong>ENTRY TETAP VALID.</strong> Claims MISS AS tidak berdampak pada pair ini (driven AUD GDP MISS + Ueda hawkish, bukan USD dynamics). SHORT AUD/JPY adalah play terbaik untuk menghindari NFP noise karena tidak bergantung pada arah USD.</span></div>
+        <div class="play-row"><span class="play-row-label">Keping Terpasang</span>AUD: CPI MoM MISS, CPI YoY MISS, GDP QoQ MISS 0.3%, GDP YoY MISS 2.5% | JPY: Ueda hawkish 27 Mei + 3 Jun, BOJ hike Jun ~87.5%</div>
+        <div class="play-row"><span class="play-row-label">Keping Pending</span>AHE Japan Jumat 06:30 WIB — keping final JPY. BEAT ≥3.2% = tambah sizing SHORT.</div>
+        <div class="play-row"><span class="play-row-label">Repricing (5A)</span>AUD repricing dovish (RBA pause narrative semakin kuat) + JPY repricing hawkish (BOJ hike Jun + Sept mulai ter-price-in) = double directional push.</div>
+        <div class="play-row"><span class="play-row-label">Risiko Repricing (5B)</span>AHE Japan MISS &lt;2.5% (Jumat) + NFP BEAT kuat yang mendorong risk-on → AUD bounce via risk-on; SL dipasang. Claims MISS 225K tidak mengubah AUD fundamental tapi meningkatkan probabilitas risk-off jika NFP juga MISS.</div>
+      </div>
+      <div class="play-card" style="border-color:rgba(46,202,139,0.5);">
+        <div class="play-number">PLAY #1B — CONVICTION <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> — ✅ ENTRY VALID + TETAP HOLD (4 JUN)</div>
+        <div class="play-title">LONG EUR/AUD</div>
+        <div class="play-row"><span class="play-row-label">Status 4 Jun</span><span class="bull"><strong>TETAP VALID — TIDAK PERLU AKSI.</strong> Claims MISS tidak berdampak pada pair ini. EUR/AUD adalah play divergensi ECB vs RBA yang tidak bergantung pada USD. Posisi yang sudah dibuka dipertahankan.</span></div>
+        <div class="play-row"><span class="play-row-label">Keping Terpasang</span>EUR: Core CPI BEAT 2.5% (2 Jun), ECB hike Jun ~93-94% | AUD: CPI MISS ×2, GDP QoQ MISS 0.3%, GDP YoY MISS 2.5%, RBA hike prob ~0-2%</div>
+        <div class="play-row"><span class="play-row-label">Repricing (5A)</span>ECB hawkish dikonfirmasi → hike Jun + kemungkinan Sept | AUD bearish spiral → RBA pause narrative menguat.</div>
+        <div class="play-row"><span class="play-row-label">Risiko Repricing (5B)</span>ECB 11 Jun "one and done" guidance → EUR turun. RBA Bullock hawkish defiance → AUD bounce sementara. NFP MISS besar → risk-off → AUD dan EUR sama-sama jual (tidak hanya AUD).</div>
+      </div>
+      <div class="play-card">
+        <div class="play-number">PLAY #2 — CONVICTION <span class="stars">&#9733;&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;</span> — ⛔ TUNDA TAMBAH SIZING</div>
+        <div class="play-title">LONG EUR/CAD</div>
+        <div class="play-row"><span class="play-row-label">Update 4 Jun</span><span class="neutral-c">Claims MISS memberikan sedikit tekanan pada USD, membantu EUR vs CAD pair. Namun ⛔ BLACKOUT CAD berlaku — tunda tambah sizing atau entry baru sampai Canada Employment Jumat dirilis.</span></div>
+        <div class="play-row"><span class="play-row-label">Repricing (5A)</span>ECB signal hawkish + CAD dikonfirmasi lemah (BOC dovish + GDP kontraksi).</div>
+        <div class="play-row"><span class="play-row-label">Risiko Repricing (5B)</span>Canada Employment BEAT besar Jumat → CAD bounce → EUR/CAD kembali. ECB 11 Jun "one and done" guidance.</div>
+      </div>
+      <div class="play-card">
+        <div class="play-number">PLAY #3 — CONVICTION <span class="stars">&#9733;&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;</span> — ⛔ TUNDA — BLACKOUT USD</div>
+        <div class="play-title">SHORT USD/JPY (LONG JPY)</div>
+        <div class="play-row"><span class="play-row-label">Update 4 Jun</span><span class="neutral-c">Claims MISS 225K + ULC MISS 1.8% = USD lebih lemah dari ekspektasi → SHORT USD/JPY menjadi lebih menarik setelah NFP. Namun ⛔ BLACKOUT USD berlaku — tunggu NFP Jumat dulu. Post-NFP jika MISS: SHORT USD/JPY adalah entry yang sangat kuat dari dua sisi (USD lemah + JPY hawkish).</span></div>
+        <div class="play-row"><span class="play-row-label">Repricing (5A)</span>BOJ hike Juni dikonfirmasi + NFP MISS (dikonfirmasi Claims) → yield differential menyempit → USD/JPY turun ke 147-148.</div>
+        <div class="play-row"><span class="play-row-label">Risiko Repricing (5B)</span>NFP BEAT (Claims terbukti noise) + AHE kuat → USD/JPY bisa balik ke 153+.</div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">4C &mdash; Pairs to Avoid Minggu Ini (Update 4 Jun)</div>
+      <div class="info-box warn">
+        <p><strong>EUR/USD:</strong> ECB hawkish (Core CPI BEAT) vs USD uncertain (Claims MISS + ISM Services BEAT = sinyal berlawanan). ⛔ BLACKOUT USD berlaku. Volatilitas sangat tinggi menjelang NFP.</p>
+        <p style="margin-top:8px;"><strong>AUD/USD:</strong> AUD bearish (GDP MISS ganda) vs USD uncertain (Claims MISS vs ISM Services masih berlawanan arah). ⛔ BLACKOUT USD + AUD noise pre-NFP. SHORT AUD/JPY jauh lebih bersih untuk ekspresi AUD bearish.</p>
+        <p style="margin-top:8px;"><strong>USD/CAD:</strong> ⛔ BLACKOUT USD + CAD dari sekarang. Dua data Jumat (NFP + Employment) bisa menggerakkan pair ini ke dua arah berbeda secara bersamaan. Hindari.</p>
+      </div>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-title">4D &mdash; Carry Trade Radar (Update 4 Jun)</div>
+      <div class="info-box info-blue">VIX baseline masih rendah tapi Claims MISS meningkatkan uncertainty pre-NFP. Carry trades dengan JPY funding: TETAP HINDARI karena Ueda hawkish tidak berubah. Claims MISS sedikit meningkatkan probabilitas risk-off jika NFP MISS → carry unwind lebih berbahaya.</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Pair Carry</th><th>Carry (Rate Diff)</th><th>Regime Assessment</th><th>Status (Update 4 Jun)</th><th>Conviction</th></tr></thead>
+          <tbody>
+            <tr><td>NZD/JPY</td><td class="mono">2.25%&ndash;0.75% = +1.5%</td><td>RBNZ Reflation vs BOJ Reflation — RBNZ lebih hawkish</td><td class="neutral-c">BERISIKO — Ueda hawkish 3 Jun + Claims MISS 4 Jun (NFP MISS risk lebih tinggi). TIDAK DIREKOMENDASIKAN.</td><td><span class="stars">&#9733;&#9733;</span><span class="stars-empty">&#9733;&#9733;&#9733;</span></td></tr>
+            <tr><td>AUD/CHF</td><td class="mono">4.35%&ndash;0.00% = +4.35%</td><td>AUD Stagflation Deepening vs CHF Stagflation</td><td class="bear">SANGAT BERISIKO — AUD bearish spiral (GDP MISS ganda). Claims MISS AS meningkatkan risk-off probability. HINDARI.</td><td><span class="stars">&#9733;</span><span class="stars-empty">&#9733;&#9733;&#9733;&#9733;</span></td></tr>
+            <tr><td>NZD/CHF</td><td class="mono">2.25%&ndash;0.00% = +2.25%</td><td>RBNZ Reflation vs SNB neutral-dovish</td><td class="bull">MENDUKUNG — carry tanpa JPY risk; Claims MISS bisa sedikit meningkatkan CHF safe haven vs NZD tapi tidak signifikan.</td><td><span class="stars">&#9733;&#9733;&#9733;</span><span class="stars-empty">&#9733;&#9733;</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 05 -->
+  <section class="section" id="langkah5">
+    <div class="section-header">
+      <span class="section-num">LANGKAH 05</span>
+      <h2 class="section-title">Ringkasan Eksekutif</h2>
+    </div>
+    <div class="sub-section" id="s5a">
+      <div class="sub-section-title">Tema Makro Utama Minggu Ini (Update 4 Jun)</div>
+      <div class="theme-card" style="border-color:rgba(232,64,64,0.45);">
+        <div class="theme-number" style="color:var(--red);">TEMA 01 &mdash; TIDAK BERUBAH — AUD BEARISH SPIRAL DIKONFIRMASI PENUH</div>
+        <div class="theme-title">Australia: Empat Data Beruntun Miss &mdash; RBA Terjepit Stagflasi; SHORT AUD/JPY & LONG EUR/AUD Valid</div>
+        <div class="theme-row"><span class="theme-row-label">Status 4 Jun</span><span class="bear">Tidak ada data AUD baru. Claims AS tidak berdampak. SHORT AUD/JPY + LONG EUR/AUD tetap valid. Keping final: AHE Japan Jumat pagi.</span></div>
+        <div class="theme-row"><span class="theme-row-label">Rekomendasi</span><span class="bear"><strong>SHORT AUD/JPY VALID — HOLD/TAMBAH SIZING POST-AHE JAPAN JUMAT PAGI jika BEAT.</strong> LONG EUR/AUD VALID — PERTAHANKAN POSISI.</span></div>
+      </div>
+      <div class="theme-card" style="border-color:rgba(46,202,139,0.35);">
+        <div class="theme-number" style="color:var(--green);">TEMA 02 &mdash; DIKONFIRMASI — HAWKISH JPY TIDAK BERUBAH</div>
+        <div class="theme-title">BOJ Normalisasi Terakselerasi &mdash; Claims AS Tidak Berdampak; AHE Jumat = Keping Final</div>
+        <div class="theme-row"><span class="theme-row-label">Status 4 Jun</span><span class="bull">Ueda hawkish 3 Jun tetap berlaku. Claims MISS AS tidak mengubah outlook BOJ sama sekali. SHORT AUD/JPY tetap ekspresi terbaik JPY bullish karena tidak bergantung pada USD dynamics.</span></div>
+        <div class="theme-row"><span class="theme-row-label">Keping Final</span><span class="bull">AHE Japan APR Jumat 06:30 WIB — kons 3.2%. BEAT ≥3.2%: SHORT AUD/JPY + SHORT USD/JPY post-NFP. MISS &lt;2.5%: kurangi exposure JPY bullish.</span></div>
+      </div>
+      <div class="theme-card" style="border-color:rgba(245,200,66,0.45);">
+        <div class="theme-number" style="color:var(--yellow);">TEMA 03 &mdash; UPDATE 4 JUN — PRE-NFP SOFTENING SIGNAL</div>
+        <div class="theme-title">US Labor Market — Claims MISS 225K + ULC MISS 1.8%; Hawkish Thesis Dipertanyakan; NFP = Final Arbitrase</div>
+        <div class="theme-row"><span class="theme-row-label">Sinyal 4 Jun</span><span class="neutral-c">Claims MAY/30: 225K MISS vs 213K kons (+12K) — sinyal bearish labor pertama. ULC Final Q1: 1.8% MISS vs 2.5% kons — wage cost lebih terkendali dari ekspektasi. Productivity: 0.3% MISS vs 0.5% kons — output efficiency lebih rendah.</span></div>
+        <div class="theme-row"><span class="theme-row-label">Net Repricing</span><span class="neutral-c">Hike Des 2026: ~55-60% (dari 58-62% kemarin). Tidak ada perubahan arah, hanya tingkat uncertainty meningkat.</span></div>
+        <div class="theme-row"><span class="theme-row-label">Status</span><span class="neutral-c"><strong>⛔ BLACKOUT USD + CAD dari sekarang. NFP Jumat 19:30 WIB adalah satu-satunya yang menentukan apakah Claims 225K ini adalah signal atau noise.</strong></span></div>
+      </div>
+      <div class="theme-card" style="border-color:rgba(46,202,139,0.3);">
+        <div class="theme-number" style="color:var(--green);">TEMA 04 &mdash; TERKONFIRMASI &amp; TIDAK BERUBAH</div>
+        <div class="theme-title">ECB Hawkish Diperkuat &mdash; Core CPI BEAT 2.5%; EUR/AUD Conviction Tertinggi Minggu Ini</div>
+        <div class="theme-row"><span class="theme-row-label">Status 4 Jun</span>Tidak ada data EUR baru. Claims MISS memberikan marginal positive untuk EUR/USD. EUR/AUD tetap play terkuat minggu ini.</div>
+        <div class="theme-row"><span class="theme-row-label">Rekomendasi</span><span class="bull">PERTAHANKAN LONG EUR/AUD. TUNDA tambah EUR/CAD sizing sampai Canada Employment Jumat. ECB 11 Jun = event risk utama post-minggu ini.</span></div>
+      </div>
+    </div>
+    <div class="sub-section" id="s5b">
+      <div class="sub-section-title">Scenario Matrix &mdash; What If Analysis (Update 4 Jun)</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Skenario</th><th>Kondisi Data</th><th>USD</th><th>AUD</th><th>JPY</th><th>Gold</th><th>Prob (Update 4 Jun)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Hawkish Konfirmasi Full</strong><br><small>Claims terbukti noise</small></td><td>NFP &gt;130K + AHE ≥0.4% + UE ≤4.2%</td><td class="heat-strong-bull">DXY &gt;101; Claims dilupakan</td><td class="heat-strong-bear">Turun tajam (4 data MISS)</td><td class="heat-bull">Naik bertahap (BOJ hike Jun)</td><td class="heat-bear">$4,380-4,420</td><td class="mono">20% <span style="color:var(--red);font-size:9.5px;">(turun dari 25% kemarin)</span></td></tr>
+            <tr><td><strong>Goldilocks/Netral</strong><br><small>Claims = signal moderat</small></td><td>NFP ~70-110K + UE 4.3% + AHE 0.3%</td><td class="heat-neutral">Range 98.5-100.5; Claims partially priced</td><td class="heat-bear">Tertekan (fundamental)</td><td class="heat-bull">Naik (Ueda dikonfirmasi)</td><td class="heat-neutral">$4,470-4,560</td><td class="mono">40% <span style="color:var(--yellow);font-size:9.5px;">(naik dari 35% kemarin)</span></td></tr>
+            <tr><td><strong>Claims Dikonfirmasi / Soft NFP</strong><br><small>Labor genuinely cooling</small></td><td>NFP &lt;70K + AHE lemah + UE ≥4.4%</td><td class="heat-bear">DXY turun tajam; ISM Services repricing berbalik</td><td class="heat-bear">Tetap bearish (fundamental)</td><td class="heat-strong-bull">JPY kuat ganda (BOJ hawkish + USD lemah)</td><td class="heat-strong-bull">&gt;$4,600</td><td class="mono">35% <span style="color:var(--green);font-size:9.5px;">(naik dari 30% kemarin karena Claims 225K)</span></td></tr>
+            <tr><td><strong>Tail Risk</strong></td><td>Ceasefire collapse + NFP &lt;50K + double data shock</td><td class="heat-neutral">Volatile</td><td class="heat-strong-bear">Turun sangat tajam</td><td class="heat-strong-bull">Naik kuat</td><td class="heat-strong-bull">$4,700+</td><td class="mono">5% <span style="color:var(--text3);font-size:9.5px;">(turun dari 10%)</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="sub-section" id="s5c">
+      <div class="sub-section-title">Monitoring Dashboard &mdash; Risk Watch (Update 4 Jun)</div>
+      <div class="risk-grid">
+        <div class="risk-item"><div class="risk-item-label">NFP Threshold Bull</div><div class="risk-item-val bull">&gt;130K</div><div class="risk-item-desc">Claims terbukti noise. DXY &gt;101. ISM Services dikonfirmasi sebagai leading indicator.</div></div>
+        <div class="risk-item"><div class="risk-item-label">NFP Threshold Bear</div><div class="risk-item-val bear">&lt;70K</div><div class="risk-item-desc">Claims 225K terbukti signal. Semua sinyal activity lagging. Gold naik. JPY rally lebih kuat dari AUD.</div></div>
+        <div class="risk-item" style="border-color:rgba(245,200,66,0.3);"><div class="risk-item-label"><span class="update-dot-4jun"></span>Claims MAY/30 (4 Jun)</div><div class="risk-item-val bear">225K MISS 🔻</div><div class="risk-item-desc">Sinyal bearish labor pertama minggu ini. Counter-JOLTs narrative. NFP Jumat = arbitrase final.</div></div>
+        <div class="risk-item" style="border-color:rgba(245,200,66,0.3);"><div class="risk-item-label"><span class="update-dot-4jun"></span>ULC Final Q1 (4 Jun)</div><div class="risk-item-val neutral-c">1.8% MISS vs 2.5% kons</div><div class="risk-item-desc">Wage cost lebih terkendali dari ekspektasi. Melemahkan stagflasi wage-driven thesis.</div></div>
+        <div class="risk-item" style="border-color:rgba(245,200,66,0.3);"><div class="risk-item-label"><span class="update-dot-4jun"></span>Productivity Q1 (4 Jun)</div><div class="risk-item-val neutral-c">0.3% MISS vs 0.5% kons</div><div class="risk-item-desc">Pelengkap melemahkan. Tidak trigger entry; catatan konteks saja.</div></div>
+        <div class="risk-item updated-row"><div class="risk-item-label"><span class="update-dot"></span>AUD GDP QoQ 3 Jun</div><div class="risk-item-val bear">0.3% MISS 🔻</div><div class="risk-item-desc">MISS keempat beruntun AUD. SHORT AUD/JPY + LONG EUR/AUD VALID sekarang.</div></div>
+        <div class="risk-item updated-row"><div class="risk-item-label"><span class="update-dot"></span>BOJ Ueda 3 Jun</div><div class="risk-item-val bull">Hawkish Kondisional &#10003;</div><div class="risk-item-desc">BOJ hike Jun 87.5% intact. Claims MISS AS tidak mengubah BOJ bias.</div></div>
+        <div class="risk-item updated-row"><div class="risk-item-label"><span class="update-dot"></span>ISM Services PMI 3 Jun</div><div class="risk-item-val bull">54.5 BEAT &#10003;</div><div class="risk-item-desc">Dikontraskan oleh Claims MISS 4 Jun. Dua sinyal berlawanan; NFP = arbiter.</div></div>
+        <div class="risk-item"><div class="risk-item-label">Japan AHE Threshold</div><div class="risk-item-val bull">≥3.2% Jumat</div><div class="risk-item-desc">Di atas ini → SHORT AUD/JPY dari sisi JPY tambah solid. MISS &lt;2.5% → kurangi JPY exposure.</div></div>
+        <div class="risk-item"><div class="risk-item-label">Hike Dec 2026</div><div class="risk-item-val neutral-c">~55-60%</div><div class="risk-item-desc">Turun dari 58-62% pasca Claims MISS + ULC MISS. NFP determinatif arah selanjutnya.</div></div>
+        <div class="risk-item"><div class="risk-item-label">Gold Support/Range</div><div class="risk-item-val neutral-c">$4,470-$4,560</div><div class="risk-item-desc">Claims MISS + ULC MISS sedikit mengangkat ceiling dari $4,550 ke $4,560. NFP trigger breakout/breakdown.</div></div>
+        <div class="risk-item"><div class="risk-item-label">VIX Warning Level</div><div class="risk-item-val neutral-c">20+</div><div class="risk-item-desc">Di atas ini → carry trade unwind; kurangi semua risk-on. Claims MISS meningkatkan sedikit probability spike VIX post-NFP jika MISS.</div></div>
+      </div>
+    </div>
+    <div class="sub-section" id="s5d">
+      <div class="sub-section-title">Checklist Navigasi Minggu Ini (Update 4 Jun)</div>
+      <div class="week-card done-card">
+        <div class="week-header">
+          <span class="week-badge done">&#10003; SUDAH TERJADI &mdash; SENIN 1 JUN (SESI ASIA)</span>
+          <span class="week-dates">AUD PMI Final 50.7 BEAT | CNY PMI 51.8 BEAT</span>
+        </div>
+        <ul class="bullet-list">
+          <li><strong>AUD S&amp;P Global Mfg PMI Final MAY:</strong> <span class="bull">50.7 BEAT vs kons 50.2</span> → Cabang D. Tidak mengubah narrative bearish AUD.</li>
+          <li><strong>CNY Manufacturing PMI MAY:</strong> <span class="bull">51.8 BEAT vs kons 51.4</span> → Cabang D. Reflation China dikonfirmasi.</li>
+        </ul>
+      </div>
+      <div class="week-card done-card">
+        <div class="week-header">
+          <span class="week-badge done">&#10003; SUDAH TERJADI &mdash; SENIN 1 JUN (SESI NEW YORK)</span>
+          <span class="week-dates">ISM Mfg PMI 54.0 BEAT | ISM Mfg Prices 82.1 MISS</span>
+        </div>
+        <ul class="bullet-list">
+          <li><strong>ISM Manufacturing PMI MAY:</strong> <span class="bull">54.0 BEAT vs kons 53.0</span> → Cabang A. Growth kuat; dikonfirmasi ISM Services 3 Jun.</li>
+          <li><strong>ISM Manufacturing Prices MAY:</strong> <span class="bear">82.1 MISS vs kons 85.5</span> → Cabang B. Outlier sektoral — ULC MISS 4 Jun juga konsisten; tapi ISM Services Prices 71.3 naik menunjukkan bukan disinflasi sistemik.</li>
+        </ul>
+      </div>
+      <div class="week-card done-card">
+        <div class="week-header">
+          <span class="week-badge done">&#10003; SUDAH TERJADI &mdash; SELASA 2 JUN</span>
+          <span class="week-dates">IDR CPI BEAT | EUR CPI IN-LINE | EUR Core BEAT | JOLTs KEJUTAN BESAR</span>
+        </div>
+        <ul class="bullet-list">
+          <li><strong>IDR CPI YoY MAY: 3.08% BEAT</strong> → Cabang A. BI hawkish terkonfirmasi.</li>
+          <li><strong>EUR CPI Headline MAY: 3.2% IN-LINE</strong> → Cabang C. Fully price-in.</li>
+          <li><strong>EUR Core CPI MAY: 2.5% BEAT</strong> → Cabang A. ECB ~93-94%; LONG EUR/AUD &amp; EUR/CAD. <strong>Conviction &#9733;&#9733;&#9733;&#9733;&#9733; tetap tidak berubah 4 Jun.</strong></li>
+          <li><strong>JOLTs APR: 7.618M KEJUTAN BESAR</strong> → Cabang G. Dikontraskan oleh Claims 225K MISS (4 Jun). NFP Jumat = arbitrase final antara JOLTs vs Claims.</li>
+        </ul>
+      </div>
+      <div class="week-card done-card">
+        <div class="week-header">
+          <span class="week-badge done">&#10003; SUDAH TERJADI &mdash; RABU 3 JUN</span>
+          <span class="week-dates">AU GDP MISS ×2 | Ueda Hawkish | ADP BEAT | ISM Services PMI BEAT | Services Prices Naik</span>
+        </div>
+        <ul class="bullet-list">
+          <li><strong>AU GDP QoQ Q1: 0.3% MISS</strong> → Cabang B. <span class="bear">SHORT AUD/JPY + LONG EUR/AUD VALID.</span></li>
+          <li><strong>AU GDP YoY Q1: 2.5% MISS</strong> → Cabang B. Bearish spiral dikonfirmasi penuh dari dua sudut pandang.</li>
+          <li><strong>BOJ Ueda Speech: Hawkish Kondisional</strong> → Cabang A. BOJ hike Jun 87.5% intact; tidak berubah 4 Jun.</li>
+          <li><strong>ADP MAY: 122K BEAT</strong> → Cabang D. Berlawanan dengan Claims MISS 225K (4 Jun). NFP = penentu mana yang benar.</li>
+          <li><strong>ISM Services PMI MAY: 54.5 BEAT</strong> → Cabang A. Activity kuat. Dikontraskan oleh Claims MISS 4 Jun. ⛔ BLACKOUT USD tetap.</li>
+          <li><strong>ISM Services Prices MAY: 71.3 (naik dari 70.7)</strong> → Cabang D. ISM Prices naik vs ULC MISS (4 Jun): stagflasi demand-driven (bukan wage-driven) lebih akurat karakterisasinya.</li>
+        </ul>
+      </div>
+      <!-- 4 JUN — SUDAH TERJADI -->
+      <div class="week-card" style="border-color:rgba(245,200,66,0.35);background:rgba(245,200,66,0.02);">
+        <div class="week-header">
+          <span class="week-badge" style="background:rgba(245,200,66,0.15);color:var(--yellow);border:1px solid rgba(245,200,66,0.4);">&#10003; SUDAH TERJADI &mdash; KAMIS 4 JUN (SESI NEW YORK)</span>
+          <span class="week-dates">Claims 225K MISS | Productivity 0.3% MISS | ULC 1.8% MISS</span>
+        </div>
+        <ul class="bullet-list">
+          <li><strong><span class="update-dot-4jun"></span>Initial Jobless Claims MAY/30: 225K MISS</strong> (vs kons 213K, +12K) → <span class="iw-utama" style="font-size:10px;">KEPING UTAMA</span> <strong>Cabang B.</strong> <span class="bear">Sinyal bearish labor pertama minggu ini. Counter-JOLTs narrative terkonfirmasi (Claims &gt;225K = threshold kondisional yang disebutkan di HTML awal). Hike Des 2026 tertekan dari ~58-62% ke ~55-60%. ⛔ BLACKOUT USD berlaku. WAIT AND SEE — NFP Jumat adalah keping utama yang menentukan apakah ini signal atau noise.</span> Keping utama berikutnya tertunda: NFP MAY (5 Jun, 19:30 WIB).</li>
+          <li><strong><span class="update-dot-4jun"></span>Nonfarm Productivity QoQ Final Q1: 0.3% MISS</strong> (vs kons 0.5%, &minus;0.2ppt) → <span class="iw-pelengkap" style="font-size:10px;">KEPING PELENGKAP</span> <strong>Cabang E.</strong> <span class="neutral-c">TIDAK ENTRY. Catatan melemahkan: produktivitas lebih rendah dari ekspektasi, konsisten dengan narrative growth AS yang lebih lemah dari permukaan. Tambah catatan skeptisisme minor pada skenario hawkish USD.</span></li>
+          <li><strong><span class="update-dot-4jun"></span>Unit Labour Costs QoQ Final Q1: 1.8% MISS</strong> (vs kons 2.5%, &minus;0.7ppt) → <span class="iw-pelengkap" style="font-size:10px;">KEPING PELENGKAP</span> <strong>Cabang E.</strong> <span class="neutral-c">TIDAK ENTRY. Catatan penting: wage cost per unit output jauh di bawah ekspektasi = stagflasi wage-driven thesis melemah. Dikombinasikan dengan ISM Services Prices 71.3 (naik), mengkarakterisasi inflasi AS lebih akurat sebagai demand-pull dari sektor jasa, bukan cost-push dari upah. Implikasi hawkish lebih rendah dari yang ditakuti.</span></li>
+        </ul>
+        <div style="margin-top:10px;padding:8px 12px;background:rgba(232,64,64,0.06);border:1px solid rgba(232,64,64,0.2);border-radius:3px;">
+          <p style="font-size:12px;color:var(--red);font-family:'IBM Plex Mono',monospace;margin:0;">⛔ BLACKOUT AKTIF: USD (menjelang NFP) + CAD (menjelang Employment). JANGAN entry arah baru untuk kedua pair ini sampai data Jumat dirilis.</p>
+        </div>
+      </div>
+      <div class="week-card">
+        <div class="week-header">
+          <span class="week-badge">JUMAT 5 JUN &mdash; &#9940; BLACKOUT USD + CAD — VERDICT FINAL MINGGU INI</span>
+          <span class="week-dates">AHE Japan | NFP | Canada Employment | EUR GDP</span>
+        </div>
+        <ul class="bullet-list">
+          <li><strong>Japan Average Cash Earnings YoY APR (06:30 WIB) &mdash; KEPING FINAL JPY:</strong> kons 3.2%; BEAT ≥3.2% → SHORT AUD/JPY dari sisi JPY sangat solid + SHORT USD/JPY post-NFP valid; MISS &lt;2.5% → kurangi JPY exposure, SHORT AUD/JPY lebih tergantung pada sisi AUD saja</li>
+          <li><strong>US Non Farm Payrolls MAY (19:30 WIB) &mdash; ⛔ BLACKOUT USD — ARBITRASE FINAL:</strong> Threshold bull: &gt;130K (Claims terbukti noise, ISM Services = leading) vs threshold bear: &lt;70K (Claims signal valid, semua activity lagging). Tambahan: AHE MoM kons 0.3% (BEAT ≥0.4% = wage pressure kembali meski ULC MISS); UE kons 4.3%</li>
+          <li><strong>Canada Employment Change MAY (19:30 WIB) &mdash; ⛔ BLACKOUT CAD:</strong> kons +10.2K; MISS → EUR/CAD LONG + SHORT CAD/JPY valid; BEAT → CAD bounce sementara tapi tidak sustainable structural</li>
+          <li><strong>EUR GDP Q1 3rd Estimate (16:00 WIB):</strong> kons 0.1% QoQ; konfirmasi stagnasi Eurozone yang justify ECB hawkish stance</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="disclaimer">
+    <div class="section-header">
+      <span class="section-num">DISCLAIMER</span>
+      <h2 class="section-title">Pernyataan Penting</h2>
+    </div>
+    <div class="disclaimer-text">
+      <p>Laporan ini disusun oleh Bima Galih untuk keperluan internal Komunitas Trading Nova Capital semata. Seluruh analisis, opini, skenario, dan proyeksi yang terdapat dalam dokumen ini bersifat pendapat pribadi penulis berdasarkan data yang tersedia pada tanggal penerbitan dan tidak mewakili posisi resmi lembaga manapun.</p>
+      <p style="margin-top:12px;">Dokumen ini <strong>bukan merupakan saran investasi, rekomendasi perdagangan, atau panduan finansial</strong>. Trading instrumen keuangan termasuk valuta asing (forex), komoditas, saham, dan aset kripto mengandung risiko kerugian yang signifikan dan bisa melebihi modal yang diinvestasikan.</p>
+      <p style="margin-top:12px;">Pembaca bertanggung jawab penuh atas segala keputusan investasi yang diambil. Nova Capital tidak bertanggung jawab atas kerugian yang timbul dari penggunaan informasi dalam laporan ini.</p>
+      <p style="margin-top:12px;"><strong>Distribusi: INTERNAL &mdash; Komunitas Trading Nova Capital. Dilarang menyebarluaskan tanpa izin tertulis.</strong></p>
+      <p style="margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">&copy; Nova Capital &middot; FX Macro Research Weekly &middot; Edisi Juni 2026 &middot; Diterbitkan 31 Mei 2026 &middot; Diupdate 4 Juni 2026 (Sesi New York) &middot; Penulis: Bima Galih</p>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<script>
+function toggleCard(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+const navItems = document.querySelectorAll('.nav-item');
+const observerOptions = { root: null, rootMargin: '-20% 0px -70% 0px', threshold: 0 };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === '#' + id) { item.classList.add('active'); }
+      });
+    }
+  });
+}, observerOptions);
+document.querySelectorAll('[id]').forEach(section => { observer.observe(section); });
+window.addEventListener('load', () => {
+  const fills = document.querySelectorAll('.katalis-fill');
+  fills.forEach(fill => {
+    const width = fill.style.width;
+    fill.style.width = '0%';
+    setTimeout(() => { fill.style.width = width; }, 300);
+  });
+});
+</script>
+</body>
+</html>
