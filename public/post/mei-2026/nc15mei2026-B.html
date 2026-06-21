@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Capital — Forex Macro Research | Mei 2026 | v1.3 Update — PPI Shock & BOJ Repricing</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1938882604088502"
+     crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500;600&family=Libre+Franklin:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070c14;--bg2: #0c1320;--bg3: #111d2e;--bg4: #162338;--panel: #0f1a28;
+    --border: #1e3050;--border2: #243d5e;--gold: #c8a84b;--gold2: #e0c570;--gold-dim: #8a6f2e;
+    --amber: #e8962a;--green: #2eca8b;--green-dim: #1a7a54;--red: #e84040;--red-dim: #7a2020;
+    --yellow: #f5c842;--blue: #4a9eff;--blue-dim: #1e4a80;--teal: #2abcca;
+    --text: #c8d8e8;--text2: #8aa0b8;--text3: #506070;--white: #e8f0f8;
+    --accent: #c8a84b;--glow: rgba(200,168,75,0.12);--glow2: rgba(200,168,75,0.05);
+    --revised-bull: rgba(46,202,139,0.10);
+    --revised-bear: rgba(232,64,64,0.10);
+    --revised-new: rgba(74,158,255,0.10);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Libre Franklin',sans-serif;font-size:14px;line-height:1.65;min-height:100vh;overflow-x:hidden;}
+  body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:9999;opacity:0.4;}
+  body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9998;opacity:0.5;}
+  .layout{display:flex;min-height:100vh;}
+  .sidebar{width:240px;min-width:240px;background:var(--bg2);border-right:1px solid var(--border);position:sticky;top:0;height:100vh;overflow-y:auto;z-index:100;display:flex;flex-direction:column;flex-shrink:0;}
+  .sidebar::-webkit-scrollbar{width:3px;}.sidebar::-webkit-scrollbar-track{background:var(--bg2);}.sidebar::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
+  .sidebar-brand{padding:20px 16px 16px;border-bottom:1px solid var(--border);}
+  .sidebar-brand .logo{font-family:'DM Serif Display',serif;font-size:15px;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;}
+  .sidebar-brand .sub{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.15em;margin-top:4px;text-transform:uppercase;}
+  .nav-section{padding:10px 0;}
+  .nav-section-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:0.2em;color:var(--text3);text-transform:uppercase;padding:8px 16px 4px;}
+  .nav-item{display:flex;align-items:center;gap:8px;padding:7px 16px;color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;transition:all 0.15s;text-decoration:none;border-left:2px solid transparent;}
+  .nav-item:hover,.nav-item.active{color:var(--gold);background:var(--glow2);border-left-color:var(--gold);}
+  .nav-item .nav-num{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold-dim);min-width:18px;}
+  .main{flex:1;padding:0 32px 60px;max-width:calc(100% - 240px);overflow-x:auto;}
+  .report-header{padding:40px 0 32px;border-bottom:1px solid var(--border);margin-bottom:40px;position:relative;}
+  .report-header::after{content:'';position:absolute;bottom:-1px;left:0;width:120px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);}
+  .header-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;}
+  .header-logo-area .org-name{font-family:'DM Serif Display',serif;font-size:28px;color:var(--gold);letter-spacing:0.05em;text-transform:uppercase;}
+  .header-logo-area .org-sub{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.2em;text-transform:uppercase;margin-top:4px;}
+  .header-meta{text-align:right;}
+  .header-meta .badge{display:inline-block;background:var(--bg3);border:1px solid var(--border2);padding:3px 10px;border-radius:2px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+  .header-meta .meta-row{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);margin-top:4px;}
+  .header-meta .meta-row span{color:var(--text2);}
+  .report-title{font-family:'DM Serif Display',serif;font-size:36px;color:var(--white);line-height:1.2;margin-bottom:10px;}
+  .report-title em{color:var(--gold);font-style:italic;}
+  .report-subtitle{font-size:13px;color:var(--text2);font-weight:300;letter-spacing:0.02em;}
+  .header-ticker{margin-top:20px;display:flex;gap:2px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:10px;}
+  .ticker-chip{background:var(--bg3);border:1px solid var(--border);padding:3px 8px;color:var(--text2);border-radius:2px;}
+  .ticker-chip.up{color:var(--green);border-color:var(--green-dim);}
+  .ticker-chip.down{color:var(--red);border-color:var(--red-dim);}
+  .ticker-chip.neutral{color:var(--yellow);border-color:#5a4a10;}
+  .section{margin-bottom:56px;scroll-margin-top:24px;}
+  .section-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border);position:relative;}
+  .section-header::after{content:'';position:absolute;bottom:-1px;left:0;width:60px;height:1px;background:var(--gold);}
+  .section-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);background:var(--bg3);border:1px solid var(--border2);padding:3px 8px;letter-spacing:0.1em;}
+  .section-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);}
+  .sub-section{margin-bottom:36px;scroll-margin-top:24px;}
+  .sub-section-title{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+  .sub-section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+  .tbl-wrap{overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;font-size:12px;}
+  thead th{background:var(--bg3);border:1px solid var(--border);padding:9px 12px;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--gold);text-transform:uppercase;white-space:nowrap;font-weight:500;}
+  tbody td{border:1px solid var(--border);padding:8px 12px;vertical-align:middle;}
+  tbody tr:nth-child(even) td{background:rgba(12,19,32,0.6);}
+  tbody tr:nth-child(odd) td{background:rgba(7,12,20,0.4);}
+  tbody tr:hover td{background:var(--glow);}
+  .badge-hawkish{background:rgba(46,202,139,0.12);color:var(--green);border:1px solid var(--green-dim);padding:2px 7px;border-radius:2px;font-size:10px;font-weight:600;white-space:nowrap;}
+  .badge-dovish{background:rgba(232,64,64,0.12);color:var(--red);border:1px solid var(--red-dim);padding:2px 7px;border-radius:2px;font-size:10px;font-weight:600;white-space:nowrap;}
+  .badge-neutral{background:rgba(245,200,66,0.1);color:var(--yellow);border:1px solid #4a3a10;padding:2px 7px;border-radius:2px;font-size:10px;font-weight:600;white-space:nowrap;}
+  .badge-hold{background:rgba(74,158,255,0.1);color:var(--blue);border:1px solid var(--blue-dim);padding:2px 7px;border-radius:2px;font-size:10px;font-weight:600;white-space:nowrap;}
+  .impact-high{color:var(--red);font-weight:700;}
+  .impact-med{color:var(--yellow);font-weight:600;}
+  .impact-low{color:var(--green);font-weight:500;}
+  .bull{color:var(--green);}.bear{color:var(--red);}.neutral-c{color:var(--yellow);}.info-c{color:var(--blue);}.gold-c{color:var(--gold);}.mono{font-family:'IBM Plex Mono',monospace;}
+  .currency-card{background:var(--panel);border:1px solid var(--border);border-radius:4px;margin-bottom:24px;overflow:hidden;}
+  .currency-card-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--bg3);border-bottom:1px solid var(--border);cursor:pointer;user-select:none;}
+  .currency-card-header:hover{background:var(--bg4);}
+  .currency-flag-title{display:flex;align-items:center;gap:12px;}
+  .currency-flag{font-size:24px;}
+  .currency-name{font-family:'DM Serif Display',serif;font-size:18px;color:var(--white);}
+  .currency-pair{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);margin-top:2px;}
+  .currency-bias-badge{display:flex;gap:8px;align-items:center;}
+  .toggle-icon{color:var(--text3);font-size:14px;transition:transform 0.3s;}
+  .currency-card.open .toggle-icon{transform:rotate(180deg);}
+  .currency-card-body{display:none;padding:20px;}
+  .currency-card.open .currency-card-body{display:block;}
+  .scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px;}
+  .scenario-block{border:1px solid var(--border);border-radius:3px;padding:16px;position:relative;}
+  .scenario-block.bull{border-left:3px solid var(--green);background:rgba(46,202,139,0.04);}
+  .scenario-block.bear{border-left:3px solid var(--red);background:rgba(232,64,64,0.04);}
+  .scenario-block.neut{border-left:3px solid var(--yellow);background:rgba(245,200,66,0.04);}
+  .scenario-block.tail{border-left:3px solid var(--amber);background:rgba(232,150,42,0.04);}
+  .scenario-title{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px;font-weight:600;}
+  .scenario-row{display:flex;gap:6px;margin-bottom:6px;font-size:12px;}
+  .scenario-label{color:var(--text3);min-width:110px;font-family:'IBM Plex Mono',monospace;font-size:10px;padding-top:1px;}
+  .scenario-val{color:var(--text);flex:1;}
+  .info-box{border:1px solid var(--border2);border-left:3px solid var(--blue);background:rgba(74,158,255,0.05);padding:12px 16px;border-radius:2px;margin-bottom:16px;font-size:12px;color:var(--text);}
+  .info-box.warn{border-left-color:var(--amber);background:rgba(232,150,42,0.05);}
+  .info-box.bull-box{border-left-color:var(--green);background:rgba(46,202,139,0.05);}
+  .info-box.bear-box{border-left-color:var(--red);background:rgba(232,64,64,0.05);}
+  .theme-card{background:var(--panel);border:1px solid var(--border);border-top:2px solid var(--gold);padding:20px;margin-bottom:16px;border-radius:2px;}
+  .theme-number{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px;}
+  .theme-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--white);margin-bottom:14px;}
+  .theme-row{display:flex;gap:8px;margin-bottom:8px;font-size:12px;}
+  .theme-row-label{color:var(--gold);font-weight:600;min-width:130px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.05em;padding-top:1px;}
+  .stars{color:var(--gold);letter-spacing:1px;}.stars-empty{color:var(--border2);}
+  .heat-strong-bull{background:rgba(46,202,139,0.2);color:var(--green);font-weight:700;}
+  .heat-bull{background:rgba(46,202,139,0.1);color:var(--green);}
+  .heat-neutral{background:rgba(245,200,66,0.08);color:var(--yellow);}
+  .heat-bear{background:rgba(232,64,64,0.1);color:var(--red);}
+  .heat-strong-bear{background:rgba(232,64,64,0.2);color:var(--red);font-weight:700;}
+  .week-card{border:1px solid var(--border);padding:16px;margin-bottom:12px;background:var(--panel);border-radius:2px;}
+  .week-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+  .week-badge{background:var(--bg3);border:1px solid var(--border2);padding:4px 10px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;}
+  .week-dates{font-size:12px;color:var(--text2);}
+  .priority-row td:first-child{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;}
+  .risk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px;}
+  .risk-item{background:var(--panel);border:1px solid var(--border);padding:14px;border-radius:2px;}
+  .risk-item-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px;}
+  .risk-item-val{font-size:13px;color:var(--gold);font-weight:600;margin-bottom:4px;}
+  .risk-item-desc{font-size:11px;color:var(--text2);}
+  .disclaimer{margin-top:60px;padding:24px;border:1px solid var(--border);border-top:2px solid var(--red-dim);background:var(--panel);border-radius:2px;}
+  .disclaimer-title{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;}
+  .disclaimer p{font-size:11px;color:var(--text3);margin-bottom:6px;line-height:1.7;}
+  .report-footer{margin-top:24px;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);}
+  .katalis-bar{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+  .katalis-label{width:220px;font-size:12px;}
+  .katalis-track{flex:1;height:8px;background:var(--bg3);border-radius:4px;border:1px solid var(--border);}
+  .katalis-fill{height:100%;border-radius:4px;}
+  .katalis-pct{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);width:36px;text-align:right;}
+  .live-dot{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;margin-right:5px;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+  .update-badge-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px;padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:3px;}
+  .badge-major{background:rgba(232,64,64,0.2);color:var(--red);border:1px solid var(--red-dim);padding:4px 12px;border-radius:2px;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.15em;}
+  .badge-minor{background:rgba(245,200,66,0.15);color:var(--yellow);border:1px solid #5a4a10;padding:4px 12px;border-radius:2px;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.15em;}
+  .badge-ver{background:var(--bg4);border:1px solid var(--border2);padding:4px 12px;border-radius:2px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text2);letter-spacing:0.1em;}
+  .changelog-box{background:rgba(74,158,255,0.05);border:1px solid var(--blue-dim);border-left:3px solid var(--blue);padding:14px 18px;border-radius:2px;margin-bottom:24px;}
+  .changelog-title{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--blue);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:10px;}
+  .changelog-item{font-size:11px;color:var(--text2);margin-bottom:4px;padding-left:12px;position:relative;}
+  .changelog-item::before{content:'→';position:absolute;left:0;color:var(--blue);}
+  .flash-section{background:var(--panel);border:1px solid var(--border);border-top:3px solid var(--yellow);padding:20px;margin-bottom:20px;border-radius:2px;}
+  .flash-section.policy{border-top-color:var(--green);}
+  .flash-section.calendar{border-top-color:var(--blue);}
+  .flash-title{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--yellow);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .flash-title.policy{color:var(--green);}
+  .flash-title.calendar{color:var(--blue);}
+  .flash-event-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:16px;}
+  .flash-event{background:var(--bg3);border:1px solid var(--border);padding:12px 14px;border-radius:2px;}
+  .flash-event-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px;}
+  .flash-event-val{font-size:13px;font-weight:600;margin-bottom:4px;}
+  .flash-event-desc{font-size:11px;color:var(--text2);}
+  .badge-beat{background:rgba(46,202,139,0.15);color:var(--green);border:1px solid var(--green-dim);padding:1px 6px;border-radius:2px;font-size:9px;font-weight:700;}
+  .badge-miss{background:rgba(232,64,64,0.15);color:var(--red);border:1px solid var(--red-dim);padding:1px 6px;border-radius:2px;font-size:9px;font-weight:700;}
+  .badge-inline{background:rgba(245,200,66,0.1);color:var(--yellow);border:1px solid #4a3a10;padding:1px 6px;border-radius:2px;font-size:9px;font-weight:700;}
+  .badge-released{background:rgba(80,96,112,0.2);color:var(--text3);border:1px solid var(--border);padding:1px 6px;border-radius:2px;font-size:9px;}
+  .badge-policy-shift{background:rgba(232,64,64,0.2);color:var(--red);border:1px solid var(--red-dim);padding:2px 8px;border-radius:2px;font-size:10px;font-weight:700;letter-spacing:0.05em;}
+  .trade-confirmed{border-left:3px solid var(--green) !important;background:rgba(46,202,139,0.04) !important;}
+  .trade-revised{border-left:3px solid var(--yellow) !important;background:rgba(245,200,66,0.04) !important;}
+  .trade-upgraded{border-left:3px solid var(--teal) !important;background:rgba(42,188,202,0.04) !important;}
+  .status-badge{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;padding:2px 7px;border-radius:2px;letter-spacing:0.08em;}
+  .status-confirmed{background:rgba(46,202,139,0.15);color:var(--green);border:1px solid var(--green-dim);}
+  .status-revised{background:rgba(245,200,66,0.1);color:var(--yellow);border:1px solid #5a4a10;}
+  .status-upgraded{background:rgba(42,188,202,0.1);color:var(--teal);border:1px solid #1a6a70;}
+  .cell-revised-bull{background:var(--revised-bull) !important;border-left:2px solid var(--green) !important;}
+  .cell-revised-bear{background:var(--revised-bear) !important;border-left:2px solid var(--red) !important;}
+  .section-updated-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:0.12em;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+  .table-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:10px;font-family:'IBM Plex Mono',monospace;}
+  .legend-dot{width:10px;height:10px;border-radius:1px;}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="sidebar">
+  <div class="sidebar-brand">
+    <div class="logo">Nova Capital</div>
+    <div class="sub">FX Macro Research · Mei 2026 · v1.3</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Update</div>
+    <a class="nav-item" href="#flash"><span class="nav-num">⚡</span>Flash Assessment</a>
+    <a class="nav-item" href="#changelog"><span class="nav-num">📋</span>Changelog</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Navigasi Laporan</div>
+    <a class="nav-item" href="#katalis"><span class="nav-num">00</span>Katalis Tracker</a>
+    <a class="nav-item" href="#langkah1"><span class="nav-num">01</span>Kondisi Pasar</a>
+    <a class="nav-item" href="#langkah2"><span class="nav-num">02</span>Kalender Ekonomi</a>
+    <a class="nav-item" href="#langkah3"><span class="nav-num">03</span>Skenario Per Mata Uang</a>
+    <a class="nav-item" href="#langkah4"><span class="nav-num">04</span>Divergence Matrix</a>
+    <a class="nav-item" href="#langkah5"><span class="nav-num">05</span>Ringkasan Eksekutif</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Mata Uang</div>
+    <a class="nav-item" href="#usd"><span class="nav-num">🇺🇸</span>USD</a>
+    <a class="nav-item" href="#eur"><span class="nav-num">🇪🇺</span>EUR</a>
+    <a class="nav-item" href="#gbp"><span class="nav-num">🇬🇧</span>GBP</a>
+    <a class="nav-item" href="#jpy"><span class="nav-num">🇯🇵</span>JPY</a>
+    <a class="nav-item" href="#aud"><span class="nav-num">🇦🇺</span>AUD</a>
+    <a class="nav-item" href="#nzd"><span class="nav-num">🇳🇿</span>NZD</a>
+    <a class="nav-item" href="#cad"><span class="nav-num">🇨🇦</span>CAD</a>
+    <a class="nav-item" href="#chf"><span class="nav-num">🇨🇭</span>CHF</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Lainnya</div>
+    <a class="nav-item" href="#disclaimer"><span class="nav-num">⚠</span>Disclaimer</a>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- UPDATE BADGE BAR -->
+<div class="update-badge-bar">
+  <span class="badge-major">🔴 MAJOR UPDATE: JP PPI SHOCK (4.9% vs 3%)</span>
+  <span class="badge-major">🔴 JPY SHORT SQUEEZE RISK ELEVATED</span>
+  <span class="badge-minor">🟡 DATA BEAT: US Empire Manufacturing (19.6), CA Housing Starts (279.3K)</span>
+  <span class="badge-ver">v1.2 → v1.3 | Update: 15 Mei 2026 — PPI Inflation Surge & BOJ Repricing</span>
+  <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);">Penulis: Bima Galih</span>
+</div>
+
+<header class="report-header">
+  <div class="header-top">
+    <div class="header-logo-area">
+      <div class="org-name">Nova Capital</div>
+      <div class="org-sub">Global Macro Institutional — Forex Research Division</div>
+    </div>
+    <div class="header-meta">
+      <div class="badge">🔴 MAJOR UPDATE — PPI SHOCK & JPY REPRICING</div>
+      <div class="meta-row">Periode: <span>Mei 2026</span></div>
+      <div class="meta-row">Penulis: <span>Bima Galih</span></div>
+      <div class="meta-row">Publish Awal: <span>14 Mei 2026 — 08:00 WIB</span></div>
+      <div class="meta-row">Update v1.2: <span>15 Mei 2026 — CB Policy Sweep</span></div>
+      <div class="meta-row"><strong style="color:var(--red);">⟳ Update v1.3: <span>15 Mei 2026 — PPI Inflation Surge</span></strong></div>
+      <div class="meta-row"><span class="live-dot"></span><span>Laporan Aktif — Post JP PPI & US Data</span></div>
+    </div>
+  </div>
+  <div class="report-title">Forex Macro Research<br><em>Mei 2026</em></div>
+  <div class="report-subtitle">Analisis institusional divergensi kebijakan moneter, intermarket cross-asset, skenario trading, dan matriks prioritas untuk periode swing trading 1–4 minggu | Edisi: Japan PPI Shock (4.9% YoY) | <strong style="color:var(--red);">Update v1.3: BOJ rate hike probability spikes, US data tetap solid, short squeeze risk JPY meningkat drastis</strong></div>
+  <div class="header-ticker">
+    <div class="ticker-chip neutral">DXY ~98.50 –</div>
+    <div class="ticker-chip neutral">EUR/USD ~1.087 –</div>
+    <div class="ticker-chip down">GBP/USD ~1.351 ▼</div>
+    <div class="ticker-chip down">USD/JPY ~148–149 ▼ PPI SHOCK</div>
+    <div class="ticker-chip up">AUD/USD ↑ RBA Hike</div>
+    <div class="ticker-chip down">NZD/USD ~0.590 ▼</div>
+    <div class="ticker-chip up">USD/CAD ↑ Rate Diff Melebar</div>
+    <div class="ticker-chip up">USD/CHF ~0.918 ▲</div>
+    <div class="ticker-chip up">WTI $101+ ▲ Iran</div>
+    <div class="ticker-chip up">GOLD $4,715 ▲</div>
+  </div>
+  <div style="margin-top:16px;background:rgba(232,64,64,0.06);border:1px solid var(--red-dim);border-left:4px solid var(--red);padding:14px 18px;border-radius:3px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--red);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px;">🔴 REVISI KRITIS v1.3 — WAJIB BACA: SHORT SQUEEZE JPY</div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;">
+      <div><span style="font-size:11px;color:var(--text3);">JP PPI YoY (AKTUAL)</span><br><span style="font-size:18px;color:var(--red);font-weight:700;">4.9% (vs 3% forecast)</span> <span style="font-size:10px;color:var(--red);">Tertinggi dalam beberapa dekade, tekanan inflasi masif</span></div>
+      <div><span style="font-size:11px;color:var(--text3);">US Empire Manufacturing</span><br><span style="font-size:18px;color:var(--green);font-weight:700;">19.6 (vs 7.5 forecast)</span> <span style="font-size:10px;color:var(--green);">US economy tetap solid, mendukung USD</span></div>
+      <div><span style="font-size:11px;color:var(--text3);">BOJ Rate Hike Odds</span><br><span style="font-size:18px;color:var(--yellow);font-weight:700;">SIGNIFICANTLY INCREASED</span> <span style="font-size:10px;color:var(--yellow);">Probabilitas hike Jun/Jul naik drastis</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- FLASH ASSESSMENT -->
+<div class="section" id="flash">
+  <div class="section-header">
+    <span class="section-num">⚡ FLASH</span>
+    <span class="section-title">Flash Assessment — PPI Inflation Shock (15 Mei 2026)</span>
+  </div>
+  <div class="section-updated-label"><span class="upd-icon-red">⟳</span> Diperbarui 15 Mei 2026 — Berdasarkan rilis data ekonomi high-impact</div>
+  <div class="flash-section policy">
+    <div class="flash-title policy">▶ SUB-SECTION A — ECONOMIC DATA FLASH: JP PPI & US MANUFACTURING</div>
+    <div class="cb-flash-card" style="border:1px solid var(--red-dim);">
+      <div class="cb-flash-header"><div><span style="font-size:20px;">🇯🇵</span> <span class="cb-name">Japan Producer Price Index (PPI)</span></div><div><span class="badge-policy-shift">🔴 INFLATION SHOCK — MAJOR BEAT</span></div></div>
+      <div class="cb-meta-grid">
+        <div class="cb-meta-item"><div class="cb-meta-label">PPI MoM (Apr)</div><div class="cb-meta-val bear" style="font-size:16px;">2.3% (vs 0.7% f'cast)</div></div>
+        <div class="cb-meta-item"><div class="cb-meta-label">PPI YoY (Apr)</div><div class="cb-meta-val bear" style="font-size:16px;">4.9% (vs 3.0% f'cast)</div></div>
+        <div class="cb-meta-item"><div class="cb-meta-label">Surprise Factor</div><div class="cb-meta-val bear">NEGATIF BESAR untuk JPY short</div></div>
+        <div class="cb-meta-item"><div class="cb-meta-label">Implikasi BOJ</div><div class="cb-meta-val bear">Tekanan inflasi produsen akan diteruskan ke CPI. BOJ hampir pasti akan menaikkan rate ke 1.0% dalam 1-2 pertemuan ke depan.</div></div>
+      </div>
+      <div class="info-box bear-box"><strong>💡 Tindakan Segera — JPY:</strong> Data PPI Jepang meledak. Ini adalah game-changer untuk semua pair JPY. Short squeeze risk kini menjadi risiko #1 di pasar. <strong class="bear">Segera tutup atau kurangi semua posisi short JPY (termasuk AUD/JPY long).</strong> Short USD/JPY dari level tinggi menjadi jauh lebih menarik secara fundamental.</div>
+    </div>
+    <div class="cb-flash-card">
+      <div class="cb-flash-header"><div><span style="font-size:20px;">🇺🇸</span> <span class="cb-name">US NY Empire State Manufacturing Index</span></div><div><span class="badge-beat">BEAT — 19.6 vs 7.5 f'cast</span></div></div>
+      <div class="cb-meta-grid">
+        <div class="cb-meta-item"><div class="cb-meta-label">Actual</div><div class="cb-meta-val bull">19.60</div></div>
+        <div class="cb-meta-item"><div class="cb-meta-label">Consensus</div><div class="cb-meta-val">7.50</div></div>
+        <div class="cb-meta-item"><div class="cb-meta-label">Implikasi USD</div><div class="cb-meta-val bull">US economy resilient. Memperkuat kasus hawkish FED.</div></div>
+      </div>
+      <div class="info-box bull-box"><strong>💡 Tindakan Segera — USD:</strong> Data US yang solid mengkonfirmasi bahwa ekonomi AS masih kuat. USD/CAD LONG tetap menjadi trade utama.</div>
+    </div>
+    <div class="flash-event-grid">
+      <div class="flash-event"><div class="flash-event-label">📅 Reaksi Pasar Awal</div><div class="flash-event-val">USD/JPY Turun -0.8% · Nikkei -1.2% · JGB Yield Naik</div><div class="flash-event-desc">Pasar merespon dengan aksi jual JPY crosses yang signifikan.</div></div>
+      <div class="flash-event"><div class="flash-event-label">📊 Skenario yang Terpicu</div><div class="flash-event-val bear">Skenario BULL JPY (Short USD/JPY) — TERPICU SEBAGIAN</div><div class="flash-event-desc">Skenario yang sebelumnya hanya tail risk, kini menjadi base case.</div></div>
+      <div class="flash-event"><div class="flash-event-label">⚠️ Implikasi Game Plan</div><div class="flash-event-val neutral-c">Game Plan Perlu Disesuaikan Segera</div><div class="flash-event-desc"><strong class="bear">AUD/JPY LONG harus di-reduce atau di-hedge.</strong> Short USD/JPY menjadi prioritas baru.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHANGELOG -->
+<div class="changelog-box" id="changelog">
+  <div class="changelog-title">📋 Changelog — v1.2 → v1.3 | 15 Mei 2026 — PPI Inflation Surge</div>
+  <div class="changelog-item"><strong>🔴 MAJOR:</strong> JP PPI MoM 2.3% (vs 0.7% f'cast) — Inflasi produsen Jepang melonjak.</div>
+  <div class="changelog-item"><strong>🔴 MAJOR:</strong> JP PPI YoY 4.9% (vs 3.0% f'cast) — Tertinggi dalam beberapa dekade. Short squeeze risk JPY meningkat drastis.</div>
+  <div class="changelog-item"><strong>🟡 MINOR:</strong> US Empire Manufacturing 19.6 (vs 7.5 f'cast) — Mengkonfirmasi ketahanan AS.</div>
+  <div class="changelog-item"><strong>🟢 CONFIRMED:</strong> CA Housing Starts 279.3K (vs 240.0K f'cast) — Sedikit bullish untuk CAD.</div>
+  <div class="changelog-item"><strong>🔄 REVISED:</strong> AUD/JPY LONG — Conviction diturunkan karena risiko short squeeze JPY yang meningkat.</div>
+  <div class="changelog-item"><strong>⬆️ UPGRADED:</strong> USD/JPY SHORT — Menjadi trade yang lebih menarik karena carry menyempit dan BOJ hawkish.</div>
+  <div class="changelog-item">Langkah 01 — BOJ bias diperkuat menjadi "HAWKISH - HIKE IMMINENT".</div>
+  <div class="changelog-item">Langkah 02 — Kalender diperbarui dengan data aktual 15 Mei 2026.</div>
+  <div class="changelog-item">Langkah 05 — Trade Priority: AUD/JPY direvisi, USD/JPY diupgrade.</div>
+</div>
+
+<!-- KATALIS TRACKER -->
+<div class="section" id="katalis">
+  <div class="section-header"><span class="section-num">00</span><span class="section-title">Katalis Tracker — Mei 2026 (Update Pasca PPI)</span></div>
+  <div class="section-updated-label"><span class="upd-icon">⟳</span> Diperbarui 15 Mei 2026 — Bobot BOJ Rate Hike dinaikkan signifikan pasca PPI shock.</div>
+  <div class="info-box warn"><strong>⚠️ Perubahan Signifikan Katalis:</strong> PPI Jepang yang meledak mengubah peta katalis. <strong>BOJ Rate Hike Speculation</strong> naik dari 8% menjadi <strong class="bear">15%</strong>.</div>
+  <div style="background:var(--panel);border:1px solid var(--border);padding:20px;border-radius:3px;margin-bottom:20px;">
+    <div class="katalis-bar"><div class="katalis-label">📈 US Inflation & Fed Policy</div><div class="katalis-track"><div class="katalis-fill" style="width:30%;background:linear-gradient(90deg,var(--red),var(--amber));"></div></div><div class="katalis-pct">30%</div></div>
+    <div class="katalis-bar"><div class="katalis-label">⚔️ Middle East Tensions</div><div class="katalis-track"><div class="katalis-fill" style="width:25%;background:linear-gradient(90deg,var(--amber),var(--yellow));"></div></div><div class="katalis-pct">25%</div></div>
+    <div class="katalis-bar"><div class="katalis-label">🏦 ECB Rate Hike Expectations</div><div class="katalis-track"><div class="katalis-fill" style="width:15%;background:linear-gradient(90deg,#6080ff,var(--blue));"></div></div><div class="katalis-pct">15%</div></div>
+    <div class="katalis-bar"><div class="katalis-label">🇯🇵 BOJ Rate Hike Speculation 🔴</div><div class="katalis-track"><div class="katalis-fill" style="width:15%;background:linear-gradient(90deg,var(--red),#ff6080);"></div></div><div class="katalis-pct">15% <span class="bull">(NAIK drastis dari 8%)</span></div></div>
+    <div class="katalis-bar"><div class="katalis-label">🇬🇧 BOE Rate Hike Expectations</div><div class="katalis-track"><div class="katalis-fill" style="width:5%;background:linear-gradient(90deg,var(--teal),var(--blue));"></div></div><div class="katalis-pct">5%</div></div>
+    <div class="katalis-bar"><div class="katalis-label">🇦🇺 RBA Policy</div><div class="katalis-track"><div class="katalis-fill" style="width:4%;background:linear-gradient(90deg,var(--green),#40c080);"></div></div><div class="katalis-pct">4%</div></div>
+    <div class="katalis-bar"><div class="katalis-label">🇳🇿 RBNZ Policy</div><div class="katalis-track"><div class="katalis-fill" style="width:3%;background:linear-gradient(90deg,var(--text3),var(--text2));"></div></div><div class="katalis-pct">3%</div></div>
+    <div class="katalis-bar"><div class="katalis-label">🤝 US-China Trade</div><div class="katalis-track"><div class="katalis-fill" style="width:2%;background:linear-gradient(90deg,var(--green),var(--teal));"></div></div><div class="katalis-pct">2%</div></div>
+    <div class="katalis-bar"><div class="katalis-label">⛽ US Natural Gas</div><div class="katalis-track"><div class="katalis-fill" style="width:1%;background:linear-gradient(90deg,var(--gold),var(--gold2));"></div></div><div class="katalis-pct">1%</div></div>
+  </div>
+</div>
+
+<!-- SECTION 1: KONDISI PASAR -->
+<div class="section" id="langkah1">
+  <div class="section-header"><span class="section-num">LANGKAH 01</span><span class="section-title">Kondisi Pasar Baseline</span></div>
+  
+  <!-- 1A Monetary Policy -->
+  <div class="sub-section" id="s1a">
+    <div class="sub-section-title">A · Postur Kebijakan Moneter Global — G10 Central Banks</div>
+    <div class="section-updated-label"><span class="upd-icon">⟳</span> Diperbarui 15 Mei 2026 — BOJ bias diperkuat pasca PPI shock.</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Bank Sentral</th><th>Mata Uang</th><th>Rate Saat Ini</th><th>Bias Kebijakan</th><th>Next Meeting</th><th>Market Pricing</th></tr></thead>
+        <tbody>
+          <tr><td class="gold-c">FED</td><td class="mono">USD</td><td class="mono">3.50–3.75%</td><td><span class="badge-neutral">HAWKISH — DIVIDED (8-4)</span></td><td>17–18 Jun 2026</td><td>Hike Des: ~30%</td></tr>
+          <tr><td class="gold-c">ECB</td><td class="mono">EUR</td><td class="mono">2.15% / 2.0%</td><td><span class="badge-neutral">HAWKISH MODERAT</span></td><td>5 Jun 2026</td><td>Hike Jun: direvisi turun</td></tr>
+          <tr><td class="gold-c">BOE</td><td class="mono">GBP</td><td class="mono">3.75%</td><td><span class="badge-neutral">HAWKISH (konflik/stagflasi)</span></td><td>18 Jun 2026</td><td>Hike dipertimbangkan</td></tr>
+          <tr class="cell-revised-bull"><td class="gold-c">BOJ</td><td class="mono">JPY</td><td class="mono bull">0.75%</td><td><span class="badge-hawkish">HAWKISH — HIKE IMMINENT ↑↑</span></td><td>Jun 2026</td><td>Hike ke 1.0%: PROB NAIK DR drastis pasca PPI</td></tr>
+          <tr><td class="gold-c">RBA</td><td class="mono">AUD</td><td class="mono bull">4.35%</td><td><span class="badge-hawkish">HAWKISH ↑</span></td><td>Jun 2026</td><td>Hike lanjutan kemungkinan</td></tr>
+          <tr><td class="gold-c">RBNZ</td><td class="mono">NZD</td><td class="mono">2.25%</td><td><span class="badge-neutral">NETRAL/WAIT</span></td><td>Jul 2026</td><td>Hold diperkirakan</td></tr>
+          <tr><td class="gold-c">BOC</td><td class="mono">CAD</td><td class="mono">2.25%</td><td><span class="badge-hold">NEUTRAL/HOLD</span></td><td>Jun 2026</td><td>Hold diperkirakan</td></tr>
+          <tr><td class="gold-c">SNB</td><td class="mono">CHF</td><td class="mono">0.00%</td><td><span class="badge-hold">NEUTRAL — INTERVENSI FX</span></td><td>Jun 2026</td><td>Hold 0%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 1B Regime -->
+  <div class="sub-section"><div class="sub-section-title">B · Regime Pasar Saat Ini</div><div class="section-updated-label"><span class="unc-icon">✓</span> Regime tidak berubah — Risk-Off/Transisi</div>
+    <div class="risk-grid"><div class="risk-item" style="border-top:2px solid var(--red);"><div class="risk-item-label">Regime Dominan</div><div class="risk-item-val" style="color:var(--red);">⚠️ RISK-OFF / TRANSISI</div><div class="risk-item-desc">PPI shock menambah ketidakpastian inflasi global.</div></div>
+    <div class="risk-item" style="border-top:2px solid var(--gold);"><div class="risk-item-label">Driver Dominan Post-PPI</div><div class="risk-item-val">BOJ Repricing & Short Squeeze</div><div class="risk-item-desc">Pasar mulai memprice in BOJ hike ke 1.0% dengan cepat.</div></div></div>
+  </div>
+
+  <!-- 1C Intermarket -->
+  <div class="sub-section"><div class="sub-section-title">C · Intermarket Analysis — Post PPI Shock</div><div class="tbl-wrap"><table><thead><tr><th>Pair</th><th>Rate Differential</th><th>Perubahan</th><th>Implikasi</th></tr></thead><tbody>
+    <tr class="cell-revised-bear"><td>AUD/JPY</td><td>~360bp</td><td class="bear">▼ SQUEEZE RISK ↑</td><td>AUD/JPY carry masih besar, tapi risiko short squeeze meningkat drastis.</td></tr>
+    <tr class="cell-revised-bull"><td>USD/JPY</td><td>~287bp</td><td class="bear">▼ MENYEMPIT</td><td>Short USD/JPY dari level tinggi menjadi trade yang menarik.</td></tr>
+    <tr><td>AUD/NZD</td><td>210bp</td><td>→ Stabil</td><td>AUD/NZD carry tetap menarik.</td></tr>
+    <tr><td>USD/CAD</td><td>~137bp</td><td>→ Stabil</td><td>USD/CAD carry tetap menarik.</td></tr>
+  </tbody></table></div></div>
+
+  <!-- 1D COT & 1E CESI (dipertahankan dari v1.2 dengan catatan) -->
+  <div class="sub-section"><div class="sub-section-title">D · COT Report Snapshot</div><div class="info-box"><strong>📋 COT Update:</strong> Data COT terbaru belum tersedia. Implikasi dari PPI shock: Short JPY adalah posisi paling crowded dan paling berisiko saat ini. Long AUD/JPY perlu dilepas atau diperkecil secara signifikan.</div></div>
+  <div class="sub-section"><div class="sub-section-title">E · Macro Surprise Index</div><div class="info-box"><strong>📊 CESI Post PPI:</strong> CESI Jepang kemungkinan akan bergerak positif tajam menyusul PPI yang meledak. CESI AS tetap solid berkat data Empire Manufacturing.</div></div>
+</div>
+
+<!-- SECTION 2: KALENDER -->
+<div class="section" id="langkah2">
+  <div class="section-header"><span class="section-num">LANGKAH 02</span><span class="section-title">Kalender Ekonomi High-Impact — Mei–Juni 2026</span></div>
+  <div class="sub-section"><div class="sub-section-title">A · Master Event Calendar — Update Pasca PPI (15 Mei)</div>
+    <div class="tbl-wrap"><table><thead><tr><th>Tanggal</th><th>Mata Uang</th><th>Event</th><th>Dampak</th><th>Konsensus</th><th>Aktual</th><th>Hasil</th></tr></thead><tbody>
+      <tr style="background:rgba(232,64,64,0.06);"><td class="mono">15 Mei</td><td class="mono gold-c">JPY</td><td><strong>PPI YoY (Apr)</strong></td><td><span class="impact-high">🔴 HIGH</span></td><td>3.0%</td><td class="bear"><strong>4.9%</strong></td><td><span class="badge-beat">BEAT BESAR</span> <span class="badge-released">✅ RELEASED</span></td></tr>
+      <tr><td class="mono">15 Mei</td><td class="mono gold-c">USD</td><td><strong>NY Empire State Manufacturing</strong></td><td><span class="impact-med">🟡 MED</span></td><td>7.5</td><td class="bull"><strong>19.60</strong></td><td><span class="badge-beat">BEAT</span> <span class="badge-released">✅ RELEASED</span></td></tr>
+      <tr><td class="mono">15 Mei</td><td class="mono gold-c">CAD</td><td><strong>Housing Starts (Apr)</strong></td><td><span class="impact-med">🟡 MED</span></td><td>240.0K</td><td class="bull"><strong>279.3K</strong></td><td><span class="badge-beat">BEAT</span> <span class="badge-released">✅ RELEASED</span></td></tr>
+      <tr><td class="mono">15 Mei</td><td class="mono gold-c">CAD</td><td><strong>Manufacturing Sales MoM</strong></td><td><span class="impact-low">🟢 LOW</span></td><td>3.5%</td><td class="bear">3.0%</td><td><span class="badge-miss">MISS</span> <span class="badge-released">✅ RELEASED</span></td></tr>
+      <tr><td class="mono">20 Mei</td><td class="mono gold-c">USD</td><td><strong>FOMC Minutes</strong></td><td><span class="impact-high">🔴 HIGH</span></td><td>-</td><td>-</td><td>-</td></tr>
+      <tr><td class="mono">20 Mei</td><td class="mono gold-c">GBP</td><td><strong>CPI YoY (Apr)</strong></td><td><span class="impact-high">🔴 HIGH</span></td><td>3.0%</td><td>-</td><td>-</td></tr>
+      <tr><td class="mono">29 Mei</td><td class="mono gold-c">USD</td><td><strong>PCE Price Index</strong></td><td><span class="impact-high">🔴 HIGH</span></td><td>-</td><td>-</td><td>-</td></tr>
+    </tbody></table></div>
+  </div>
+</div>
+
+<!-- SECTION 3: SKENARIO PER MATA UANG (diringkas tetapi tetap lengkap untuk 8 mata uang) -->
+<div class="section" id="langkah3">
+  <div class="section-header"><span class="section-num">LANGKAH 03</span><span class="section-title">Skenario Analisis Per Mata Uang — Post PPI Shock</span></div>
+  <!-- USD, EUR, GBP, JPY, AUD, NZD, CAD, CHF dalam bentuk card, hanya yang berubah ditandai -->
+  <div class="currency-card open" id="usd"><div class="currency-card-header" onclick="toggleCard(this)"><div class="currency-flag-title"><div class="currency-flag">🇺🇸</div><div><div class="currency-name">US Dollar — USD</div></div></div><div class="currency-bias-badge"><span class="badge-hawkish">HAWKISH — KONFIRMASI DATA</span><span class="toggle-icon">▼</span></div></div><div class="currency-card-body"><div class="info-box bull-box">Data Empire Manufacturing yang kuat mengkonfirmasi ketahanan AS. USD/CAD LONG prioritas utama. DXY support 98.00.</div></div></div>
+  <div class="currency-card" id="eur"><div class="currency-card-header" onclick="toggleCard(this)"><div class="currency-flag-title"><div class="currency-flag">🇪🇺</div><div><div class="currency-name">Euro — EUR</div></div></div><div class="currency-bias-badge"><span class="badge-neutral">HAWKISH MODERAT</span><span class="toggle-icon">▼</span></div></div><div class="currency-card-body"><div class="info-box">✓ TIDAK ADA PERUBAHAN signifikan dari data PPI. ECB tetap hold April, EUR/GBP LONG tetap top trade.</div></div></div>
+  <div class="currency-card" id="gbp"><div class="currency-card-header" onclick="toggleCard(this)"><div class="currency-flag-title"><div class="currency-flag">🇬🇧</div><div><div class="currency-name">British Pound — GBP</div></div></div><div class="currency-bias-badge"><span class="badge-dovish">BEARISH</span><span class="toggle-icon">▼</span></div></div><div class="currency-card-body"><div class="info-box bear-box">Political risk Starmer tetap dominan. Data PPI tidak berdampak langsung. GBP bearish dikonfirmasi.</div></div></div>
+  <div class="currency-card open" id="jpy"><div class="currency-card-header" onclick="toggleCard(this)"><div class="currency-flag-title"><div class="currency-flag">🇯🇵</div><div><div class="currency-name">Japanese Yen — JPY</div></div></div><div class="currency-bias-badge"><span class="badge-hawkish">HAWKISH — HIKE IMMINENT 🔴</span><span class="toggle-icon">▼</span></div></div><div class="currency-card-body"><div class="info-box bear-box"><strong>🔴 KRITIS — PPI JEPANG MELEDAK (4.9%):</strong> Data ini mengubah fundamental JPY secara drastis. BOJ akan dipaksa menaikkan rate ke 1.0% dalam waktu dekat. Short squeeze JPY adalah risiko terbesar di pasar. <strong>Short USD/JPY dari level 149-150 direkomendasikan. Hindari long AUD/JPY.</strong></div></div></div>
+  <div class="currency-card" id="aud"><div class="currency-card-header" onclick="toggleCard(this)"><div class="currency-flag-title"><div class="currency-flag">🇦🇺</div><div><div class="currency-name">Australian Dollar — AUD</div></div></div><div class="currency-bias-badge"><span class="badge-hawkish">HAWKISH (RBA 4.35%)</span><span class="toggle-icon">▼</span></div></div><div class="currency-card-body"><div class="info-box bull-box">RBA hike ke 4.35% dikonfirmasi. AUD/NZD LONG tetap solid. Namun <strong class="bear">AUD/JPY LONG harus direduksi karena risiko short squeeze JPY.</strong></div></div></div>
+  <div class="currency-card" id="nzd"><div class="currency-card-header" onclick="toggleCard(this)"><div class="currency-flag-title"><div class="currency-flag">🇳🇿</div><div><div class="currency-name">New Zealand Dollar — NZD</div></div></div><div class="currency-bias-badge"><span class="badge-neutral">NETRAL/DOVISH</span><span class="toggle-icon">▼</span></div></div><div class="currency-card-body"><div class="info-box">✓ TIDAK ADA PERUBAHAN. RBNZ hold 2.25%, AUD/NZD carry melebar.</div></div></div>
+  <div class="currency-card" id="cad"><div class="currency-card-header" onclick="toggleCard(this)"><div class="currency-flag-title"><div class="currency-flag">🇨🇦</div><div><div class="currency-name">Canadian Dollar — CAD</div></div></div><div class="currency-bias-badge"><span class="badge-hold">NEUTRAL</span><span class="toggle-icon">▼</span></div></div><div class="currency-card-body"><div class="info-box">Data housing starts beat, manufacturing sales miss. Netral. USD/CAD LONG tetap menarik karena rate differential.</div></div></div>
+  <div class="currency-card" id="chf"><div class="currency-card-header" onclick="toggleCard(this)"><div class="currency-flag-title"><div class="currency-flag">🇨🇭</div><div><div class="currency-name">Swiss Franc — CHF</div></div></div><div class="currency-bias-badge"><span class="badge-hold">NEUTRAL — SAFE HAVEN</span><span class="toggle-icon">▼</span></div></div><div class="currency-card-body"><div class="info-box">✓ TIDAK ADA PERUBAHAN. SNB hold 0%, siap intervensi.</div></div></div>
+</div>
+
+<!-- SECTION 4: DIVERGENCE MATRIX -->
+<div class="section" id="langkah4">
+  <div class="section-header"><span class="section-num">LANGKAH 04</span><span class="section-title">Currency Divergence Matrix — Recalculated Post PPI</span></div>
+  <div class="sub-section"><div class="sub-section-title">A · Divergence Matrix — Recalculated dengan BOJ Hawkish Shift</div><div class="tbl-wrap"><table><thead><tr><th>Pair</th><th>Divergensi</th><th>Carry</th><th>Bias</th><th>Conviction</th><th>Perubahan</th></tr></thead><tbody>
+    <tr><td>EUR/GBP</td><td class="heat-strong-bull">ECB vs BOE + Politik UK</td><td class="heat-neutral">-</td><td class="heat-strong-bull">BULL</td><td>★★★★★</td><td class="bull">↑ NAIK</td></tr>
+    <tr><td>AUD/NZD</td><td class="heat-strong-bull">RBA 4.35% vs RBNZ 2.25%</td><td class="heat-strong-bull">210bp</td><td class="heat-strong-bull">BULL</td><td>★★★★★</td><td class="bull">↑ NAIK</td></tr>
+    <tr class="cell-revised-bear"><td>AUD/JPY</td><td class="heat-bull">RBA vs BOJ (360bp)</td><td class="heat-bull">360bp</td><td class="heat-neutral">HOLD/REDUCE</td><td>★★★☆☆</td><td class="bear">↓↓ TURUN</td></tr>
+    <tr class="cell-revised-bull"><td>USD/JPY</td><td class="heat-neutral">FED vs BOJ (287bp)</td><td class="heat-neutral">287bp</td><td class="heat-bear">SHORT</td><td>★★★★☆</td><td class="bull">↑ NAIK</td></tr>
+    <tr><td>USD/CAD</td><td class="heat-bull">FED vs BOC (137bp)</td><td class="heat-bull">137bp</td><td class="heat-bull">BULL</td><td>★★★★★</td><td class="bull">↑ NAIK</td></tr>
+  </tbody></table></div></div>
+  <div class="sub-section"><div class="sub-section-title">B · Top Divergence Plays</div><div class="info-box bull-box"><strong>🏆 TOP DIVERGENCE PLAYS Post PPI:</strong><br>1. EUR/GBP LONG ⭐⭐⭐⭐⭐ <br>2. AUD/NZD LONG ⭐⭐⭐⭐⭐ <br>3. USD/CAD LONG ⭐⭐⭐⭐⭐ <br>4. USD/JPY SHORT ⭐⭐⭐⭐ (baru) <br>⛔ HINDARI: AUD/JPY LONG (risiko short squeeze tinggi)</div></div>
+</div>
+
+<!-- SECTION 5: RINGKASAN EKSEKUTIF -->
+<div class="section" id="langkah5">
+  <div class="section-header"><span class="section-num">LANGKAH 05</span><span class="section-title">Ringkasan Eksekutif & Trade Priority Matrix — Post PPI</span></div>
+  <div class="sub-section"><div class="sub-section-title">B · Trade Priority Matrix — Post PPI 15 Mei 2026</div>
+    <div class="tbl-wrap"><table><thead><tr><th>#</th><th>Pair</th><th>Bias</th><th>Status</th><th>Update</th><th>Entry</th><th>TP</th><th>SL</th></tr></thead><tbody>
+      <tr class="trade-confirmed"><td>#1</td><td>EUR/GBP</td><td>LONG</td><td><span class="status-badge status-confirmed">CONFIRMED</span></td><td>Political risk UK masih dominan.</td><td>0.8500–0.8520</td><td>0.8720</td><td>0.8440</td></tr>
+      <tr class="trade-confirmed"><td>#2</td><td>AUD/NZD</td><td>LONG</td><td><span class="status-badge status-confirmed">CONFIRMED</span></td><td>RBA hike vs RBNZ hold. Carry 210bp.</td><td>1.0780–1.0820</td><td>1.1100</td><td>1.0650</td></tr>
+      <tr class="trade-revised"><td>#3</td><td>AUD/JPY</td><td>LONG (SL KETAT)</td><td><span class="status-badge status-revised">REVISED</span></td><td><strong class="bear">PPI SHOCK meningkatkan risiko short squeeze.</strong> Reduce size.</td><td>96.00–98.00</td><td>101.00</td><td class="bear">94.50</td></tr>
+      <tr class="trade-upgraded"><td>#4</td><td>USD/JPY</td><td>SHORT</td><td><span class="status-badge status-upgraded">UPGRADED</span></td><td>BOJ akan hike, carry menyempit. Short dari 149-150.</td><td>149.00–150.00</td><td>146.00</td><td>151.50</td></tr>
+      <tr class="trade-confirmed"><td>#5</td><td>USD/CAD</td><td>LONG</td><td><span class="status-badge status-confirmed">CONFIRMED</span></td><td>Rate differential melebar. Data AS solid.</td><td>1.370–1.375</td><td>1.4000</td><td>1.3550</td></tr>
+    </tbody></table></div>
+  </div>
+  <div class="sub-section"><div class="sub-section-title">D · Week-by-Week Game Plan — Post PPI Shock</div>
+    <div class="week-card" style="border-top-color:var(--red);"><div class="week-header"><div class="week-badge" style="color:var(--red);">Minggu 3 Mei ⚡ REAKSI PPI</div><div class="week-dates">15–16 Mei 2026</div></div><div><strong class="gold-c">Action Segera:</strong><br>▸ <strong class="bear">AUD/JPY: REDUCE atau CLOSE.</strong><br>▸ <strong class="bull">USD/JPY: Entry SHORT kecil di level 149-150.</strong><br>▸ <strong class="bull">EUR/GBP & AUD/NZD & USD/CAD: PERTAHANKAN.</strong></div></div>
+    <div class="week-card"><div class="week-header"><div class="week-badge">Minggu 4 Mei</div><div class="week-dates">19–23 Mei 2026 — FOMC MINUTES</div></div><div>Fokus pada FOMC Minutes (20 Mei). Jika Minutes dovish, USD bisa turun dan memperkuat short USD/JPY.</div></div>
+  </div>
+</div>
+
+<div class="disclaimer" id="disclaimer">
+  <div class="disclaimer-title">⚠ Disclaimer Resmi — Wajib Dibaca</div>
+  <p>Laporan ini bukan merupakan rekomendasi investasi resmi. Trading forex mengandung risiko kerugian yang signifikan. Past performance bukan jaminan hasil masa depan. Setiap keputusan trading adalah tanggung jawab trader masing-masing. Nova Capital tidak bertanggung jawab atas kerugian yang timbul.</p>
+  <p>Nova Capital | Bima Galih | v1.3 | Update: 15 Mei 2026 — PPI Inflation Surge</p>
+</div>
+<div class="report-footer"><div>Nova Capital — Global Macro Institutional Research</div><div>Mei 2026 | Bima Galih | <strong>v1.3</strong> — Update: PPI Shock & BOJ Repricing | 15 Mei 2026</div></div>
+</main>
+</div>
+<script>
+function toggleCard(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+document.querySelectorAll('.nav-item[href^="#"]').forEach(item => {
+  item.addEventListener('click', (e) => {
+    const targetId = item.getAttribute('href').slice(1);
+    const target = document.getElementById(targetId);
+    if (target && target.classList.contains('currency-card') && !target.classList.contains('open')) {
+      target.classList.add('open');
+    }
+  });
+});
+</script>
+</body>
+</html>

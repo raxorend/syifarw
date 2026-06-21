@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Capital — FX Macro Research Weekly | Mei 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500;600&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#070c14; --bg2:#0c1320; --bg3:#111d2e; --bg4:#162338; --panel:#0f1a28;
+  --border:#1e3050; --border2:#243d5e; --gold:#c8a84b; --gold2:#e0c570; --gold-dim:#8a6f2e;
+  --amber:#e8962a; --green:#2eca8b; --green-dim:#1a7a54; --red:#e84040; --red-dim:#7a2020;
+  --yellow:#f5c842; --blue:#4a9eff; --blue-dim:#1e4a80; --teal:#2abcca;
+  --text:#c8d8e8; --text2:#8aa0b8; --text3:#506070; --white:#e8f0f8;
+  --accent:#c8a84b; --glow:rgba(200,168,75,0.12); --glow2:rgba(200,168,75,0.05);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+html{scroll-behavior:smooth;}
+
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Libre Franklin',sans-serif;
+  font-size:14px;
+  line-height:1.7;
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+}
+
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);
+  pointer-events:none;
+  z-index:0;
+}
+
+body::after {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:0;
+  opacity:0.5;
+}
+
+.layout{display:flex;min-height:100vh;position:relative;z-index:1;}
+
+/* SIDEBAR */
+.sidebar {
+  width:240px;
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow-y:auto;
+  border-right:1px solid var(--border);
+  background:var(--bg2);
+  flex-shrink:0;
+  scrollbar-width:thin;
+  scrollbar-color:var(--gold-dim) transparent;
+}
+.sidebar::-webkit-scrollbar{width:3px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
+.sidebar::-webkit-scrollbar-track{background:transparent;}
+
+.sidebar-brand {
+  padding:20px 16px 16px;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  background:var(--bg2);
+  z-index:10;
+}
+.sidebar-brand .logo{font-family:'DM Serif Display',serif;color:var(--gold);font-size:18px;letter-spacing:0.02em;}
+.sidebar-brand .sub{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);margin-top:4px;text-transform:uppercase;letter-spacing:0.08em;}
+
+.nav-section{padding:12px 0;}
+.nav-section-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;padding:4px 16px 8px;}
+
+.nav-item {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 16px;
+  color:var(--text2);
+  text-decoration:none;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  border-left:2px solid transparent;
+  transition:all 0.2s;
+  cursor:pointer;
+}
+.nav-item:hover{color:var(--gold);background:var(--glow2);border-left-color:var(--gold-dim);}
+.nav-item.active{color:var(--gold);background:var(--glow);border-left-color:var(--gold);}
+.nav-num{color:var(--text3);font-size:9px;min-width:18px;}
+
+/* MAIN */
+.main{flex:1;padding:0 40px 80px;max-width:calc(100% - 240px);}
+
+/* REPORT HEADER */
+.report-header {
+  padding:48px 0 36px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:48px;
+  position:relative;
+}
+.report-header::after {
+  content:'';
+  position:absolute;
+  bottom:-1px;
+  left:0;
+  width:120px;
+  height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+}
+.header-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;}
+.org-name{font-family:'DM Serif Display',serif;font-size:28px;color:var(--gold);letter-spacing:0.01em;}
+.org-sub{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);margin-top:4px;text-transform:uppercase;letter-spacing:0.06em;}
+.header-meta{text-align:right;}
+.badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);background:var(--glow);border:1px solid var(--gold-dim);padding:3px 10px;border-radius:2px;margin-bottom:8px;}
+.meta-row{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);margin-top:2px;}
+.meta-row span{color:var(--text2);}
+.report-title{font-family:'DM Serif Display',serif;font-size:36px;color:var(--white);line-height:1.2;margin-bottom:10px;}
+.report-title em{color:var(--gold);font-style:italic;}
+.report-subtitle{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);letter-spacing:0.04em;}
+
+/* LIVE DOT */
+.live-dot{
+  display:inline-block;
+  width:7px;height:7px;
+  background:var(--green);
+  border-radius:50%;
+  margin-right:6px;
+  animation:pulse 2s ease-in-out infinite;
+  vertical-align:middle;
+}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(46,202,139,0.4);}50%{opacity:0.7;box-shadow:0 0 0 5px rgba(46,202,139,0);}}
+
+/* SECTION HEADER */
+.section-header{margin:56px 0 28px;position:relative;padding-bottom:16px;}
+.section-header::after{content:'';position:absolute;bottom:0;left:0;width:60px;height:2px;background:var(--gold);}
+.section-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:6px;}
+.section-title{font-family:'DM Serif Display',serif;font-size:26px;color:var(--white);}
+.section-desc{font-size:13px;color:var(--text2);margin-top:8px;font-style:italic;}
+
+.subsection-header{margin:36px 0 16px;}
+.subsection-num{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:0.08em;display:block;margin-bottom:4px;}
+.subsection-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text);}
+
+/* CONTEXT BOX */
+.context-box {
+  background:linear-gradient(135deg,var(--bg3),var(--bg4));
+  border:1px solid var(--border2);
+  border-left:3px solid var(--amber);
+  border-radius:4px;
+  padding:20px 24px;
+  margin-bottom:32px;
+}
+.context-box h3{font-family:'DM Serif Display',serif;font-size:16px;color:var(--amber);margin-bottom:10px;}
+.context-box p{font-size:13px;color:var(--text2);line-height:1.75;}
+.context-box strong{color:var(--text);}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;margin:16px 0;border-radius:4px;border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+thead tr{background:var(--bg3);}
+th{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;padding:10px 12px;text-align:left;border-bottom:1px solid var(--border2);}
+td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--glow2);}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:11px;}
+
+/* BADGES */
+.badge-hawkish{display:inline-block;background:rgba(232,150,42,0.15);color:var(--amber);border:1px solid rgba(232,150,42,0.3);font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:2px;}
+.badge-dovish{display:inline-block;background:rgba(74,158,255,0.12);color:var(--blue);border:1px solid rgba(74,158,255,0.25);font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:2px;}
+.badge-neutral{display:inline-block;background:rgba(245,200,66,0.1);color:var(--yellow);border:1px solid rgba(245,200,66,0.2);font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:2px;}
+.badge-hold{display:inline-block;background:rgba(42,188,202,0.1);color:var(--teal);border:1px solid rgba(42,188,202,0.2);font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:2px;}
+.badge-beat{display:inline-block;background:rgba(46,202,139,0.12);color:var(--green);border:1px solid rgba(46,202,139,0.25);font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:2px;}
+.badge-miss{display:inline-block;background:rgba(232,64,64,0.12);color:var(--red);border:1px solid rgba(232,64,64,0.25);font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:2px;}
+.badge-shock{display:inline-block;background:rgba(232,64,64,0.2);color:var(--red);border:1px solid rgba(232,64,64,0.4);font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:2px;font-weight:600;}
+.badge-inline{display:inline-block;background:rgba(80,96,112,0.2);color:var(--text3);border:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:2px;}
+.impact-high{color:var(--red);font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;}
+.impact-med{color:var(--yellow);font-family:'IBM Plex Mono',monospace;font-size:11px;}
+.impact-low{color:var(--green);font-family:'IBM Plex Mono',monospace;font-size:11px;}
+.heat-strong-bull{background:rgba(46,202,139,0.2);color:var(--green);font-weight:600;}
+.heat-bull{background:rgba(46,202,139,0.1);color:var(--green);}
+.heat-neutral{background:rgba(245,200,66,0.08);color:var(--yellow);}
+.heat-bear{background:rgba(232,64,64,0.1);color:var(--red);}
+.heat-strong-bear{background:rgba(232,64,64,0.2);color:var(--red);font-weight:600;}
+
+/* INFO BOX */
+.info-box{padding:14px 18px;border-radius:4px;font-size:13px;margin:12px 0;line-height:1.65;}
+.info-box.warn{background:rgba(232,150,42,0.08);border-left:3px solid var(--amber);color:var(--text2);}
+.info-box.bull-box{background:rgba(46,202,139,0.07);border-left:3px solid var(--green);color:var(--text2);}
+.info-box.bear-box{background:rgba(232,64,64,0.07);border-left:3px solid var(--red);color:var(--text2);}
+.info-box.info{background:rgba(74,158,255,0.07);border-left:3px solid var(--blue);color:var(--text2);}
+.info-box strong{color:var(--white);}
+
+/* CURRENCY CARD */
+.currency-card{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:6px;
+  margin-bottom:16px;
+  overflow:hidden;
+  transition:border-color 0.2s;
+}
+.currency-card:hover{border-color:var(--border2);}
+.currency-card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 24px;
+  cursor:pointer;
+  background:var(--bg3);
+  transition:background 0.2s;
+  user-select:none;
+}
+.currency-card-header:hover{background:var(--bg4);}
+.currency-flag-title{display:flex;align-items:center;gap:14px;}
+.currency-flag{font-size:24px;line-height:1;}
+.currency-name{font-family:'DM Serif Display',serif;font-size:20px;color:var(--white);}
+.currency-pair{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);margin-top:2px;}
+.currency-bias-badge{display:flex;align-items:center;gap:10px;}
+.toggle-icon{font-size:11px;color:var(--text3);transition:transform 0.3s;}
+.currency-card.open .toggle-icon{transform:rotate(180deg);}
+.currency-card-body{display:none;padding:24px;border-top:1px solid var(--border);}
+.currency-card.open .currency-card-body{display:block;}
+
+/* SCENARIO GRID */
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;}
+.scenario-block{border-radius:4px;padding:16px;border:1px solid var(--border);}
+.scenario-block.bull{background:rgba(46,202,139,0.05);border-color:rgba(46,202,139,0.2);}
+.scenario-block.bear{background:rgba(232,64,64,0.05);border-color:rgba(232,64,64,0.2);}
+.scenario-block.neut{background:rgba(245,200,66,0.04);border-color:rgba(245,200,66,0.15);}
+.scenario-block.tail{background:rgba(232,150,42,0.05);border-color:rgba(232,150,42,0.2);}
+.scenario-title{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em;}
+.scenario-block.bull .scenario-title{color:var(--green);}
+.scenario-block.bear .scenario-title{color:var(--red);}
+.scenario-block.neut .scenario-title{color:var(--yellow);}
+.scenario-block.tail .scenario-title{color:var(--amber);}
+.scenario-block p{font-size:12px;color:var(--text2);line-height:1.65;}
+.scenario-block .trigger{font-family:'IBM Plex Mono',monospace;font-size:11px;margin-bottom:6px;}
+.scenario-block .pair-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);}
+
+/* SNAPSHOT ROW */
+.snap-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0;}
+.snap-item{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:10px 14px;}
+.snap-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px;}
+.snap-val{font-size:13px;color:var(--text);}
+
+/* STARS */
+.stars{color:var(--gold);letter-spacing:2px;}
+.stars-empty{color:var(--text3);letter-spacing:2px;}
+
+/* COLOR UTILITIES */
+.bull{color:var(--green);}
+.bear{color:var(--red);}
+.neutral-c{color:var(--yellow);}
+.info-c{color:var(--blue);}
+.gold-c{color:var(--gold);}
+.amber-c{color:var(--amber);}
+.text2{color:var(--text2);}
+
+/* KATALIS BAR */
+.katalis-item{margin-bottom:14px;}
+.katalis-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text2);margin-bottom:5px;display:flex;justify-content:space-between;}
+.katalis-track{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden;border:1px solid var(--border);}
+.katalis-fill{height:100%;border-radius:3px;transition:width 0.8s ease;}
+.katalis-pct{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);margin-top:3px;}
+
+/* THEME CARD */
+.theme-card{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:24px;margin-bottom:16px;}
+.theme-number{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+.theme-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);margin-bottom:16px;line-height:1.3;}
+.theme-row{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);}
+.theme-row:last-child{border-bottom:none;}
+.theme-row-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);min-width:110px;text-transform:uppercase;letter-spacing:0.05em;padding-top:1px;}
+.theme-row-val{font-size:13px;color:var(--text2);flex:1;}
+
+/* WEEK CARD */
+.week-card{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:20px;margin-bottom:12px;}
+.week-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.week-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);background:var(--glow);border:1px solid var(--gold-dim);padding:3px 8px;border-radius:2px;text-transform:uppercase;letter-spacing:0.06em;}
+.week-dates{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);}
+
+/* RISK GRID */
+.risk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0;}
+.risk-item{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:14px;}
+.risk-item-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;}
+.risk-item-val{font-size:16px;color:var(--white);font-family:'DM Serif Display',serif;margin-bottom:4px;}
+.risk-item-desc{font-size:11px;color:var(--text2);}
+
+/* REGIME BADGE */
+.regime-reflation{display:inline-block;background:rgba(46,202,139,0.12);color:var(--green);border:1px solid rgba(46,202,139,0.3);font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 8px;border-radius:2px;}
+.regime-stagflation{display:inline-block;background:rgba(232,64,64,0.12);color:var(--red);border:1px solid rgba(232,64,64,0.3);font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 8px;border-radius:2px;}
+.regime-goldilocks{display:inline-block;background:rgba(74,158,255,0.12);color:var(--blue);border:1px solid rgba(74,158,255,0.3);font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 8px;border-radius:2px;}
+.regime-deflation{display:inline-block;background:rgba(80,96,112,0.2);color:var(--text2);border:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 8px;border-radius:2px;}
+
+/* DIVIDER */
+.divider{border:none;border-top:1px solid var(--border);margin:32px 0;}
+
+/* PRIORITY RANK */
+.priority-card{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:20px;margin-bottom:12px;display:flex;gap:20px;align-items:flex-start;}
+.priority-rank{font-family:'DM Serif Display',serif;font-size:32px;color:var(--gold);min-width:40px;line-height:1;}
+.priority-body{flex:1;}
+.priority-title{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--white);font-weight:600;margin-bottom:6px;}
+.priority-body p{font-size:12px;color:var(--text2);line-height:1.65;}
+
+/* MARKET INDICATOR ROW */
+.market-indicators{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:20px 0;}
+.market-ind{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:14px 16px;}
+.market-ind-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;}
+.market-ind-val{font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);margin-bottom:2px;}
+.market-ind-sub{font-size:11px;color:var(--text2);}
+
+/* PUZZLE GRID */
+.puzzle-card{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:14px;margin-bottom:8px;}
+.puzzle-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.puzzle-asset{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--gold);font-weight:600;}
+.puzzle-status{font-size:11px;color:var(--text2);}
+.puzzle-bar{height:4px;background:var(--bg);border-radius:2px;overflow:hidden;margin-bottom:8px;}
+.puzzle-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold-dim),var(--gold));}
+.puzzle-pct{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);}
+
+/* EVENT PRIORITY */
+.event-priority{border-left:3px solid var(--gold);padding-left:14px;margin-bottom:20px;}
+.ep-rank{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;}
+.ep-title{font-family:'DM Serif Display',serif;font-size:17px;color:var(--white);margin-bottom:6px;}
+.ep-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:8px;}
+.ep-body{font-size:13px;color:var(--text2);line-height:1.65;}
+
+/* PRINT */
+@media print{
+  .sidebar{display:none;}
+  .currency-card-body{display:block!important;}
+  body{background:white;color:black;}
+  .report-header{border-bottom:2px solid #ccc;}
+}
+
+@media(max-width:900px){
+  .sidebar{display:none;}
+  .main{padding:0 16px 40px;max-width:100%;}
+}
+@media(max-width:600px){
+  .scenario-grid,.risk-grid{grid-template-columns:1fr;}
+  .snap-grid{grid-template-columns:1fr;}
+  .market-indicators{grid-template-columns:1fr 1fr;}
+}
+
+/* CB CARD */
+.cb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:16px 0;}
+.cb-card{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:16px;}
+.cb-name{font-family:'DM Serif Display',serif;font-size:16px;color:var(--white);margin-bottom:4px;}
+.cb-rate{font-family:'IBM Plex Mono',monospace;font-size:20px;color:var(--gold);margin-bottom:10px;}
+.cb-row{display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid var(--border);}
+.cb-row:last-child{border-bottom:none;}
+.cb-row-label{color:var(--text3);font-family:'IBM Plex Mono',monospace;font-size:10px;}
+.cb-row-val{color:var(--text2);}
+.cb-track{display:inline-block;font-size:12px;}
+.track-good{color:var(--green);}
+.track-warn{color:var(--yellow);}
+.track-bad{color:var(--red);}
+
+/* CARRY TABLE */
+.carry-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border);background:var(--bg3);margin-bottom:2px;border-radius:3px;}
+.carry-pair{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--white);font-weight:600;}
+.carry-yield{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);}
+.carry-status{font-size:11px;color:var(--text2);}
+
+/* DISCLAIMER */
+.disclaimer-box{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:28px;margin-top:20px;}
+.disclaimer-box h3{font-family:'DM Serif Display',serif;font-size:18px;color:var(--amber);margin-bottom:14px;}
+.disclaimer-box p{font-size:12px;color:var(--text2);line-height:1.8;margin-bottom:10px;}
+.disclaimer-box .sources{margin-top:16px;}
+.disclaimer-box .sources h4{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;}
+.disclaimer-box .sources li{font-size:11px;color:var(--text2);line-height:1.7;list-style:none;padding-left:12px;position:relative;}
+.disclaimer-box .sources li::before{content:'—';position:absolute;left:0;color:var(--text3);}
+
+/* GAME PLAN TABLE */
+.gp-table{width:100%;border-collapse:collapse;font-size:11px;}
+.gp-table th{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;padding:8px 10px;border-bottom:1px solid var(--border2);background:var(--bg3);}
+.gp-table td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text2);}
+.gp-day{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);font-weight:600;}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-brand">
+    <div class="logo">Nova Capital</div>
+    <div class="sub">FX Macro Research · Mei 2026</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Navigasi Laporan</div>
+    <a class="nav-item" href="#katalis"><span class="nav-num">00</span>Katalis Tracker</a>
+    <a class="nav-item" href="#langkah1"><span class="nav-num">01</span>Kondisi Pasar</a>
+    <a class="nav-item" href="#langkah2"><span class="nav-num">02</span>Kalender Ekonomi</a>
+    <a class="nav-item" href="#langkah3"><span class="nav-num">03</span>Skenario Per Mata Uang</a>
+    <a class="nav-item" href="#langkah4"><span class="nav-num">04</span>Divergence Matrix</a>
+    <a class="nav-item" href="#langkah5"><span class="nav-num">05</span>Ringkasan Eksekutif</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Mata Uang</div>
+    <a class="nav-item" href="#usd"><span class="nav-num">🇺🇸</span>USD</a>
+    <a class="nav-item" href="#eur"><span class="nav-num">🇪🇺</span>EUR</a>
+    <a class="nav-item" href="#gbp"><span class="nav-num">🇬🇧</span>GBP</a>
+    <a class="nav-item" href="#jpy"><span class="nav-num">🇯🇵</span>JPY</a>
+    <a class="nav-item" href="#aud"><span class="nav-num">🇦🇺</span>AUD</a>
+    <a class="nav-item" href="#nzd"><span class="nav-num">🇳🇿</span>NZD</a>
+    <a class="nav-item" href="#cad"><span class="nav-num">🇨🇦</span>CAD</a>
+    <a class="nav-item" href="#chf"><span class="nav-num">🇨🇭</span>CHF</a>
+    <a class="nav-item" href="#cny"><span class="nav-num">🇨🇳</span>CNY</a>
+    <a class="nav-item" href="#idr"><span class="nav-num">🇮🇩</span>IDR</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Multi-Aset</div>
+    <a class="nav-item" href="#xauusd"><span class="nav-num">🥇</span>XAUUSD</a>
+    <a class="nav-item" href="#ihsg"><span class="nav-num">📈</span>IHSG</a>
+  </div>
+
+  <div class="nav-section">
+    <a class="nav-item" href="#disclaimer"><span class="nav-num">⚠</span>Disclaimer</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- REPORT HEADER -->
+<div class="report-header">
+  <div class="header-top">
+    <div class="header-logo-area">
+      <div class="org-name">Nova Capital</div>
+      <div class="org-sub">Forex Macro Research · Global Macro Institutional</div>
+    </div>
+    <div class="header-meta">
+      <div class="badge">Edisi Mei 2026</div>
+      <div class="meta-row">Penulis: <span>Bima Galih</span></div>
+      <div class="meta-row">Periode: <span>Baseline 18–22 Mei → Forward 25–29 Mei 2026</span></div>
+      <div class="meta-row"><span class="live-dot"></span><span id="ts">25 Mei 2026</span></div>
+    </div>
+  </div>
+  <div class="report-title">FX Macro Research <em>Weekly</em></div>
+  <div class="report-subtitle">Baseline 18–22 Mei 2026 → Forward Outlook 25–29 Mei 2026 · Status: Laporan Institusional — Edukasi &amp; Diskusi Analitik</div>
+</div>
+
+<!-- KONTEKS GEOPOLITIK -->
+<div class="context-box">
+  <h3>⚡ Konteks Geopolitik Dominan — Catatan Pendahuluan</h3>
+  <p>Seluruh analisis minggu ini beroperasi dalam satu latar makro yang mendominasi semua aset: <strong>KONFLIK IRAN DAN ANCAMAN TERHADAP SELAT HORMUZ.</strong> Harga minyak masih ~50% di atas level pra-konflik, mendorong inflasi global ke jalur yang memaksa bank-bank sentral mengadopsi stance lebih hawkish dari baseline semula. <strong>US-Iran Peace Talk Optimism</strong> menjadi katalis swing dua arah terbesar minggu ini — setiap sinyal positif menekan yield/oil, setiap sinyal negatif memantik risk-off dan inflasi repricing.</p>
+  <p style="margin-top:10px;">Fakta baru yang krusial: <strong>Kevin Warsh secara resmi dilantik sebagai Ketua Fed pada 22 Mei 2026.</strong> Ini adalah variabel kebijakan baru yang belum sepenuhnya ter-price-in oleh pasar dan menjadi wildcard komunikasi FOMC ke depan.</p>
+</div>
+
+<!-- SECTION 00: KATALIS TRACKER -->
+<div id="katalis">
+  <div class="section-header">
+    <span class="section-num">SECTION 00</span>
+    <h2 class="section-title">Katalis Tracker</h2>
+    <div class="section-desc">Price-in status dari narasi utama yang terbentuk minggu lalu</div>
+  </div>
+
+  <div class="tbl-wrap" style="margin-bottom:24px;">
+    <table>
+      <thead><tr><th>Narasi</th><th>Price-In %</th><th>Status</th><th>Event Validasi</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Fed Hawkish Repricing</strong><br><span class="text2" style="font-size:11px;">FOMC Minutes + Waller + Warsh era. 1 hike fully priced.</span></td>
+          <td>
+            <div class="katalis-item">
+              <div class="katalis-track"><div class="katalis-fill" style="width:70%;background:var(--amber);"></div></div>
+              <div class="katalis-pct">70% — Ekor repricing masih ada (2 hike belum ter-price-in)</div>
+            </div>
+          </td>
+          <td><span class="badge-hawkish">AKTIF</span></td>
+          <td class="mono">PCE Kamis 28 Mei</td>
+        </tr>
+        <tr>
+          <td><strong>GBP Weakness Basket</strong><br><span class="text2" style="font-size:11px;">Triple miss CPI + PMI + Retail + Budget deficit record</span></td>
+          <td>
+            <div class="katalis-item">
+              <div class="katalis-track"><div class="katalis-fill" style="width:55%;background:var(--red);"></div></div>
+              <div class="katalis-pct">55% — Sebagian exhausted, masih relevan</div>
+            </div>
+          </td>
+          <td><span class="badge-miss">AKTIF</span></td>
+          <td class="mono">Bailey Jumat 30 Mei</td>
+        </tr>
+        <tr>
+          <td><strong>China Demand Collapse</strong><br><span class="text2" style="font-size:11px;">Retail Sales 0.2%, FAI -1.6%, Industrial Production miss besar</span></td>
+          <td>
+            <div class="katalis-item">
+              <div class="katalis-track"><div class="katalis-fill" style="width:50%;background:var(--red);"></div></div>
+              <div class="katalis-pct">50% — Ekor repricing masih aktif</div>
+            </div>
+          </td>
+          <td><span class="badge-miss">AKTIF</span></td>
+          <td class="mono">Industrial Profits Rabu</td>
+        </tr>
+        <tr>
+          <td><strong>AUD Labor Shock</strong><br><span class="text2" style="font-size:11px;">Employment -18.6K (MISS BESAR); RBA hike cycle dipertanyakan</span></td>
+          <td>
+            <div class="katalis-item">
+              <div class="katalis-track"><div class="katalis-fill" style="width:50%;background:var(--red);"></div></div>
+              <div class="katalis-pct">50% — CPI Rabu akan menentukan kelanjutan</div>
+            </div>
+          </td>
+          <td><span class="badge-miss">AKTIF</span></td>
+          <td class="mono">AU CPI Rabu 28 Mei</td>
+        </tr>
+        <tr>
+          <td><strong>Risk-On Parsial vs Inflasi</strong><br><span class="text2" style="font-size:11px;">Optimisme Iran Deal vs oil tetap tinggi $100/bbl</span></td>
+          <td>
+            <div class="katalis-item">
+              <div class="katalis-track"><div class="katalis-fill" style="width:40%;background:var(--yellow);"></div></div>
+              <div class="katalis-pct">40% — Unresolved; swing dua arah sewaktu-waktu</div>
+            </div>
+          </td>
+          <td><span class="badge-neutral">AMBIGUOUS</span></td>
+          <td class="mono">Berita Iran (ongoing)</td>
+        </tr>
+        <tr>
+          <td><strong>ECB CPI Final (sudah exhausted)</strong><br><span class="text2" style="font-size:11px;">In-line 3.0% — tidak ada repricing baru</span></td>
+          <td>
+            <div class="katalis-item">
+              <div class="katalis-track"><div class="katalis-fill" style="width:95%;background:var(--text3);"></div></div>
+              <div class="katalis-pct">95% — Fully exhausted</div>
+            </div>
+          </td>
+          <td><span class="badge-inline">EXHAUSTED</span></td>
+          <td class="mono">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 01: KONDISI PASAR -->
+<div id="langkah1">
+  <div class="section-header">
+    <span class="section-num">LANGKAH 01</span>
+    <h2 class="section-title">Kondisi Pasar Baseline</h2>
+    <div class="section-desc">Postur kebijakan moneter global, regime pasar, dan intermarket analysis (18–22 Mei 2026)</div>
+  </div>
+
+  <!-- 1A Market Indicators -->
+  <div class="market-indicators">
+    <div class="market-ind">
+      <div class="market-ind-label">DXY</div>
+      <div class="market-ind-val gold-c">99.32</div>
+      <div class="market-ind-sub">Penutupan 22 Mei · Near 6-week high</div>
+    </div>
+    <div class="market-ind">
+      <div class="market-ind-label">VIX</div>
+      <div class="market-ind-val bull">16.70</div>
+      <div class="market-ind-sub">Risk appetite recovery · Carry kondusif</div>
+    </div>
+    <div class="market-ind">
+      <div class="market-ind-label">Brent Crude</div>
+      <div class="market-ind-val amber-c">$100.21</div>
+      <div class="market-ind-sub">~50% di atas pra-konflik · Anchor inflasi</div>
+    </div>
+    <div class="market-ind">
+      <div class="market-ind-label">US 10Y Treasury</div>
+      <div class="market-ind-val">4.54%</div>
+      <div class="market-ind-sub">Pullback dari puncak 4.69% · 30Y sempuh 5.20%</div>
+    </div>
+    <div class="market-ind">
+      <div class="market-ind-label">Gold (XAUUSD)</div>
+      <div class="market-ind-val gold-c">$4,509–4,556</div>
+      <div class="market-ind-sub">Range 22 Mei · 14% di bawah puncak konflik</div>
+    </div>
+    <div class="market-ind">
+      <div class="market-ind-label">S&amp;P 500</div>
+      <div class="market-ind-val bull">7,473</div>
+      <div class="market-ind-sub">+0.37% · Risk-on terjaga</div>
+    </div>
+    <div class="market-ind">
+      <div class="market-ind-label">IDR/USD</div>
+      <div class="market-ind-val bear">Rp17,700</div>
+      <div class="market-ind-sub">Terendah sepanjang masa; BI hike 50bp</div>
+    </div>
+    <div class="market-ind">
+      <div class="market-ind-label">IHSG</div>
+      <div class="market-ind-val bear">6,162</div>
+      <div class="market-ind-sub">Net foreign sell YTD Rp49.3T</div>
+    </div>
+  </div>
+
+  <div id="s1a">
+    <div class="subsection-header">
+      <span class="subsection-num">1A — POSTUR KEBIJAKAN MONETER GLOBAL</span>
+      <div class="subsection-title">Central Bank Policy Dashboard</div>
+    </div>
+
+    <div class="cb-grid">
+      <!-- FED -->
+      <div class="cb-card">
+        <div class="cb-name">🇺🇸 Federal Reserve (USD)</div>
+        <div class="cb-rate">3.50%–3.75%</div>
+        <div class="cb-row"><span class="cb-row-label">Bias</span><span><span class="badge-hawkish">Hawkish Conditional Hold</span></span></div>
+        <div class="cb-row"><span class="cb-row-label">Next Meeting</span><span class="cb-row-val">17 Juni 2026</span></div>
+        <div class="cb-row"><span class="cb-row-label">Prob Hike (end-2026)</span><span class="cb-row-val bull">~80%+ (swaps fully priced ≥1 hike)</span></div>
+        <div class="cb-row"><span class="cb-row-label">Prob Hold (Juni)</span><span class="cb-row-val">~97%</span></div>
+        <div class="cb-row"><span class="cb-row-label">Track Record</span><span class="cb-track track-good">✅ KONSISTEN</span></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:10px;line-height:1.6;">CPI persistently above 2%, labor market solid. FOMC Minutes April menghapus easing bias. Waller: rate cut adalah "crazy." Vote 8-4 — tekanan hawkish dari dalam. <strong>Warsh dilantik 22 Mei 2026 — wildcard baru.</strong></div>
+      </div>
+
+      <!-- BOE -->
+      <div class="cb-card">
+        <div class="cb-name">🇬🇧 Bank of England (GBP)</div>
+        <div class="cb-rate">3.75%</div>
+        <div class="cb-row"><span class="cb-row-label">Bias</span><span><span class="badge-hawkish">Hawkish Conditional Hold</span></span></div>
+        <div class="cb-row"><span class="cb-row-label">Prob Hike</span><span class="cb-row-val">~11.8%</span></div>
+        <div class="cb-row"><span class="cb-row-label">Prob Hold</span><span class="cb-row-val">~88.2%</span></div>
+        <div class="cb-row"><span class="cb-row-label">Track Record</span><span class="cb-track track-warn">⚠️ 1× MELESET</span></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:10px;line-height:1.6;">CPI April MISS (2.8% vs 3.0%), Retail Sales MISS besar (-1.3%), PMI Composite MISS jauh (48.5 vs 51.6). 1 putaran data lemah — dibaca sebagai KOREKSI, tapi pasar sudah trimming bets.</div>
+      </div>
+
+      <!-- ECB -->
+      <div class="cb-card">
+        <div class="cb-name">🇪🇺 European Central Bank (EUR)</div>
+        <div class="cb-rate">Deposit: 2.0% / Refi: 2.15%</div>
+        <div class="cb-row"><span class="cb-row-label">Bias</span><span><span class="badge-hawkish">Hawkish Conditional Hold</span></span></div>
+        <div class="cb-row"><span class="cb-row-label">Prob Hike 2026</span><span class="cb-row-val">2 hike penuh; ke-3 ~60%</span></div>
+        <div class="cb-row"><span class="cb-row-label">Track Record</span><span class="cb-track track-warn">⚠️ 1× MELESET</span></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:10px;line-height:1.6;">PMI Composite MISS signifikan (47.5 vs 48.8), Negotiated Wage Growth turun (2.46% vs 2.7%). CPI Final in-line di 3.0%. Kontrak stagflasi eurozone mempersulit ECB.</div>
+      </div>
+
+      <!-- BOJ -->
+      <div class="cb-card">
+        <div class="cb-name">🇯🇵 Bank of Japan (JPY)</div>
+        <div class="cb-rate">0.75%</div>
+        <div class="cb-row"><span class="cb-row-label">Bias</span><span><span class="badge-hawkish">Gradual Hawkish</span></span></div>
+        <div class="cb-row"><span class="cb-row-label">Prob Hike</span><span class="cb-row-val">Rendah jangka pendek; 3 dissenter dukung 1.0%</span></div>
+        <div class="cb-row"><span class="cb-row-label">Track Record</span><span class="cb-track track-warn">⚠️ 1× MELESET</span></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:10px;line-height:1.6;">Tokyo Core CPI April 1.4% vs proyeksi BOJ 2.8% FY2026. CPI Nasional April miss (1.4% vs 1.8%). MISS pertama — dibaca sebagai KOREKSI dalam regime Goldilocks. GDP Q1 BEAT (2.1%) dan ekspor BEAT (+14.8%) mengimbangi.</div>
+      </div>
+
+      <!-- RBA -->
+      <div class="cb-card">
+        <div class="cb-name">🇦🇺 Reserve Bank of Australia (AUD)</div>
+        <div class="cb-rate">4.35% <span style="font-size:12px;color:var(--amber);">↑ (baru hike 25bp)</span></div>
+        <div class="cb-row"><span class="cb-row-label">Bias</span><span><span class="badge-hawkish">Hawkish</span></span></div>
+        <div class="cb-row"><span class="cb-row-label">Prob Further Hike</span><span class="cb-row-val bear">Menurun drastis pasca Employment MISS</span></div>
+        <div class="cb-row"><span class="cb-row-label">Track Record</span><span class="cb-track track-bad">🔶 2× BERUNTUN</span></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:10px;line-height:1.6;">Unemployment naik ke 4.5% (MISS), Employment -18.6K (MISS besar), PMI Services turun ke 47.7 (kontraksi). Dua data labor signifikan melemah setelah tiga kali hike beruntun — TANDA TANYA.</div>
+      </div>
+
+      <!-- RBNZ -->
+      <div class="cb-card">
+        <div class="cb-name">🇳🇿 RBNZ (NZD)</div>
+        <div class="cb-rate">2.25%</div>
+        <div class="cb-row"><span class="cb-row-label">Bias</span><span><span class="badge-hold">Hold — Data Dependent</span></span></div>
+        <div class="cb-row"><span class="cb-row-label">Next Meeting</span><span class="cb-row-val bull"><strong>RABU 28 MEI 2026</strong></span></div>
+        <div class="cb-row"><span class="cb-row-label">Prob Hold</span><span class="cb-row-val">~100%</span></div>
+        <div class="cb-row"><span class="cb-row-label">Track Record</span><span class="cb-track track-good">✅ KONSISTEN</span></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:10px;line-height:1.6;">Trade Balance BEAT (NZ$1.92B vs NZ$0.98B), PPI Output BEAT, Retail Sales QoQ BEAT (0.9% vs 0.5%). Data mendukung hold RBNZ. NZD dalam regime Reflation.</div>
+      </div>
+
+      <!-- BOC -->
+      <div class="cb-card">
+        <div class="cb-name">🇨🇦 Bank of Canada (CAD)</div>
+        <div class="cb-rate">2.25%</div>
+        <div class="cb-row"><span class="cb-row-label">Bias</span><span><span class="badge-hold">Hold — Geopolitical Uncertainty</span></span></div>
+        <div class="cb-row"><span class="cb-row-label">Track Record</span><span class="cb-track track-good">✅ KONSISTEN (dengan catatan)</span></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:10px;line-height:1.6;">Core CPI turun ke 2.1% (MISS vs 2.6% konsensus tapi searah stance hold). CFIB Business Barometer MISS besar (46.3 vs 57.4) — 1× meleset.</div>
+      </div>
+
+      <!-- SNB -->
+      <div class="cb-card">
+        <div class="cb-name">🇨🇭 Swiss National Bank (CHF)</div>
+        <div class="cb-rate">0.0%</div>
+        <div class="cb-row"><span class="cb-row-label">Bias</span><span><span class="badge-hold">Hold / FX Intervention Mode</span></span></div>
+        <div class="cb-row"><span class="cb-row-label">Next Meeting</span><span class="cb-row-val">Juni 2026</span></div>
+        <div class="cb-row"><span class="cb-row-label">Track Record</span><span class="cb-track track-good">✅ KONSISTEN</span></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:10px;line-height:1.6;">Core CPI turun ke 0.3%. SNB beroperasi dalam mode intervensi FX mencegah CHF terapresiasi terlalu kuat.</div>
+      </div>
+
+      <!-- PBOC -->
+      <div class="cb-card">
+        <div class="cb-name">🇨🇳 PBoC (CNY)</div>
+        <div class="cb-rate">LPR 1Y 3.0% / 5Y 3.5%</div>
+        <div class="cb-row"><span class="cb-row-label">Bias</span><span><span class="badge-dovish">Accommodative Hold</span></span></div>
+        <div class="cb-row"><span class="cb-row-label">Status</span><span class="cb-row-val">Held 12 bulan beruntun</span></div>
+        <div class="cb-row"><span class="cb-row-label">Track Record</span><span class="cb-track track-good">✅ KONSISTEN</span></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:10px;line-height:1.6;">Industrial Production MISS (4.1% vs 5.9%), Retail Sales MISS (0.2% vs 2.0%) mempertegas perlunya stimulus. Stance accommodative justified.</div>
+      </div>
+
+      <!-- BI -->
+      <div class="cb-card" style="border-color:rgba(200,168,75,0.3);">
+        <div class="cb-name">🇮🇩 Bank Indonesia (IDR)</div>
+        <div class="cb-rate" style="color:var(--amber);">5.25% <span style="font-size:12px;">↑ Surprise +50bp</span></div>
+        <div class="cb-row"><span class="cb-row-label">Bias</span><span><span class="badge-hawkish">Hawkish — Pro-Stabilitas</span></span></div>
+        <div class="cb-row"><span class="cb-row-label">Keputusan terakhir</span><span class="cb-row-val bear">50bp hike pada 20 Mei 2026 (surprise vs 25bp)</span></div>
+        <div class="cb-row"><span class="cb-row-label">Track Record</span><span class="cb-track track-good">✅ KONSISTEN</span></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:10px;line-height:1.6;">Merespons IDR melemah ke Rp17,700/USD (terendah sepanjang masa). Current Account Q1 -$4.0B (MISS besar vs -$0.8B) mempertegas tekanan eksternal.</div>
+      </div>
+    </div>
+
+    <div class="info-box warn" style="margin-top:16px;">
+      <strong>Catatan Probabilitas:</strong> Setelah FOMC Minutes 20 Mei + pernyataan Waller, repricing hawkish Fed sudah dalam proses aktif — swaps Bloomberg sepenuhnya men-price-in 1 hike Fed tahun ini. Ini BELUM SEPENUHNYA tercermin di semua aset FX, terutama USD crosses terhadap mata uang EM.
+    </div>
+  </div>
+
+  <!-- 1B REGIME -->
+  <div id="s1b">
+    <div class="subsection-header">
+      <span class="subsection-num">1B — REGIME PASAR SAAT INI</span>
+      <div class="subsection-title">Macro Regime Dashboard</div>
+    </div>
+    <div class="info-box info" style="margin-bottom:16px;"><strong>Status Pasar: TRANSISI</strong> — dari Risk-Off menjadi Risk-On Parsial. Driver dominan: Geopolitik (US-Iran) + Inflasi (energy-driven) + Divergensi CB</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Negara</th><th>Mata Uang</th><th>Macro Regime</th><th>Implikasi Bias Aset</th><th>CB Alignment</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>USA</strong></td><td class="mono">USD</td><td><span class="regime-reflation">REFLATION</span></td><td>Yield naik, USD menguat, equities mixed</td><td class="bull">ALIGNED (hawkish CB + reflation)</td></tr>
+          <tr><td><strong>Eurozone</strong></td><td class="mono">EUR</td><td><span class="regime-stagflation">STAGFLATION</span></td><td>EUR tertekan, equities bearish, gold +</td><td class="neutral-c">DIVERGING (ECB hold di tengah stagflasi)</td></tr>
+          <tr><td><strong>Japan</strong></td><td class="mono">JPY</td><td><span class="regime-goldilocks">GOLDILOCKS</span></td><td>JPY bullish struktural, yield naik gradual</td><td class="bull">ALIGNED (gradual hawkish vs goldilocks)</td></tr>
+          <tr><td><strong>UK</strong></td><td class="mono">GBP</td><td><span class="regime-stagflation">STAGFLATION</span></td><td>GBP volatile dua arah, gilts fragile</td><td class="neutral-c">DIVERGING (BOE hawkish vs stagnasi)</td></tr>
+          <tr><td><strong>Australia</strong></td><td class="mono">AUD</td><td><span class="regime-goldilocks">GOLDILOCKS</span></td><td>AUD dapat support dari hawkish RBA</td><td class="neutral-c">UNCERTAIN (hike berlanjut tapi labor lemah)</td></tr>
+          <tr><td><strong>New Zealand</strong></td><td class="mono">NZD</td><td><span class="regime-reflation">REFLATION</span></td><td>NZD menguat moderat, yield naik bertahap</td><td class="bull">ALIGNED (hold CB vs reflation stabil)</td></tr>
+          <tr><td><strong>Canada</strong></td><td class="mono">CAD</td><td><span class="regime-reflation">REFLATION</span></td><td>CAD netral-bullish, yield tinggi</td><td class="bull">ALIGNED (BoC hold; energi = tailwind)</td></tr>
+          <tr><td><strong>Switzerland</strong></td><td class="mono">CHF</td><td><span class="regime-stagflation">STAGFLATION</span></td><td>CHF safe haven demand, tapi SNB cap FX</td><td class="bull">ALIGNED (SNB passive hold; stagflasi rendah)</td></tr>
+          <tr><td><strong>China</strong></td><td class="mono">CNY</td><td><span class="regime-stagflation">STAGFLATION</span></td><td>CNY under pressure, equities lemah</td><td class="bull">ALIGNED (accommodative CB vs stagflasi)</td></tr>
+          <tr><td><strong>Indonesia</strong></td><td class="mono">IDR</td><td><span class="regime-reflation">REFLATION</span></td><td>IDR volatile; BI hawkish mendukung</td><td class="bull">ALIGNED (hawkish post-hike vs reflation)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 1C INTERMARKET -->
+  <div id="s1c">
+    <div class="subsection-header">
+      <span class="subsection-num">1C — INTERMARKET ANALYSIS</span>
+      <div class="subsection-title">Sintesis Bias Lintas Aset</div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Instrumen</th><th>Level</th><th>Kondisi</th><th>Implikasi FX</th></tr></thead>
+        <tbody>
+          <tr><td><strong>US 10Y Treasury</strong></td><td class="mono">4.54%</td><td>Pullback dari 4.69%; 30Y sempuh 5.20% (tertinggi sejak 2007)</td><td>UST tinggi → yield diff besar → USD/JPY bullish pressure</td></tr>
+          <tr><td><strong>UK Gilts 10Y</strong></td><td class="mono">~4.9%</td><td class="bear">Weekly decline terbesar sejak 2024 pasca triple miss UK</td><td>Gilt yield turun = BOE hike dipangkas = GBP bearish</td></tr>
+          <tr><td><strong>German Bunds 10Y</strong></td><td class="mono">3.05%</td><td>Turun dari puncak 3.2% (15-year high). ECB pricing 2-3 hike</td><td>Bund support struktural di atas 3%</td></tr>
+          <tr><td><strong>Australia 10Y</strong></td><td class="mono">&lt;5.0%</td><td class="bear">Turun setelah Employment MISS besar</td><td>Pasar mulai meragukan kelanjutan RBA hike</td></tr>
+          <tr><td><strong>Indonesia 10Y</strong></td><td class="mono">6.85%</td><td class="bear">Near 3-week high. Tekanan UST + IDR + capital outflow</td><td>BI hike 50bp belum cukup balik arah</td></tr>
+          <tr><td><strong>China 10Y</strong></td><td class="mono">1.74%</td><td class="bear">All-time low area. PBoC accommodative. Deflationary pressure</td><td>CNY bearish; stimulus diharapkan pasar</td></tr>
+          <tr><td><strong>Gold XAUUSD</strong></td><td class="mono">$4,509–4,556</td><td>Supported: real yield belum terlalu tinggi + safe haven geo + CB buying</td><td>CHF juga mendapat safe haven bid tapi SNB capping</td></tr>
+          <tr><td><strong>Brent Crude</strong></td><td class="mono">~$100/bbl</td><td class="amber-c">~50% di atas pra-konflik. Anchor inflasi struktural global</td><td>CAD mendapat energy support; BoC melihat sebagai "temporary"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box info" style="margin-top:16px;">
+      <strong>Event 3B Paling Berpotensi Menggeser Bias:</strong><br>
+      → Core PCE Kamis 28 Mei (USD/gold pivot trigger)<br>
+      → GDP Q1 2nd Est Kamis 28 Mei (USD repricing)<br>
+      → RBNZ Rabu 28 Mei (NZD, seluruh Antipodean)<br>
+      → BOJ Ueda Speech Rabu (JPY directional)
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 02: KALENDER EKONOMI -->
+<div id="langkah2">
+  <div class="section-header">
+    <span class="section-num">LANGKAH 02</span>
+    <h2 class="section-title">Kalender Ekonomi</h2>
+    <div class="section-desc">Review Baseline 18–22 Mei + Agenda Forward 25–29 Mei 2026</div>
+  </div>
+
+  <div id="s2a">
+    <div class="subsection-header">
+      <span class="subsection-num">2A — REVIEW MINGGU LALU (18–22 MEI 2026)</span>
+      <div class="subsection-title">Event Material dengan Konsensus</div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Tgl</th><th>Mata Uang</th><th>Event</th><th>Kons</th><th>Aktual</th><th>Deviasi</th><th>Status</th><th>Implikasi Forward</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="mono">01</td><td class="mono">Sn18</td><td><span class="mono">CN</span></td><td>Industrial Production YoY APR</td><td>5.9%</td><td class="bear">4.1%</td><td class="bear">-1.8ppt</td><td><span class="badge-miss">MISS</span></td><td>China stagflasi memburuk; tekanan pada AUD/komoditas</td></tr>
+          <tr><td class="mono">02</td><td class="mono">Sn18</td><td><span class="mono">CN</span></td><td>Retail Sales YoY APR</td><td>2.0%</td><td class="bear">0.2%</td><td class="bear">-1.8ppt</td><td><span class="badge-shock">⚡ KEJUTAN</span></td><td>Demand China kolaps; risiko disinflasi domestik; PBoC stimulus diharapkan</td></tr>
+          <tr><td class="mono">03</td><td class="mono">Sn18</td><td><span class="mono">CN</span></td><td>Fixed Asset Invest (YTD) YoY</td><td>1.6%</td><td class="bear">-1.6%</td><td class="bear">-3.2ppt</td><td><span class="badge-shock">⚡ KEJUTAN</span></td><td>Investasi terkontraksi; stagflasi China makin dalam</td></tr>
+          <tr><td class="mono">04</td><td class="mono">Sn18</td><td><span class="mono">CH</span></td><td>GDP QoQ Flash Q1</td><td>0.3%</td><td class="bull">0.5%</td><td class="bull">+0.2ppt</td><td><span class="badge-beat">BEAT</span></td><td>Swiss lebih resilient; SNB masih hold</td></tr>
+          <tr><td class="mono">06</td><td class="mono">Sl19</td><td><span class="mono">JP</span></td><td>GDP QoQ Prel Q1</td><td>0.4%</td><td class="bull">0.5%</td><td class="bull">+0.1ppt</td><td><span class="badge-beat">BEAT</span></td><td>Memperkuat case BOJ untuk tetap gradual hawkish</td></tr>
+          <tr><td class="mono">07</td><td class="mono">Sl19</td><td><span class="mono">JP</span></td><td>GDP Annualized Prel Q1</td><td>1.7%</td><td class="bull">2.1%</td><td class="bull">+0.4ppt</td><td><span class="badge-beat">BEAT</span></td><td>BOJ bisa naikkan ke 1.0% H2 2026</td></tr>
+          <tr><td class="mono">09</td><td class="mono">Sl19</td><td><span class="mono">GB</span></td><td>Average Earnings incl. Bonus</td><td>3.8%</td><td class="bull">4.1%</td><td class="bull">+0.3ppt</td><td><span class="badge-beat">BEAT</span></td><td>Inflasi upah masih ada; BOE tidak bisa semudah itu dovish</td></tr>
+          <tr><td class="mono">12</td><td class="mono">Sl19</td><td><span class="mono">CA</span></td><td>Core Inflation Rate YoY APR</td><td>2.6%</td><td class="bear">2.1%</td><td class="bear">-0.5ppt</td><td><span class="badge-miss">MISS</span></td><td>BoC likely tidak hike; CAD mildly bearish near-term</td></tr>
+          <tr><td class="mono">14</td><td class="mono">Rb20</td><td><span class="mono">GB</span></td><td>CPI YoY APR</td><td>3.0%</td><td class="bear">2.8%</td><td class="bear">-0.2ppt</td><td><span class="badge-miss">MISS</span></td><td>Gilts rally, GBP under pressure</td></tr>
+          <tr><td class="mono">16</td><td class="mono">Rb20</td><td><span class="mono">ID</span></td><td>Interest Rate Decision</td><td>5.0%</td><td class="bull">5.25%</td><td class="amber-c">+25bp surprise</td><td><span class="badge-shock">⚡ KEJUTAN</span></td><td>BI hike lebih besar; IDR stabilisasi awal</td></tr>
+          <tr><td class="mono">17</td><td class="mono">Rb20</td><td><span class="mono">EA</span></td><td>CPI YoY Final APR</td><td>3.0%</td><td>3.0%</td><td>0</td><td><span class="badge-inline">IN-LINE</span></td><td>Fully price-in; tidak ada repricing baru</td></tr>
+          <tr><td class="mono">19</td><td class="mono">Km21</td><td><span class="mono">AU</span></td><td>Employment Change APR</td><td>+17.5K</td><td class="bear">-18.6K</td><td class="bear">-36.1K</td><td><span class="badge-shock">⚡ KEJUTAN</span></td><td>Shock terbesar minggu ini; RBA hike cycle dipertanyakan serius</td></tr>
+          <tr><td class="mono">20</td><td class="mono">Km21</td><td><span class="mono">AU</span></td><td>Unemployment Rate APR</td><td>4.3%</td><td class="bear">4.5%</td><td class="bear">+0.2ppt</td><td><span class="badge-shock">⚡ KEJUTAN</span></td><td>Kombinasi dua MISS besar: employment &amp; pengangguran = TANDA TANYA RBA</td></tr>
+          <tr><td class="mono">23</td><td class="mono">Km21</td><td><span class="mono">JP</span></td><td>Exports YoY APR</td><td>9.3%</td><td class="bull">14.8%</td><td class="bull">+5.5ppt</td><td><span class="badge-shock">⚡ KEJUTAN</span></td><td>Ekspor Jepang sangat kuat; bullish JPY fundamental</td></tr>
+          <tr><td class="mono">24</td><td class="mono">Km21</td><td><span class="mono">GB</span></td><td>S&amp;P Global Composite PMI May</td><td>51.6</td><td class="bear">48.5</td><td class="bear">-3.1ppt</td><td><span class="badge-shock">⚡ KEJUTAN</span></td><td>PMI UK kolaps masuk kontraksi; sangat bearish GBP</td></tr>
+          <tr><td class="mono">25</td><td class="mono">Km21</td><td><span class="mono">GB</span></td><td>S&amp;P Global Services PMI May</td><td>51.7</td><td class="bear">47.9</td><td class="bear">-3.8ppt</td><td><span class="badge-shock">⚡ KEJUTAN</span></td><td>Services sector UK kontraksi dalam</td></tr>
+          <tr><td class="mono">26</td><td class="mono">Km21</td><td><span class="mono">EA</span></td><td>S&amp;P Global Composite PMI May</td><td>48.8</td><td class="bear">47.5</td><td class="bear">-1.3ppt</td><td><span class="badge-miss">MISS</span></td><td>Eurozone kontraksi lebih dalam dari ekspektasi</td></tr>
+          <tr><td class="mono">27</td><td class="mono">Km21</td><td><span class="mono">US</span></td><td>Philly Fed Manufacturing Index</td><td>18</td><td class="bear">-0.4</td><td class="bear">-18.4ppt</td><td><span class="badge-shock">⚡ KEJUTAN</span></td><td>Anjlok drastis; kontras dengan PMI beat</td></tr>
+          <tr><td class="mono">29</td><td class="mono">Km21</td><td><span class="mono">US</span></td><td>FOMC Minutes (April Meeting)</td><td>—</td><td class="amber-c">HAWKISH TONE</td><td>—</td><td><span class="badge-shock">⚡ KEJUTAN</span></td><td>Konfirmasi easing bias dihapus; hike kembali dibahas; USD repricing</td></tr>
+          <tr><td class="mono">30</td><td class="mono">Jm22</td><td><span class="mono">JP</span></td><td>CPI YoY APR</td><td>1.8%</td><td class="bear">1.4%</td><td class="bear">-0.4ppt</td><td><span class="badge-miss">MISS</span></td><td>CPI Jepang melambat ke terendah 4 tahun</td></tr>
+          <tr><td class="mono">32</td><td class="mono">Jm22</td><td><span class="mono">GB</span></td><td>Retail Sales MoM APR</td><td>-0.6%</td><td class="bear">-1.3%</td><td class="bear">-0.7ppt</td><td><span class="badge-shock">⚡ KEJUTAN</span></td><td>Penjualan ritel UK anjlok 2x ekspektasi; GBP sangat bearish</td></tr>
+          <tr><td class="mono">33</td><td class="mono">Jm22</td><td><span class="mono">GB</span></td><td>Public Sector Net Borrowing</td><td>£-20.9B</td><td class="bear">£-24.3B</td><td class="bear">£3.4B lebih</td><td><span class="badge-shock">⚡ KEJUTAN</span></td><td>Defisit April tertinggi sejak 2020; fiskal UK memburuk serius</td></tr>
+          <tr><td class="mono">36</td><td class="mono">Jm22</td><td><span class="mono">US</span></td><td>Michigan Consumer Sentiment</td><td>48.2</td><td class="bear">44.8</td><td class="bear">-3.4ppt</td><td><span class="badge-shock">⚡ KEJUTAN</span></td><td>Keyakinan konsumen AS anjlok; 5Y inflation expectations naik ke 3.9%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box warn" style="margin-top:16px;">
+      <strong>Ringkasan Baseline:</strong> (1) Fed hawkish repricing — FOMC Minutes + Waller = pivot point terbesar. (2) UK stagflasi triple-miss — CPI + PMI + Retail = trifecta GBP weakness. (3) China demand collapse — Retail 0.2%, FAI -1.6% = kejutan besar. (4) Australia labor shock — Employment -18.6K = kejutan terbesar untuk AUD. (5) Japan growth vs inflation divergence — GDP BEAT tapi CPI MISS.
+    </div>
+  </div>
+
+  <!-- 2B FORWARD CALENDAR -->
+  <div id="s2b">
+    <div class="subsection-header">
+      <span class="subsection-num">2B — AGENDA MINGGU INI (25–29 MEI 2026)</span>
+      <div class="subsection-title">Forward Calendar — Event Priority</div>
+    </div>
+
+    <div class="info-box bull-box" style="margin-bottom:16px;"><strong>Top 5 Events Minggu Ini:</strong> Core PCE (Kamis) · GDP Q1 2nd Est (Kamis) · RBNZ Decision (Rabu) · AU CPI (Rabu) · BOE Bailey + ECB Lagarde Speeches (Jumat/Kamis)</div>
+
+    <div class="event-priority">
+      <div class="ep-rank">[1] — TIER CRITICAL</div>
+      <div class="ep-title">Core PCE Price Index MoM APR</div>
+      <div class="ep-meta">Kamis 28 Mei · 07:30 WIB+7 · Mata Uang: USD · Konsensus: 0.3% MoM</div>
+      <div class="ep-body">Tier-1 inflasi Fed. Jika BEAT → satu-satunya data yang bisa memaksa repricing hawkish tambahan setelah FOMC Minutes. "Verdict" untuk narrative hawkish yang terbentuk minggu lalu. Setiap deviasi dari konsensus 0.3% MoM akan bergerak signifikan. <strong>REGIME SHIFTER untuk USD Reflation.</strong></div>
+    </div>
+
+    <div class="event-priority">
+      <div class="ep-rank">[2] — TIER CRITICAL</div>
+      <div class="ep-title">GDP Q1 2nd Estimate + GDP Deflator</div>
+      <div class="ep-meta">Kamis 28 Mei · 07:30 WIB+7 · Mata Uang: USD · Konsensus: 2.0% annualized</div>
+      <div class="ep-body">Revisi GDP menentukan apakah ekonomi AS cukup kuat untuk menopang hike. Jika BEAT → USD bullish lanjut. GDP Deflator 4.5% QoQ sudah tinggi — konfirmasi stagflasi-reflasi AS. <strong>REGIME SHIFTER untuk Reflation USD.</strong></div>
+    </div>
+
+    <div class="event-priority">
+      <div class="ep-rank">[3] — TIER CRITICAL</div>
+      <div class="ep-title">RBNZ Rate Decision + Press Conference</div>
+      <div class="ep-meta">Rabu 28 Mei · 09:00–10:00 WIB+7 · Mata Uang: NZD · Konsensus: Hold 2.25%</div>
+      <div class="ep-body">Pasar sudah price hold. Yang belum ter-price-in adalah tone forward guidance — apakah RBNZ hawkish atau netral. Data minggu lalu (Trade Balance, Retail Sales BEAT) mendukung tone hawkish. <strong>CRITICAL untuk NZD Reflation.</strong></div>
+    </div>
+
+    <div class="event-priority">
+      <div class="ep-rank">[4] — TIER CRITICAL</div>
+      <div class="ep-title">Australian CPI MoM/YoY APR + RBA Trimmed Mean</div>
+      <div class="ep-meta">Rabu 28 Mei · 08:30 WIB+7 · Mata Uang: AUD · Konsensus: 4.6% YoY, 0.7% MoM</div>
+      <div class="ep-body">Setelah employment shock, ini adalah data kedua yang menentukan apakah RBA akan pause atau lanjut. Jika CPI BEAT → AUD bounce; jika MISS → AUD bearish konfirmasi. <strong>REGIME SHIFTER potensial untuk AUD Goldilocks.</strong></div>
+    </div>
+
+    <div class="event-priority">
+      <div class="ep-rank">[5] — TIER CRITICAL</div>
+      <div class="ep-title">BOE Gov Bailey Speech + ECB Lagarde Speech</div>
+      <div class="ep-meta">Jumat 30 Mei (Bailey) · Kamis 28 Mei (Lagarde) · Mata Uang: GBP/EUR</div>
+      <div class="ep-body">Setelah triple-miss UK dan miss eurozone PMI, dua pidato gubernur bank sentral ini adalah yang paling kritis untuk menentukan apakah pasar sudah over-pricing dovish narrative atau belum. <strong>REGIME SHIFTER untuk GBP dan EUR Stagflation.</strong></div>
+    </div>
+
+    <div class="tbl-wrap" style="margin-top:20px;">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Tgl</th><th>Mata Uang</th><th>Event</th><th>Kons</th><th>Previous</th><th>Dampak</th><th>Potensi Surprise</th><th>Kaitan Baseline</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="mono">01</td><td class="mono">Sn25</td><td class="mono">CA</td><td>Wholesale Sales MoM Prel APR</td><td>0.8%</td><td>1.9%</td><td><span class="impact-low">🟢 LOW</span></td><td>Rendah</td><td>Independen</td></tr>
+          <tr><td class="mono">03</td><td class="mono">Sl26</td><td class="mono">US</td><td>CB Consumer Confidence MAY</td><td>92.0</td><td>92.8</td><td><span class="impact-med">🟡 MED</span></td><td class="amber-c">TINGGI</td><td>Bantahan vs Michigan MISS</td></tr>
+          <tr><td class="mono">06</td><td class="mono">Rb27</td><td class="mono">AU</td><td>CPI MoM APR</td><td>0.7%</td><td>1.1%</td><td><span class="impact-high">🔴 HIGH</span></td><td class="amber-c">TINGGI</td><td>Konfirmasi bearish · REGIME SHIFTER</td></tr>
+          <tr><td class="mono">07</td><td class="mono">Rb27</td><td class="mono">AU</td><td>CPI YoY APR</td><td>4.6%</td><td>4.6%</td><td><span class="impact-high">🔴 HIGH</span></td><td>Sedang</td><td>Konfirmasi · CRITICAL</td></tr>
+          <tr><td class="mono">08</td><td class="mono">Rb27</td><td class="mono">AU</td><td>RBA Trimmed Mean CPI YoY APR</td><td>3.4%</td><td>3.3%</td><td><span class="impact-high">🔴 HIGH</span></td><td>Sedang</td><td>Bantahan vs dovish · CRITICAL</td></tr>
+          <tr><td class="mono">09</td><td class="mono">Rb27</td><td class="mono">NZ</td><td>RBNZ Rate Decision</td><td>2.25%</td><td>2.25%</td><td><span class="impact-high">🔴 HIGH</span></td><td class="amber-c">TINGGI (fwd guide)</td><td>Konfirmasi hold · CRITICAL</td></tr>
+          <tr><td class="mono">10</td><td class="mono">Rb27</td><td class="mono">JP</td><td>BOJ Gov Ueda Speech</td><td>—</td><td>—</td><td><span class="impact-high">🔴 HIGH</span></td><td class="amber-c">TINGGI</td><td>Bantahan/Konfirmasi · REGIME SHIFTER</td></tr>
+          <tr><td class="mono">12</td><td class="mono">Rb27</td><td class="mono">CN</td><td>Industrial Profits (YTD) YoY</td><td>12.0%</td><td>15.5%</td><td><span class="impact-med">🟡 MED</span></td><td class="amber-c">TINGGI</td><td>Konfirmasi MISS · CRITICAL (stagflasi)</td></tr>
+          <tr><td class="mono">14</td><td class="mono">Km28</td><td class="mono">US</td><td>Core PCE Price Index MoM APR</td><td>0.3%</td><td>0.3%</td><td><span class="impact-high">🔴 HIGH</span></td><td class="amber-c">TINGGI</td><td>Konfirmasi hawkish · REGIME SHIFTER</td></tr>
+          <tr><td class="mono">15</td><td class="mono">Km28</td><td class="mono">US</td><td>GDP QoQ 2nd Est Q1</td><td>2.0%</td><td>0.5%</td><td><span class="impact-high">🔴 HIGH</span></td><td class="amber-c">TINGGI</td><td>Konfirmasi reflation · REGIME SHIFTER</td></tr>
+          <tr><td class="mono">20</td><td class="mono">Km28</td><td class="mono">EA</td><td>ECB Lagarde + Lane Speech</td><td>—</td><td>—</td><td><span class="impact-high">🔴 HIGH</span></td><td class="amber-c">TINGGI</td><td>Konfirmasi/Bantahan · CRITICAL</td></tr>
+          <tr><td class="mono">22</td><td class="mono">Km28</td><td class="mono">EA</td><td>ECB Meeting Accounts</td><td>—</td><td>—</td><td><span class="impact-high">🔴 HIGH</span></td><td>Sedang</td><td>Konfirmasi hawkish · CRITICAL</td></tr>
+          <tr><td class="mono">25</td><td class="mono">Jm29</td><td class="mono">JP</td><td>Tokyo Core CPI YoY MAY</td><td>1.5%</td><td>1.5%</td><td><span class="impact-med">🟡 MED</span></td><td>Sedang</td><td>Konfirmasi MISS · CRITICAL</td></tr>
+          <tr><td class="mono">28</td><td class="mono">Jm29</td><td class="mono">GB</td><td>BoE Gov Bailey Speech</td><td>—</td><td>—</td><td><span class="impact-high">🔴 HIGH</span></td><td class="amber-c">TINGGI</td><td>Bantahan/Konfirmasi · REGIME SHIFTER</td></tr>
+          <tr><td class="mono">29</td><td class="mono">Jm29</td><td class="mono">CA</td><td>GDP QoQ Q1</td><td>-0.2%</td><td>0.1%</td><td><span class="impact-high">🔴 HIGH</span></td><td class="amber-c">TINGGI</td><td>Bantahan dovish · REGIME SHIFTER</td></tr>
+          <tr><td class="mono">30</td><td class="mono">Jm29</td><td class="mono">CA</td><td>GDP Annualized Q1</td><td>0.7%</td><td>-0.6%</td><td><span class="impact-high">🔴 HIGH</span></td><td class="amber-c">TINGGI</td><td>CRITICAL</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 03: SKENARIO PER MATA UANG -->
+<div id="langkah3">
+  <div class="section-header">
+    <span class="section-num">LANGKAH 03</span>
+    <h2 class="section-title">Skenario Per Mata Uang</h2>
+    <div class="section-desc">Klik pada kartu mata uang untuk memperluas analisis lengkap</div>
+  </div>
+
+  <!-- USD -->
+  <div class="currency-card open" id="usd">
+    <div class="currency-card-header" onclick="toggleCard(this)">
+      <div class="currency-flag-title">
+        <span class="currency-flag">🇺🇸</span>
+        <div>
+          <div class="currency-name">US Dollar</div>
+          <div class="currency-pair">USD / DXY</div>
+        </div>
+      </div>
+      <div class="currency-bias-badge">
+        <span class="regime-reflation">REFLATION</span>
+        <span class="badge-hawkish">BULLISH BIAS</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+    </div>
+    <div class="currency-card-body">
+      <div class="snap-grid">
+        <div class="snap-item"><div class="snap-label">Macro Regime</div><div class="snap-val"><span class="regime-reflation">REFLATION</span></div></div>
+        <div class="snap-item"><div class="snap-label">CB Posture</div><div class="snap-val"><span class="badge-hawkish">Hawkish Conditional Hold</span></div></div>
+        <div class="snap-item"><div class="snap-label">Track Record</div><div class="snap-val bull">✅ KONSISTEN</div></div>
+        <div class="snap-item"><div class="snap-label">Puzzle Status</div><div class="snap-val">70% Lengkap · Tunggu PCE</div></div>
+        <div class="snap-item"><div class="snap-label">CB Alignment</div><div class="snap-val bull">ALIGNED</div></div>
+        <div class="snap-item"><div class="snap-label">Event Kunci</div><div class="snap-val gold-c">Core PCE + GDP Q1 (Kamis)</div></div>
+      </div>
+
+      <div class="info-box info">
+        <strong>What's Already Priced-In:</strong> 1 hike Fed H2 2026 (fully priced swaps) · Inflasi persistently above 2% · FOMC tidak akan cut — easing bias dihapus.<br>
+        <strong>Yang BELUM ter-price-in:</strong> Apakah PCE akan konfirmasi di atas konsensus? · Tone komunikasi Warsh (wildcard baru) · Skenario 2 hike (saat ini 0% priced)
+      </div>
+
+      <div class="scenario-grid">
+        <div class="scenario-block bull">
+          <div class="scenario-title">🐂 Skenario Bull USD</div>
+          <div class="trigger gold-c">Trigger: Core PCE &gt; 0.35% + GDP direvisi naik &gt; 2.0%</div>
+          <p>Probabilitas 2 hike 2026 mulai ter-price-in (saat ini 0%) — gap MASSIVE yang bisa mendorong DXY ke 100.5+. Mengkonfirmasi hawkish narrative FOMC Minutes.</p>
+          <div class="pair-tag" style="margin-top:8px;">Best pair LONG USD: USD/JPY (carry + hawkish vs BOJ pause) · SHORT EUR/USD (ECB vs Fed divergensi)</div>
+          <div class="pair-tag">Reaksi: DXY → 100.0–100.5 · USD/JPY → 156+ · EUR/USD → 1.08</div>
+        </div>
+        <div class="scenario-block bear">
+          <div class="scenario-title">🐻 Skenario Bear USD</div>
+          <div class="trigger" style="color:var(--red);">Trigger: PCE &lt; 0.2% + GDP direvisi turun</div>
+          <p>Pasar mulai doubt Fed akan hike — narrative "hawkish pause" berubah ke "extended hold" — USD reversal tajam dari 99. Masih dibaca sebagai KOREKSI oleh institusi (MISS PERTAMA).</p>
+          <div class="pair-tag" style="margin-top:8px;">Best pair SHORT USD: AUD/USD LONG (bounce dari employment shock oversell)</div>
+          <div class="pair-tag">Reaksi: DXY → 98.0–98.5 · Gold → 4,600+ · EUR/USD → 1.10+</div>
+        </div>
+        <div class="scenario-block neut">
+          <div class="scenario-title">➡️ Skenario Netral</div>
+          <p>PCE in-line 0.3% + GDP in-line 2.0% → tidak ada repricing baru. Narrative hawkish tetap berjalan tapi tidak diperkuat — DXY range-bound 98.8–99.5. Pasar menunggu NFP Juni.</p>
+          <div class="pair-tag" style="margin-top:8px;">Pair dihindari: EUR/USD (dua arah dalam kisaran sempit)</div>
+        </div>
+        <div class="scenario-block tail">
+          <div class="scenario-title">⚠️ Tail Risk</div>
+          <p>Iran talks breakdown total → oil spike → inflasi expectations naik drastis → repricing agresif lebih dari 1 hike → DXY spike ke 101+. Warsh hawkish signal pertama sebagai ketua baru.</p>
+          <p style="margin-top:6px;">REGIME SHIFT RISK: Jika Michigan spending memburuk lanjut + PCE miss → risiko transisi Reflation → Stagflation AS meningkat.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EUR -->
+  <div class="currency-card" id="eur">
+    <div class="currency-card-header" onclick="toggleCard(this)">
+      <div class="currency-flag-title">
+        <span class="currency-flag">🇪🇺</span>
+        <div>
+          <div class="currency-name">Euro</div>
+          <div class="currency-pair">EUR/USD</div>
+        </div>
+      </div>
+      <div class="currency-bias-badge">
+        <span class="regime-stagflation">STAGFLATION</span>
+        <span class="badge-miss">BEARISH MODERAT</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+    </div>
+    <div class="currency-card-body">
+      <div class="snap-grid">
+        <div class="snap-item"><div class="snap-label">Macro Regime</div><div class="snap-val"><span class="regime-stagflation">STAGFLATION</span></div></div>
+        <div class="snap-item"><div class="snap-label">CB Posture</div><div class="snap-val"><span class="badge-hawkish">Hawkish Conditional</span></div></div>
+        <div class="snap-item"><div class="snap-label">Track Record</div><div class="snap-val neutral-c">⚠️ 1× MELESET</div></div>
+        <div class="snap-item"><div class="snap-label">Puzzle Status</div><div class="snap-val">60% Lengkap · Tunggu Lagarde</div></div>
+        <div class="snap-item"><div class="snap-label">CB Alignment</div><div class="snap-val neutral-c">DIVERGING</div></div>
+        <div class="snap-item"><div class="snap-label">Event Kunci</div><div class="snap-val gold-c">Lagarde + ECB Accounts (Kamis)</div></div>
+      </div>
+      <div class="info-box bear-box">
+        <strong>Baseline dari 3A:</strong> PMI Composite MISS (47.5 vs 48.8) · Negotiated Wage Growth MISS (2.46% vs 2.7%) · CPI Final IN-LINE (3.0%). Narrative: Eurozone berkontraksi tapi inflasi masih tinggi = stagflasi klasik.
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario-block bull">
+          <div class="scenario-title">🐂 Skenario Bull EUR</div>
+          <p>Lagarde mengambil tone hawkish kuat — menyebut potensi hike ke-3; ECB Meeting Accounts menunjukkan mayoritas mendukung additional tightening → EUR menguat vs USD. Bull case moderat (tidak sustainable jika growth terus kontraksi).</p>
+          <div class="pair-tag" style="margin-top:8px;">Best pair LONG EUR: EUR/GBP (GBP lebih lemah dari EUR dalam stagflasi)</div>
+        </div>
+        <div class="scenario-block bear">
+          <div class="scenario-title">🐻 Skenario Bear EUR</div>
+          <p>Lagarde menekankan growth risks; ECB Accounts menunjukkan divisi internal tentang laju hike; Economic Sentiment miss jauh → pasar trimming ke hanya 1-2 hike → EUR melemah. Stagflasi + dovish signal = kombinasi paling bearish untuk EUR.</p>
+          <div class="pair-tag" style="margin-top:8px;">Best pair SHORT EUR: EUR/USD · EUR/CHF (CHF safe haven + SNB tetap 0%)</div>
+        </div>
+        <div class="scenario-block neut">
+          <div class="scenario-title">➡️ Skenario Netral</div>
+          <p>Lagarde balanced — mengakui risiko dua arah; Economic Sentiment in-line → EUR range-bound 1.09–1.10 vs USD. Konsensus tidak berubah.</p>
+          <div class="pair-tag" style="margin-top:8px;">Pair dihindari: EUR/USD — tunggu signal jelas dari ECB atau PCE AS</div>
+        </div>
+        <div class="scenario-block tail">
+          <div class="scenario-title">⚠️ Tail Risk</div>
+          <p>Iran deal tercapai → oil turun tajam → inflasi eurozone mereda → ECB hike expected less → EUR bisa JATUH meski "good news" secara makro. Paradox tail risk EUR.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GBP -->
+  <div class="currency-card" id="gbp">
+    <div class="currency-card-header" onclick="toggleCard(this)">
+      <div class="currency-flag-title">
+        <span class="currency-flag">🇬🇧</span>
+        <div>
+          <div class="currency-name">British Pound</div>
+          <div class="currency-pair">GBP/USD</div>
+        </div>
+      </div>
+      <div class="currency-bias-badge">
+        <span class="regime-stagflation">STAGFLATION</span>
+        <span class="badge-miss">BEARISH KUAT</span>
+        <span class="stars">★★★★</span><span class="stars-empty">★</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+    </div>
+    <div class="currency-card-body">
+      <div class="snap-grid">
+        <div class="snap-item"><div class="snap-label">Macro Regime</div><div class="snap-val"><span class="regime-stagflation">STAGFLATION</span></div></div>
+        <div class="snap-item"><div class="snap-label">CB Posture</div><div class="snap-val neutral-c">Hawkish (8-1 vote) tapi data sudah mendahului</div></div>
+        <div class="snap-item"><div class="snap-label">Track Record</div><div class="snap-val bear">🔶 2× BERUNTUN — TANDA TANYA</div></div>
+        <div class="snap-item"><div class="snap-label">Puzzle Status</div><div class="snap-val bull">75% Lengkap · Tunggu Bailey</div></div>
+        <div class="snap-item"><div class="snap-label">CB Alignment</div><div class="snap-val neutral-c">DIVERGING</div></div>
+        <div class="snap-item"><div class="snap-label">Event Kunci</div><div class="snap-val gold-c">Bailey Speech Jumat 30 Mei</div></div>
+      </div>
+      <div class="info-box bear-box">
+        <strong>4 Shock Searah Bearish:</strong> CPI MISS (2.8% vs 3.0%) · PMI Composite KEJUTAN (48.5 vs 51.6) · Retail Sales KEJUTAN (-1.3% vs -0.6%) · Budget Deficit record £24.3B. Ini adalah kejutan paling sistemik dan searah dari seluruh minggu lalu. <strong>SHORT GBP/USD adalah trade priority #1 minggu ini.</strong>
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario-block bull">
+          <div class="scenario-title">🐂 Skenario Bull GBP</div>
+          <p>Bailey Jumat tetap hawkish; menyebut CPI masih di atas target; menekankan wages 4.1% sebagai risiko second-round → pasar short-cover GBP. BOE hike probability naik kembali moderat. <strong>Bull case GBP lemah dalam regime stagflasi — hanya bounce teknikal dari oversold.</strong></p>
+          <div class="pair-tag" style="margin-top:8px;">Best pair LONG GBP: GBP/JPY (carry masih menarik vs JPY)</div>
+        </div>
+        <div class="scenario-block bear">
+          <div class="scenario-title">🐻 Skenario Bear GBP</div>
+          <p>Bailey mengakui PMI dan retail sebagai concerns; sinyal BOE pertimbangkan pause lebih lama → GBP melemah lanjut; gilt yields turun; BOE dinilai paling dovish di G10. 2× BERUNTUN sudah terpenuhi — jika Bailey pivots dovish, ini adalah sinyal pivot potensial yang kuat.</p>
+          <div class="pair-tag" style="margin-top:8px;">Best pair SHORT GBP: GBP/USD · GBP/CHF</div>
+        </div>
+        <div class="scenario-block neut">
+          <div class="scenario-title">➡️ Skenario Netral</div>
+          <p>Bailey balanced; BRC Shop Price in-line ~1.1% → GBP konsolidasi. Pasar menunggu data UK minggu depan.</p>
+        </div>
+        <div class="scenario-block tail">
+          <div class="scenario-title">⚠️ Tail Risk</div>
+          <p>Fiskal UK — budget deficit record £24.3B April bisa memunculkan credit concerns. Gilts sell-off mendadak jika pasar mulai mempertanyakan debt sustainability UK.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JPY -->
+  <div class="currency-card" id="jpy">
+    <div class="currency-card-header" onclick="toggleCard(this)">
+      <div class="currency-flag-title">
+        <span class="currency-flag">🇯🇵</span>
+        <div>
+          <div class="currency-name">Japanese Yen</div>
+          <div class="currency-pair">USD/JPY</div>
+        </div>
+      </div>
+      <div class="currency-bias-badge">
+        <span class="regime-goldilocks">GOLDILOCKS</span>
+        <span class="badge-neutral">AMBIGU</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+    </div>
+    <div class="currency-card-body">
+      <div class="snap-grid">
+        <div class="snap-item"><div class="snap-label">Macro Regime</div><div class="snap-val"><span class="regime-goldilocks">GOLDILOCKS</span></div></div>
+        <div class="snap-item"><div class="snap-label">CB Posture</div><div class="snap-val"><span class="badge-hawkish">Hawkish Gradual</span></div></div>
+        <div class="snap-item"><div class="snap-label">Track Record</div><div class="snap-val neutral-c">⚠️ 1× MELESET — KOREKSI</div></div>
+        <div class="snap-item"><div class="snap-label">Puzzle Status</div><div class="snap-val">55% · Ueda menentukan</div></div>
+        <div class="snap-item"><div class="snap-label">JGB 10Y</div><div class="snap-val">~2.78% (tertinggi 30 tahun)</div></div>
+        <div class="snap-item"><div class="snap-label">Event Kunci</div><div class="snap-val gold-c">Ueda Speech Rabu + Tokyo CPI Jumat</div></div>
+      </div>
+      <div class="info-box info">
+        <strong>Data Campuran:</strong> GDP Q1 BEAT (2.1% vs 1.7%) · Ekspor BEAT (+14.8% vs 9.3%) — growth kuat. Tapi CPI April MISS (1.4% vs 1.8%) · Core CPI MISS (1.4% vs 1.7%) — inflasi lemah. BOJ wait-and-see; 3 dissenter mendukung 1.0%. JPY sangat undervalued secara PPP — upside besar jika BOJ hawkish signal diperkuat.
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario-block bull">
+          <div class="scenario-title">🐂 Skenario Bull JPY (SHORT USD/JPY)</div>
+          <p>Ueda hawkish signal jelas + Tokyo CPI BEAT di atas 1.5% → pasar reprice BOJ hike ke Juli/September → yield differential mengecil → USD/JPY turun signifikan dari area 155+. Goldilocks mendukung gradual hawkish — sustainable bull case JPY jangka menengah.</p>
+          <div class="pair-tag" style="margin-top:8px;">Best pair LONG JPY: Short USD/JPY · Short EUR/JPY</div>
+        </div>
+        <div class="scenario-block bear">
+          <div class="scenario-title">🐻 Skenario Bear JPY (LONG USD/JPY)</div>
+          <p>Ueda dovish/neutral + Tokyo CPI in-line atau MISS + PCE AS BEAT bersamaan → yield differential Fed-BOJ melebar → USD/JPY naik ke 157-158. Satu data CPI miss + 1 Ueda dovish speech = masih KOREKSI dalam tren hawkish BOJ.</p>
+          <div class="pair-tag" style="margin-top:8px;">Goldilocks masih intakt → bear JPY case adalah noise, bukan struktural</div>
+        </div>
+        <div class="scenario-block neut">
+          <div class="scenario-title">➡️ Skenario Netral</div>
+          <p>Ueda balanced; Tokyo CPI in-line 1.5% → USD/JPY range 154–156. Carry trade tetap dominan; JPY tidak mendapat catalyst untuk rally signifikan.</p>
+        </div>
+        <div class="scenario-block tail">
+          <div class="scenario-title">⚠️ Tail Risk</div>
+          <p>PM Takaichi supplementary budget announcement → fiskal stimulus → JGB yield spike → tekanan kurva yang memaksa BOJ policy response darurat.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUD -->
+  <div class="currency-card" id="aud">
+    <div class="currency-card-header" onclick="toggleCard(this)">
+      <div class="currency-flag-title">
+        <span class="currency-flag">🇦🇺</span>
+        <div>
+          <div class="currency-name">Australian Dollar</div>
+          <div class="currency-pair">AUD/USD</div>
+        </div>
+      </div>
+      <div class="currency-bias-badge">
+        <span class="regime-goldilocks">GOLDILOCKS*</span>
+        <span class="badge-miss">BEARISH / WAIT</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+    </div>
+    <div class="currency-card-body">
+      <div class="snap-grid">
+        <div class="snap-item"><div class="snap-label">Macro Regime</div><div class="snap-val"><span class="regime-goldilocks">GOLDILOCKS (under threat)</span></div></div>
+        <div class="snap-item"><div class="snap-label">CB Posture</div><div class="snap-val neutral-c">Hawkish (3 hike) tapi dipertanyakan</div></div>
+        <div class="snap-item"><div class="snap-label">Track Record</div><div class="snap-val bear">🔶 2× BERUNTUN — TANDA TANYA</div></div>
+        <div class="snap-item"><div class="snap-label">Puzzle Status</div><div class="snap-val neutral-c">65% · CPI penentu regime</div></div>
+        <div class="snap-item"><div class="snap-label">Entry Status</div><div class="snap-val neutral-c">WAIT AND SEE — TUNGGU CPI RABU</div></div>
+        <div class="snap-item"><div class="snap-label">Event Kunci</div><div class="snap-val gold-c">AU CPI APR Rabu 28 Mei</div></div>
+      </div>
+      <div class="info-box warn">
+        <strong>Employment Shock:</strong> Employment APR -18.6K (vs +17.5K konsensus) — deviasi 36.1K. Unemployment 4.5% (vs 4.3%). PMI Composite 47.8 (kontraksi). Tiga data searah bearish = 2× BERUNTUN TANDA TANYA. CPI Rabu adalah verdict — apakah AUD tetap Goldilocks atau bergeser ke Stagflation.
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario-block bull">
+          <div class="scenario-title">🐂 Skenario Bull AUD</div>
+          <p>CPI MoM APR &gt; 0.8% + Trimmed Mean YoY &gt; 3.4% → RBA harus hike lagi → narrative "RBA pause" dibantah → AUD rally signifikan dari oversold. Skenario yang paling BELUM ter-price-in → dampak terbesar.</p>
+          <div class="pair-tag" style="margin-top:8px;">Best pair LONG AUD: AUD/USD · AUD/JPY</div>
+        </div>
+        <div class="scenario-block bear">
+          <div class="scenario-title">🐻 Skenario Bear AUD</div>
+          <p>CPI MoM APR &lt; 0.6% + Trimmed Mean YoY &lt; 3.3% → RBA akan pause → AUD melemah lanjut. 3× data berturut-turut searah dovish → SINYAL PIVOT POTENSIAL untuk RBA. AUD bergeser dari Goldilocks ke Stagflation.</p>
+          <div class="pair-tag" style="margin-top:8px;">Best pair SHORT AUD: AUD/USD · AUD/NZD (NZD dalam kondisi lebih baik)</div>
+        </div>
+        <div class="scenario-block neut">
+          <div class="scenario-title">➡️ Skenario Netral</div>
+          <p>CPI in-line 4.6% YoY, Trimmed Mean flat 3.3% → tidak ada repricing signifikan. AUD konsolidasi — menunggu data dan meeting RBA berikutnya.</p>
+        </div>
+        <div class="scenario-block tail">
+          <div class="scenario-title">⚠️ Tail Risk</div>
+          <p>China stimulus besar-besaran mengangkat demand komoditas → AUD rally dari sisi ekspor terlepas dari data domestik.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NZD -->
+  <div class="currency-card" id="nzd">
+    <div class="currency-card-header" onclick="toggleCard(this)">
+      <div class="currency-flag-title">
+        <span class="currency-flag">🇳🇿</span>
+        <div>
+          <div class="currency-name">New Zealand Dollar</div>
+          <div class="currency-pair">NZD/USD</div>
+        </div>
+      </div>
+      <div class="currency-bias-badge">
+        <span class="regime-reflation">REFLATION</span>
+        <span class="badge-hawkish">HAWKISH LEAN</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+    </div>
+    <div class="currency-card-body">
+      <div class="snap-grid">
+        <div class="snap-item"><div class="snap-label">Macro Regime</div><div class="snap-val"><span class="regime-reflation">REFLATION</span></div></div>
+        <div class="snap-item"><div class="snap-label">CB Posture</div><div class="snap-val"><span class="badge-hold">Neutral-Hawkish Lean</span></div></div>
+        <div class="snap-item"><div class="snap-label">Track Record</div><div class="snap-val bull">✅ KONSISTEN</div></div>
+        <div class="snap-item"><div class="snap-label">Puzzle Status</div><div class="snap-val">65% · RBNZ tone menentukan</div></div>
+        <div class="snap-item"><div class="snap-label">RBNZ Meeting</div><div class="snap-val gold-c">RABU 28 MEI 2026</div></div>
+        <div class="snap-item"><div class="snap-label">Prob Hold</div><div class="snap-val">~100%</div></div>
+      </div>
+      <div class="info-box bull-box">
+        <strong>Data Solid Minggu Lalu:</strong> Trade Balance BEAT (NZ$1.92B vs NZ$0.98B) · Retail Sales Q1 BEAT (0.9% vs 0.5%) · PPI Output BEAT · PSI BEAT. Semua data mendukung RBNZ hold dan memberikan alasan untuk hawkish lean dalam forward guidance.
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario-block bull">
+          <div class="scenario-title">🐂 Skenario Bull NZD</div>
+          <p>RBNZ hawkish forward guidance → NZD/USD naik, AUD/NZD turun. Data baseline minggu lalu memberikan RBNZ alasan untuk sedikit lebih hawkish dari ekspektasi — inilah yang belum ter-price-in.</p>
+          <div class="pair-tag" style="margin-top:8px;">Best pair: NZD/USD LONG · AUD/NZD SHORT</div>
+        </div>
+        <div class="scenario-block bear">
+          <div class="scenario-title">🐻 Skenario Bear NZD</div>
+          <p>RBNZ dovish — menekankan China risk dan geopolitik → NZD melemah meski rate tidak berubah. Akan menjadi surprise negatif mengingat data baseline yang kuat.</p>
+          <div class="pair-tag" style="margin-top:8px;">Best pair: NZD/JPY SHORT</div>
+        </div>
+        <div class="scenario-block neut">
+          <div class="scenario-title">➡️ Skenario Netral</div>
+          <p>Hold + balanced statement → NZD range-bound, fokus beralih ke AUD dan USD. Pasar akan cepat move on ke data AU CPI dan PCE AS.</p>
+        </div>
+        <div class="scenario-block tail">
+          <div class="scenario-title">⚠️ Tail Risk</div>
+          <p>GDT Dairy Price lanjut turun → ekspor key commodity NZ melemah → tekanan fundamental jangka menengah NZD.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAD -->
+  <div class="currency-card" id="cad">
+    <div class="currency-card-header" onclick="toggleCard(this)">
+      <div class="currency-flag-title">
+        <span class="currency-flag">🇨🇦</span>
+        <div>
+          <div class="currency-name">Canadian Dollar</div>
+          <div class="currency-pair">USD/CAD</div>
+        </div>
+      </div>
+      <div class="currency-bias-badge">
+        <span class="regime-reflation">REFLATION</span>
+        <span class="badge-neutral">NETRAL</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+    </div>
+    <div class="currency-card-body">
+      <div class="snap-grid">
+        <div class="snap-item"><div class="snap-label">Macro Regime</div><div class="snap-val"><span class="regime-reflation">REFLATION</span></div></div>
+        <div class="snap-item"><div class="snap-label">CB Posture</div><div class="snap-val"><span class="badge-hold">Neutral-Hold</span></div></div>
+        <div class="snap-item"><div class="snap-label">Track Record</div><div class="snap-val bull">✅ KONSISTEN</div></div>
+        <div class="snap-item"><div class="snap-label">Event Kunci</div><div class="snap-val gold-c">GDP QoQ Q1 Jumat 30 Mei</div></div>
+        <div class="snap-item"><div class="snap-label">Konsensus GDP</div><td class="snap-val bear">-0.2% QoQ / -0.6% Ann.</td></div>
+        <div class="snap-item"><div class="snap-label">Puzzle Status</div><div class="snap-val">60% · SIAGA tunggu GDP</div></div>
+      </div>
+      <div class="info-box warn">
+        <strong>Mixed Data:</strong> Core CPI MISS (2.1% vs 2.6%) · Headline CPI MISS (2.8% vs 3.1%) · CFIB Business Barometer MISS besar (46.3 vs 57.4). Tapi Retail Sales Mar BEAT (0.9% vs 0.6%) dan PPI BEAT (11.4% vs 10.0%). CAD bergantung pada minyak — Brent $100/bbl = energy tailwind.
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario-block bull">
+          <div class="scenario-title">🐂 Skenario Bull CAD</div>
+          <p>GDP Q1 BEAT &gt; -0.1% atau positif → BoC tidak perlu dovish pivot. Energy prices tetap tinggi menopang CAD. BoC hold confirmed.</p>
+          <div class="pair-tag" style="margin-top:8px;">Best pair: CAD/JPY LONG</div>
+        </div>
+        <div class="scenario-block bear">
+          <div class="scenario-title">🐻 Skenario Bear CAD</div>
+          <p>GDP Q1 MISS jauh &lt; -0.3%; CFIB memperburuk → narrative resesi Kanada menguat. BoC bisa bergeser ke dovish bias. Regime shift dari Reflation ke Deflation.</p>
+          <div class="pair-tag" style="margin-top:8px;">Best pair: USD/CAD LONG</div>
+        </div>
+        <div class="scenario-block neut">
+          <div class="scenario-title">➡️ Skenario Netral</div>
+          <p>GDP in-line -0.2% → pasar sudah price-in kontraksi ringan; CAD flat vs USD. USD/CAD tetap dalam range.</p>
+        </div>
+        <div class="scenario-block tail">
+          <div class="scenario-title">⚠️ Tail Risk</div>
+          <p>Iran deal → minyak turun tajam → CAD kehilangan energy premium. Volatilitas besar dua arah dari kombinasi GDP dan oil price shift.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHF -->
+  <div class="currency-card" id="chf">
+    <div class="currency-card-header" onclick="toggleCard(this)">
+      <div class="currency-flag-title">
+        <span class="currency-flag">🇨🇭</span>
+        <div>
+          <div class="currency-name">Swiss Franc</div>
+          <div class="currency-pair">USD/CHF · EUR/CHF</div>
+        </div>
+      </div>
+      <div class="currency-bias-badge">
+        <span class="regime-stagflation">STAGFLATION</span>
+        <span class="badge-hold">SAFE HAVEN</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+    </div>
+    <div class="currency-card-body">
+      <div class="snap-grid">
+        <div class="snap-item"><div class="snap-label">Macro Regime</div><div class="snap-val"><span class="regime-stagflation">STAGFLATION (ringan)</span></div></div>
+        <div class="snap-item"><div class="snap-label">SNB Rate</div><div class="snap-val">0.0%</div></div>
+        <div class="snap-item"><div class="snap-label">GDP Q1</div><div class="snap-val bull">BEAT 0.5% vs 0.3%</div></div>
+        <div class="snap-item"><div class="snap-label">Core CPI</div><div class="snap-val">0.3% (terkendali)</div></div>
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario-block bull">
+          <div class="scenario-title">🐂 Skenario Bull CHF</div>
+          <p>Iran talks breakdown total → full risk-off → CHF sebagai safe haven klasik. Best pair: SHORT EUR/CHF (stagflasi EUR vs safe haven CHF).</p>
+        </div>
+        <div class="scenario-block bear">
+          <div class="scenario-title">🐻 Skenario Bear CHF</div>
+          <p>Iran deal tercapai → risk-on → safe haven demand berkurang + SNB intervensi memperkuat pelemahan CHF. Best pair: LONG EUR/CHF.</p>
+        </div>
+        <div class="scenario-block neut">
+          <div class="scenario-title">➡️ Skenario Netral</div>
+          <p>Iran talks tetap ambiguous; CHF range-bound vs EUR di 0.93–0.94. SNB intervensi mencegah apresiasi berlebihan.</p>
+        </div>
+        <div class="scenario-block tail">
+          <div class="scenario-title">⚠️ Tail Risk</div>
+          <p>SNB mengubah stance intervensi → CHF bisa menguat lebih signifikan dari yang diantisipasi jika geopolitik memburuk tajam.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CNY -->
+  <div class="currency-card" id="cny">
+    <div class="currency-card-header" onclick="toggleCard(this)">
+      <div class="currency-flag-title">
+        <span class="currency-flag">🇨🇳</span>
+        <div>
+          <div class="currency-name">Chinese Yuan</div>
+          <div class="currency-pair">USD/CNH</div>
+        </div>
+      </div>
+      <div class="currency-bias-badge">
+        <span class="regime-stagflation">STAGFLATION (DALAM)</span>
+        <span class="badge-miss">BEARISH</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+    </div>
+    <div class="currency-card-body">
+      <div class="snap-grid">
+        <div class="snap-item"><div class="snap-label">Macro Regime</div><div class="snap-val"><span class="regime-stagflation">STAGFLATION (DALAM)</span></div></div>
+        <div class="snap-item"><div class="snap-label">PBoC LPR 1Y</div><div class="snap-val">3.0%</div></div>
+        <div class="snap-item"><div class="snap-label">Retail Sales APR</div><div class="snap-val bear">0.2% (MISS BESAR vs 2.0%)</div></div>
+        <div class="snap-item"><div class="snap-label">Fixed Asset Invest</div><div class="snap-val bear">-1.6% (MISS BESAR vs 1.6%)</div></div>
+      </div>
+      <div class="info-box bear-box">
+        <strong>3 Shock Besar Serentak Minggu Lalu:</strong> Retail Sales 0.2% (vs 2.0%) · Industrial Production 4.1% (vs 5.9%) · Fixed Asset Investment -1.6% (vs 1.6%). Sinyal paling bearish untuk China. PBoC perlu stimulus lebih. Event kritis: Industrial Profits Rabu 28 Mei (konsensus 12.0% vs prev 15.5%).
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario-block bear">
+          <div class="scenario-title">🐻 Skenario Bear CNY</div>
+          <p>Industrial Profits MISS + tidak ada sinyal stimulus PBoC → CNY bearish berlanjut. Proxy: bearish AUD sebagai China proxy untuk pasar yang tidak bisa akses USD/CNH langsung.</p>
+        </div>
+        <div class="scenario-block bull">
+          <div class="scenario-title">🐂 Skenario Bull CNY</div>
+          <p>China mengumumkan stimulus besar sebelum Politburo Juli → AUD/USD LONG (China recovery = komoditas naik = AUD kuat). Tail scenario tapi impact besar.</p>
+        </div>
+        <div class="scenario-block tail">
+          <div class="scenario-title">⚠️ Tail Risk</div>
+          <p>Eskalasi tarif baru dari AS terhadap China → CNY devaluasi mendadak → seluruh EM Asia terkena dampak negatif.</p>
+        </div>
+        <div class="scenario-block neut">
+          <div class="scenario-title">➡️ Netral</div>
+          <p>Industrial Profits in-line 12% → tidak ada kejutan baru; pasar menunggu signal stimulus dari Politburo Meeting bulan depan.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IDR -->
+  <div class="currency-card" id="idr">
+    <div class="currency-card-header" onclick="toggleCard(this)">
+      <div class="currency-flag-title">
+        <span class="currency-flag">🇮🇩</span>
+        <div>
+          <div class="currency-name">Indonesian Rupiah</div>
+          <div class="currency-pair">USD/IDR · IHSG</div>
+        </div>
+      </div>
+      <div class="currency-bias-badge">
+        <span class="regime-reflation">REFLATION</span>
+        <span class="badge-hawkish">BI HAWKISH SURPRISE</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+    </div>
+    <div class="currency-card-body">
+      <div class="snap-grid">
+        <div class="snap-item"><div class="snap-label">Macro Regime</div><div class="snap-val"><span class="regime-reflation">REFLATION</span></div></div>
+        <div class="snap-item"><div class="snap-label">BI Rate</div><div class="snap-val gold-c">5.25% (+50bp surprise)</div></div>
+        <div class="snap-item"><div class="snap-label">IDR/USD</div><div class="snap-val bear">Rp17,700 (near all-time low)</div></div>
+        <div class="snap-item"><div class="snap-label">Current Account Q1</div><div class="snap-val bear">-$4.0B (vs -$0.8B konsensus)</div></div>
+        <div class="snap-item"><div class="snap-label">IHSG</div><div class="snap-val bear">6,162 · Support 6,100</div></div>
+        <div class="snap-item"><div class="snap-label">Net Foreign Sell YTD</div><div class="snap-val bear">~Rp49.3 triliun</div></div>
+      </div>
+      <div class="info-box warn">
+        <strong>Context:</strong> BI mencoba membalik outflow melalui rate differential yang lebih menarik. Hike 50bp adalah langkah agresif pro-stabilitas. Namun neraca pembayaran memburuk drastis (CA -$4.0B vs -$0.8B). Event 3B paling relevan untuk IDR: PCE AS Kamis (jika BEAT → EM selloff → IDR ke Rp18,000+). MSCI month-end rebalancing Jumat = volatilitas besar dua arah.
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario-block bull">
+          <div class="scenario-title">🐂 Skenario Bull IHSG/IDR</div>
+          <p>Risk-on global dari Iran deal + PCE AS in-line/miss → EM rally. BI carry menarik → foreign inflow kembali → IDR menguat → IHSG naik ke 6,400.</p>
+        </div>
+        <div class="scenario-block bear">
+          <div class="scenario-title">🐻 Skenario Bear IHSG/IDR</div>
+          <p>PCE BEAT → USD naik → EM selloff → IDR Rp18,000+ → IHSG ke 5,900. MSCI rebalancing teknikal menambah volatilitas akhir bulan. Dukungan psikologis 6,100 — jika jebol → 5,900.</p>
+        </div>
+        <div class="scenario-block neut">
+          <div class="scenario-title">➡️ Skenario Netral</div>
+          <p>PCE in-line; Iran talks tetap ambiguous → IHSG range 6,100–6,300. IDR stabil di sekitar Rp17,600–17,800.</p>
+        </div>
+        <div class="scenario-block tail">
+          <div class="scenario-title">⚠️ Tail Risk</div>
+          <p>Kebijakan ekspor BUMN baru (CPO, Batubara) — implementasi Juni-September 2026 belum sepenuhnya dihargai pasar. Sektoral volatilitas tinggi di saham CPO dan Batubara.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- XAUUSD -->
+  <div class="currency-card" id="xauusd">
+    <div class="currency-card-header" onclick="toggleCard(this)">
+      <div class="currency-flag-title">
+        <span class="currency-flag">🥇</span>
+        <div>
+          <div class="currency-name">Gold</div>
+          <div class="currency-pair">XAUUSD</div>
+        </div>
+      </div>
+      <div class="currency-bias-badge">
+        <span class="badge-neutral">MODERAT BULLISH</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+    </div>
+    <div class="currency-card-body">
+      <div class="snap-grid">
+        <div class="snap-item"><div class="snap-label">Price Range (22 Mei)</div><div class="snap-val gold-c">$4,509–4,556/oz</div></div>
+        <div class="snap-item"><div class="snap-label">Real Yield 10Y TIPS</div><div class="snap-val bear">2.169% (naik dari 1.896%)</div></div>
+        <div class="snap-item"><div class="snap-label">DXY</div><div class="snap-val bear">99.3 (near 6-week high)</div></div>
+        <div class="snap-item"><div class="snap-label">Geopolitical Risk</div><div class="snap-val amber-c">Iran talks ambiguous</div></div>
+        <div class="snap-item"><div class="snap-label">Global Stagflasi Count</div><div class="snap-val gold-c">4 negara (EUR, GBP, CHF, CNY)</div></div>
+        <div class="snap-item"><div class="snap-label">Overall Bias</div><div class="snap-val gold-c">MODERAT BULLISH</div></div>
+      </div>
+
+      <div class="info-box info">
+        <strong>4E Scorecard:</strong> Real Yield (BEARISH, bobot 30%) · DXY Trend (BEARISH, bobot 25%) · Geopolitical Risk (BULLISH, bobot 20%) · CB Buying Structural (BULLISH, bobot 15%) · COT Positioning (N/A, bobot 10%). Geopolitik dan stagflasi global lebih dominan dari headwind real yield saat ini.
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Driver</th><th>Kondisi</th><th>Price-In?</th><th>Sinyal ke Gold</th><th>Bobot</th><th>Event 3B</th></tr></thead>
+          <tbody>
+            <tr><td>Real Yield AS (TIPS)</td><td class="bear">2.169% (↑ dari 1.896%)</td><td>Sebagian</td><td class="bear">BEARISH</td><td>30%</td><td class="mono">Core PCE Kamis</td></tr>
+            <tr><td>DXY Trend</td><td class="bear">99.3 (near 6-week high)</td><td>Sebagian</td><td class="bear">BEARISH</td><td>25%</td><td class="mono">PCE + GDP Kamis</td></tr>
+            <tr><td>Geopolitical Risk</td><td class="amber-c">Iran talks ambiguous</td><td>Ya</td><td class="bull">BULLISH</td><td>20%</td><td class="mono">Berita Iran (ongoing)</td></tr>
+            <tr><td>CB Buying Structural</td><td>—</td><td>Ya</td><td class="bull">BULLISH</td><td>15%</td><td class="mono">—</td></tr>
+            <tr><td>COT Positioning</td><td>N/A</td><td>N/A</td><td>N/A</td><td>10%</td><td class="mono">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="scenario-grid">
+        <div class="scenario-block bull">
+          <div class="scenario-title">🐂 Skenario Bull Gold</div>
+          <p>PCE MISS signifikan + geopolitik risk-off lanjutan → real yield turun → Gold naik ke 4,600+. Stagflasi global 4 negara = structural support.</p>
+          <div class="pair-tag" style="margin-top:8px;">Target: $4,600+ · Kondisi: PCE &lt; 0.2% dan/atau Iran escalation</div>
+        </div>
+        <div class="scenario-block bear">
+          <div class="scenario-title">🐻 Skenario Bear Gold</div>
+          <p>Iran deal tercapai + PCE BEAT → minyak turun + real yield naik → Gold turun tajam ke $4,300–4,400 area. Kombinasi paling bearish untuk gold.</p>
+          <div class="pair-tag" style="margin-top:8px;">Target: $4,300–4,400 · Kondisi: Iran deal breakthrough + PCE &gt; 0.35%</div>
+        </div>
+        <div class="scenario-block neut">
+          <div class="scenario-title">➡️ Skenario Netral</div>
+          <p>PCE in-line + Iran ambiguous → Gold range $4,450–4,570. Entry kecil pada dips ke 4,450 dengan SL ketat pre-PCE; size up jika PCE in-line atau miss.</p>
+        </div>
+        <div class="scenario-block tail">
+          <div class="scenario-title">⚠️ Tail Risk</div>
+          <p>Warsh hawkish signal pertama yang agresif → agressive real yield repricing → gold bisa turun ke $4,200 area jauh lebih cepat dari ekspektasi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 04: DIVERGENCE MATRIX -->
+<div id="langkah4">
+  <div class="section-header">
+    <span class="section-num">LANGKAH 04</span>
+    <h2 class="section-title">Currency Divergence Matrix</h2>
+    <div class="section-desc">Heat map divergensi · Top plays · Pairs to avoid · Carry radar</div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Pair</th><th>CB Divergensi</th><th>Carry</th><th>Growth Div</th><th>Momentum</th><th>Regime Div</th><th>Overall Bias</th><th>Conv</th><th>Event Kritis</th></tr>
+      </thead>
+      <tbody>
+        <tr class="heat-strong-bear">
+          <td class="mono" style="color:var(--red);font-weight:700;">GBP/USD</td>
+          <td>SEDANG (BOE vs Fed)</td>
+          <td>-0.25% (GBP&gt;USD slim)</td>
+          <td class="bear">US&gt;UK (PMI gap)</td>
+          <td class="bear">GBP▼▼</td>
+          <td><strong>KUAT</strong> (Stagflation vs Reflation)</td>
+          <td><span class="badge-miss">SHORT GBP/USD</span></td>
+          <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
+          <td class="mono">Bailey Jumat</td>
+        </tr>
+        <tr class="heat-bear">
+          <td class="mono" style="color:var(--red);">EUR/USD</td>
+          <td>SEDANG (ECB vs Fed timing)</td>
+          <td>-0.15% (inverted)</td>
+          <td class="bear">US&gt;EUR</td>
+          <td class="bear">USD▲ EUR weak</td>
+          <td><strong>KUAT</strong> (Reflation vs Stagflation)</td>
+          <td><span class="badge-miss">SHORT EUR/USD</span></td>
+          <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
+          <td class="mono">PCE + Lagarde Kamis</td>
+        </tr>
+        <tr class="heat-bear">
+          <td class="mono" style="color:var(--red);">AUD/NZD</td>
+          <td>MINIMAL (RBA vs RBNZ)</td>
+          <td>+1.85% (AUD&gt;NZD)</td>
+          <td class="bear">NZ≥AU</td>
+          <td class="bear">AUD&lt;NZD recently</td>
+          <td>LEMAH (Goldilocks vs Reflation)</td>
+          <td><span class="badge-miss">SHORT AUD/NZD</span></td>
+          <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
+          <td class="mono">AU CPI vs RBNZ Rabu</td>
+        </tr>
+        <tr class="heat-bull">
+          <td class="mono" style="color:var(--green);">USD/JPY</td>
+          <td>BESAR (Fed hawk vs BOJ gradual)</td>
+          <td>+2.75–3.0%</td>
+          <td class="bull">US&gt;JP (CPI miss limit)</td>
+          <td class="bull">USD▲ short-term</td>
+          <td><strong>KUAT</strong> (Reflation vs Goldilocks)</td>
+          <td><span class="badge-beat">LONG USD/JPY</span></td>
+          <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
+          <td class="mono">PCE + Ueda Rabu</td>
+        </tr>
+        <tr class="heat-bull">
+          <td class="mono">EUR/GBP</td>
+          <td>MINIMAL (ECB vs BOE)</td>
+          <td>-1.75% (carry GBP)</td>
+          <td>EU≈UK (both weak)</td>
+          <td class="bull">EUR▲ GBP▼</td>
+          <td>LEMAH (both Stagflation)</td>
+          <td><span class="badge-beat">LONG EUR/GBP</span></td>
+          <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
+          <td class="mono">Bailey vs Lagarde speeches</td>
+        </tr>
+        <tr class="heat-neutral">
+          <td class="mono">NZD/USD</td>
+          <td>RENDAH (RBNZ vs Fed similar)</td>
+          <td>-1.25% (USD&gt;NZD)</td>
+          <td>US&gt;NZ marginal</td>
+          <td>NZD◀▶ sideways</td>
+          <td>LEMAH (Reflation vs Reflation)</td>
+          <td><span class="badge-neutral">WAIT/LONG on hawkish RBNZ</span></td>
+          <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
+          <td class="mono">RBNZ Rabu</td>
+        </tr>
+        <tr class="heat-neutral">
+          <td class="mono">USD/CAD</td>
+          <td>MINIMAL (Fed vs BoC)</td>
+          <td>-1.25% (USD hold vs BoC hold)</td>
+          <td>US≈CA uncertain</td>
+          <td>USD▲◀▶</td>
+          <td>LEMAH (Reflation vs Reflation)</td>
+          <td><span class="badge-neutral">NEUTRAL</span></td>
+          <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
+          <td class="mono">CA GDP Jumat</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection-header" style="margin-top:32px;">
+    <span class="subsection-num">4B — TOP 3 DIVERGENCE PLAYS MINGGU INI</span>
+  </div>
+
+  <div class="priority-card">
+    <div class="priority-rank">1</div>
+    <div class="priority-body">
+      <div class="priority-title">SHORT GBP/USD — Conviction ★★★★★</div>
+      <p>GBP mengalami kelemahan terbesar dan paling sistemik dari 3A — empat shock searah (CPI, PMI, Retail, Budget). USD mendapat tailwind dari FOMC hawkish repricing. CB divergensi: BOE mulai dinilai dovish pivot risk; Fed fully hawkish. Regime: Stagflation GBP vs Reflation USD = divergensi kuat (+0.5★).</p>
+      <p style="margin-top:8px;"><span class="gold-c"><strong>Event 3B penentu:</strong></span> Bailey Speech Jumat 30 Mei — jika Bailey akui growth risk, SHORT GBP/USD mendapat konfirmasi kuat. Entry pada rally ke 1.265–1.270. Blackout sebelum Bailey speech.</p>
+    </div>
+  </div>
+
+  <div class="priority-card">
+    <div class="priority-rank">2</div>
+    <div class="priority-body">
+      <div class="priority-title">SHORT EUR/USD — Conviction ★★★★</div>
+      <p>Eurozone dalam kontraksi PMI (47.5) + stagflasi. ECB terjepit antara inflasi dan growth. Fed fully hawkish vs ECB yang masih debating. Regime divergensi KUAT (Stagflation vs Reflation). Catalyst: Lagarde/ECB Meeting Accounts Kamis — jika tone tidak seagresif hawkish yang diharapkan → EUR melemah.</p>
+      <p style="margin-top:8px;"><span class="gold-c"><strong>Event 3B penentu:</strong></span> ECB Lagarde Speech + ECB Meeting Accounts (Kamis 28 Mei). Entry pada rally ke 1.090–1.095.</p>
+    </div>
+  </div>
+
+  <div class="priority-card">
+    <div class="priority-rank">3</div>
+    <div class="priority-body">
+      <div class="priority-title">SHORT AUD/NZD — Conviction ★★★</div>
+      <p>AUD mengalami employment shock (MISS BESAR); NZD mendapat dukungan dari data kuat (Trade Balance, Retail Sales BEAT). CPI Australia Rabu adalah trigger penentu. Jika CPI MISS → AUD bearish konfirmasi; NZD mendapat support dari RBNZ hawkish lean potensial.</p>
+      <p style="margin-top:8px;"><span class="gold-c"><strong>Event 3B penentu:</strong></span> AU CPI Rabu + RBNZ Statement Rabu (kombinasi). Entry pada rally area 1.08+. Blackout kedua pair sebelum data Rabu.</p>
+    </div>
+  </div>
+
+  <div class="subsection-header" style="margin-top:24px;">
+    <span class="subsection-num">4C — PAIRS TO AVOID</span>
+  </div>
+  <div class="info-box warn">
+    <strong>USD/CAD:</strong> Dua negara dalam regime Reflation; BoC dan Fed keduanya hold; oil prices memberikan bias berlawanan secara bersamaan. CA GDP Jumat bisa menciptakan volatilitas besar dua arah. Conviction arah rendah.<br><br>
+    <strong>EUR/JPY:</strong> EUR Stagflation vs JPY Goldilocks = dua arah. ECB hawkish tapi growth lemah vs BOJ gradual hawkish tapi CPI miss. Ueda + Lagarde dalam satu minggu = volatilitas tinggi dua arah. HINDARI.
+  </div>
+
+  <div class="subsection-header" style="margin-top:24px;">
+    <span class="subsection-num">4D — CARRY TRADE RADAR</span>
+  </div>
+  <div class="carry-row"><span class="carry-pair">USD/JPY</span><span class="carry-yield">+3.0%</span><span class="carry-status">VIX 16.7 kondusif · <span class="bull">★★★★</span> · USD Reflation mendukung</span></div>
+  <div class="carry-row"><span class="carry-pair">AUD/JPY</span><span class="carry-yield">+3.6%</span><span class="carry-status">Kondusif · <span class="bear">★★</span> · AUD di bawah tekanan employment</span></div>
+  <div class="carry-row"><span class="carry-pair">CAD/JPY</span><span class="carry-yield">+1.5%</span><span class="carry-status">Kondusif · <span class="bull">★★★</span> · CAD Reflation mendukung</span></div>
+  <div class="carry-row"><span class="carry-pair">NZD/JPY</span><span class="carry-yield">+1.5%</span><span class="carry-status">Kondusif · <span class="bull">★★★</span> · NZD Reflation mendukung</span></div>
+  <div class="carry-row"><span class="carry-pair">GBP/JPY</span><span class="carry-yield">+3.0%</span><span class="carry-status">Kondusif · <span class="bear">★★</span> · GBP Stagflation berisiko</span></div>
+  <div class="info-box warn" style="margin-top:12px;"><strong>Catatan Carry:</strong> VIX 16.70 mendukung carry secara umum, tapi risiko spike tiba-tiba jika Iran talks breakdown bisa memicu spike VIX ke 25+ yang akan memicu unwind carry secara masif.</div>
+</div>
+
+<!-- SECTION 05: RINGKASAN EKSEKUTIF -->
+<div id="langkah5">
+  <div class="section-header">
+    <span class="section-num">LANGKAH 05</span>
+    <h2 class="section-title">Ringkasan Eksekutif</h2>
+    <div class="section-desc">Macro themes · Trade priority matrix · Risk management · Week game plan</div>
+  </div>
+
+  <!-- 5A THEMES -->
+  <div id="s5a">
+    <div class="subsection-header">
+      <span class="subsection-num">5A — MACRO THEMES DOMINAN</span>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-number">TEMA 01</div>
+      <div class="theme-title">"Reflasi Dipaksa Konflik — Fed Hawkish Repricing Belum Selesai"</div>
+      <div class="theme-row">
+        <span class="theme-row-label">Latar Belakang</span>
+        <div class="theme-row-val">FOMC Minutes April mengkonfirmasi easing bias dihapus. Waller secara eksplisit hawkish. Warsh terpilih. Bloomberg swaps fully price 1 hike year-end. FOMC 8-4 vote = perpecahan terbesar sejak 1992. Price-in: SEBAGIAN — 1 hike sudah priced, 2 hike belum sama sekali.</div>
+      </div>
+      <div class="theme-row">
+        <span class="theme-row-label">Implikasi FX</span>
+        <div class="theme-row-val"><span class="bull">USD BULLISH</span> vs EUR, GBP, JPY</div>
+      </div>
+      <div class="theme-row">
+        <span class="theme-row-label">Implikasi Gold</span>
+        <div class="theme-row-val"><span class="bear">HEADWIND</span> — tapi geopolitik menopang</div>
+      </div>
+      <div class="theme-row">
+        <span class="theme-row-label">Implikasi IHSG</span>
+        <div class="theme-row-val"><span class="bear">BEARISH</span> — USD kuat = EM outflow</div>
+      </div>
+      <div class="theme-row">
+        <span class="theme-row-label">Aset Sensitif</span>
+        <div class="theme-row-val mono">USD/JPY · EUR/USD · XAUUSD</div>
+      </div>
+      <div class="theme-row">
+        <span class="theme-row-label">Event Validasi</span>
+        <div class="theme-row-val gold-c"><strong>Core PCE BEAT (Kamis 28 Mei)</strong> → repricing hawkish lanjutan</div>
+      </div>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-number">TEMA 02</div>
+      <div class="theme-title">"Stagflasi Eropa & UK — Trade-Off CB yang Semakin Kompleks"</div>
+      <div class="theme-row">
+        <span class="theme-row-label">Latar Belakang</span>
+        <div class="theme-row-val">Eurozone PMI 47.5 (kontraksi); UK PMI 48.5 (kontraksi); UK Retail Sales -1.3%, Budget Deficit record £24.3B. Kedua wilayah dalam stagflasi — inflasi dari energi tapi pertumbuhan negatif. Price-in: SEBAGIAN.</div>
+      </div>
+      <div class="theme-row">
+        <span class="theme-row-label">Implikasi FX</span>
+        <div class="theme-row-val"><span class="bear">EUR dan GBP bearish</span> vs USD. EUR/GBP range tergantung siapa CB lebih dovish.</div>
+      </div>
+      <div class="theme-row">
+        <span class="theme-row-label">Implikasi Gold</span>
+        <div class="theme-row-val"><span class="bull">BULLISH</span> — stagflasi = demand gold meningkat</div>
+      </div>
+      <div class="theme-row">
+        <span class="theme-row-label">Aset Sensitif</span>
+        <div class="theme-row-val mono">GBP/USD · EUR/USD · Gilts</div>
+      </div>
+      <div class="theme-row">
+        <span class="theme-row-label">Surprise Potential</span>
+        <div class="theme-row-val">Bailey mengakui pivot awal → GBP bearish confirmation. Lagarde dovish → EUR melemah.</div>
+      </div>
+    </div>
+
+    <div class="theme-card">
+      <div class="theme-number">TEMA 03</div>
+      <div class="theme-title">"Asia-Pacific Divergence — Goldilocks JPY & NZD vs Shock AUD"</div>
+      <div class="theme-row">
+        <span class="theme-row-label">Latar Belakang</span>
+        <div class="theme-row-val">Japan Goldilocks terkonfirmasi (GDP BEAT, Ekspor BEAT) tapi CPI miss menciptakan ambiguitas BOJ. Australia terkena employment shock besar (2× beruntun TANDA TANYA). NZ solid. China stagflasi dalam. Price-in: AUD shock SEBAGIAN; NZD kekuatan BELUM.</div>
+      </div>
+      <div class="theme-row">
+        <span class="theme-row-label">Implikasi FX</span>
+        <div class="theme-row-val"><span class="bear">SHORT AUD/NZD</span> · SHORT AUD/USD pada CPI miss · <span class="bull">LONG NZD/USD</span> post-RBNZ</div>
+      </div>
+      <div class="theme-row">
+        <span class="theme-row-label">Aset Sensitif</span>
+        <div class="theme-row-val mono">AUD/USD · AUD/NZD · NZD/USD</div>
+      </div>
+      <div class="theme-row">
+        <span class="theme-row-label">REGIME SHIFT RISK</span>
+        <div class="theme-row-val bear"><strong>AU CPI MISS yang signifikan → AUD transisi Goldilocks → Stagflation — regime shift terbesar yang bisa terjadi minggu ini di Asia-Pacific.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5B TRADE PRIORITY -->
+  <div id="s5b">
+    <div class="subsection-header">
+      <span class="subsection-num">5B — TRADE PRIORITY MATRIX</span>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Rank</th><th>Instrumen</th><th>Bias</th><th>Skenario</th><th>Event Kunci</th><th>Conv</th><th>Entry Area</th><th>TP</th><th>SL</th><th>Regime</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono" style="color:var(--gold);font-size:18px;font-family:'DM Serif Display',serif;">1</td>
+            <td class="mono" style="color:var(--white);font-weight:700;">GBP/USD</td>
+            <td><span class="badge-miss">SHORT</span></td>
+            <td>Bear GBP + Bull USD</td>
+            <td class="mono">Bailey Jumat + PCE Kamis</td>
+            <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
+            <td>Rally ke 1.265–1.270</td>
+            <td>Level bawah minggu lalu</td>
+            <td>Di atas berita Bailey</td>
+            <td><span class="regime-stagflation">GBP:Stagflation</span> <span class="regime-reflation">US:Reflation</span></td>
+          </tr>
+          <tr>
+            <td class="mono" style="color:var(--gold);font-size:18px;font-family:'DM Serif Display',serif;">2</td>
+            <td class="mono" style="color:var(--white);font-weight:700;">EUR/USD</td>
+            <td><span class="badge-miss">SHORT</span></td>
+            <td>Bear EUR + Bull USD</td>
+            <td class="mono">Lagarde + ECB Accounts Kamis</td>
+            <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
+            <td>Rally ke 1.090–1.095</td>
+            <td>Level supp prior week</td>
+            <td>Di atas Lagarde</td>
+            <td><span class="regime-stagflation">EUR:Stagflation</span> <span class="regime-reflation">US:Reflation</span></td>
+          </tr>
+          <tr>
+            <td class="mono" style="color:var(--gold);font-size:18px;font-family:'DM Serif Display',serif;">3</td>
+            <td class="mono" style="color:var(--white);font-weight:700;">AUD/NZD</td>
+            <td><span class="badge-miss">SHORT</span></td>
+            <td>AUD lemah + NZD kuat</td>
+            <td class="mono">AU CPI + RBNZ Rabu</td>
+            <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
+            <td>Pada rally area 1.08+</td>
+            <td>Level supp sebelum</td>
+            <td>Di atas post-RBNZ</td>
+            <td><span class="regime-goldilocks">AUD:Goldilocks</span> <span class="regime-reflation">NZD:Reflation</span></td>
+          </tr>
+          <tr>
+            <td class="mono" style="color:var(--gold);font-size:18px;font-family:'DM Serif Display',serif;">4</td>
+            <td class="mono" style="color:var(--white);font-weight:700;">XAUUSD</td>
+            <td><span class="badge-neutral">HOLD/BUY DIP</span></td>
+            <td>Geopolitik + PCE miss</td>
+            <td class="mono">PCE Kamis</td>
+            <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
+            <td>Dips ke $4,450</td>
+            <td>$4,600+</td>
+            <td>Di bawah $4,380</td>
+            <td>Global Mix: Mod. Bullish</td>
+          </tr>
+          <tr>
+            <td class="mono" style="color:var(--gold);font-size:18px;font-family:'DM Serif Display',serif;">5</td>
+            <td class="mono" style="color:var(--white);font-weight:700;">USD/JPY</td>
+            <td><span class="badge-beat">LONG</span></td>
+            <td>Bull USD + BOJ pause</td>
+            <td class="mono">PCE Kamis + Ueda Rabu</td>
+            <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
+            <td>Pullback ke 154–155</td>
+            <td>Level resistance</td>
+            <td>Di bawah 152.50</td>
+            <td><span class="regime-reflation">US:Reflation</span> <span class="regime-goldilocks">JP:Goldilocks</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 5C RISK MANAGEMENT -->
+  <div id="s5c">
+    <div class="subsection-header">
+      <span class="subsection-num">5C — RISK MANAGEMENT GUIDELINES</span>
+    </div>
+
+    <div class="risk-grid">
+      <div class="risk-item">
+        <div class="risk-item-label">Maks Exposure Per Trade</div>
+        <div class="risk-item-val">2–3%</div>
+        <div class="risk-item-desc">Risiko per instrumen. Tidak lebih dari 2 posisi FX searah bersamaan.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-item-label">GBP/AUD SL Adjustment</div>
+        <div class="risk-item-val">+15–20%</div>
+        <div class="risk-item-desc">Perlebar stop dari normal. Volatilitas meningkat pasca triple/employment shock.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-item-label">IHSG Support</div>
+        <div class="risk-item-val">6,100</div>
+        <div class="risk-item-desc">Level psikologis krusial. Jika jebol → 5,900.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-item-label">VIX Risk Level</div>
+        <div class="risk-item-val">16.70</div>
+        <div class="risk-item-desc">Saat ini kondusif carry. Spike ke 25+ = unwind carry masif.</div>
+      </div>
+    </div>
+
+    <div class="info-box warn" style="margin-top:16px;">
+      <strong>Correlation Warning FX:</strong> EUR/USD SHORT dan GBP/USD SHORT searah → jangan penuh dua-duanya sekaligus. Jika satu stop, yang lain kemungkinan juga terkena (USD weakness sweep).<br><br>
+      <strong>Cross-Asset Correlation:</strong> Gold SHORT dan USD LONG berkorelasi — keduanya sangat sensitif pada event PCE tunggal. Jangan oversize kedua posisi bersamaan.
+    </div>
+
+    <div class="info-box bear-box" style="margin-top:12px;">
+      <strong>⚠️ EVENT BLACKOUT PERIODS — Kurangi sizing sebelum event ini:</strong><br>
+      [Rabu 28 Mei, 08:30 WIB+7] AU CPI + RBA Trimmed Mean (TIER 1 untuk AUD)<br>
+      [Rabu 28 Mei, 09:00 WIB+7] RBNZ Rate Decision (TIER 1 untuk NZD)<br>
+      [Rabu 28 Mei, WIB+7] BOJ Gov Ueda Speech (TIER 1 untuk JPY)<br>
+      [Kamis 28 Mei, 07:30 WIB+7] PCE + GDP Q1 2nd Est US (TIER 1 — SEMUA PAIRS)<br>
+      [Kamis 28 Mei, ~14:20 WIB+7] ECB Lagarde Speech (TIER 1 untuk EUR/GBP)<br>
+      [Jumat 29 Mei, 07:30 WIB+7] CA GDP Q1 (TIER 1 untuk CAD)<br>
+      [Jumat 29 Mei, ~15:20 WIB+7] BOE Gov Bailey Speech (TIER 1 untuk GBP)
+    </div>
+
+    <div class="info-box info" style="margin-top:12px;">
+      <strong>Regime Transition Alerts minggu ini:</strong><br>
+      ⚠️ AU CPI (Rabu) — jika MISS: AUD mulai transisi Goldilocks → Stagflation<br>
+      ⚠️ PCE AS (Kamis) — jika BEAT signifikan: USD Reflation semakin menguat; jika MISS: risiko USD transisi ambiguitas ke stagflation awal<br>
+      ⚠️ CA GDP Q1 (Jumat) — jika MISS besar: CAD mulai transisi Reflation → Deflation<br>
+      ⚠️ BOJ Ueda Speech (Rabu) — jika dovish: JPY Goldilocks legitimacy dipertanyakan
+    </div>
+  </div>
+
+  <!-- 5D GAME PLAN -->
+  <div id="s5d">
+    <div class="subsection-header">
+      <span class="subsection-num">5D — WEEK-BY-WEEK GAME PLAN</span>
+    </div>
+
+    <div class="week-card">
+      <div class="week-header">
+        <span class="week-badge">SENIN 25 MEI</span>
+        <span class="week-dates">US Markets Holiday</span>
+      </div>
+      <div class="tbl-wrap">
+        <table class="gp-table">
+          <thead><tr><th>Pair Watch</th><th>Gold Watch</th><th>IHSG Watch</th><th>Action Plan</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Semua pairs (tipis)</td>
+              <td>Monitor level $4,500; Iran news monitor</td>
+              <td>Monitor 6,100; Sector watch China</td>
+              <td class="neutral-c">Observasi; tidak entry baru. CN FDI data (-6.8% prev) sebagai sinyal China stagflasi lanjutan.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="week-card">
+      <div class="week-header">
+        <span class="week-badge">SELASA 26 MEI</span>
+        <span class="week-dates">CB Consumer Confidence MAY (konsensus 92.0)</span>
+      </div>
+      <div class="tbl-wrap">
+        <table class="gp-table">
+          <thead><tr><th>Event Fokus</th><th>Action Plan</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>CB Consumer Confidence — REGIME SHIFTER potensial</td>
+              <td>Jika Confidence MISS (&lt; 90) → USD bearish bias sementara; konfirmasi Michigan miss adalah tren. Jika BEAT → mendukung narrative stagflasi-reflation tapi consumer spending masih solid. Monitor Dallas Fed Manufacturing.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="week-card" style="border-color:rgba(232,150,42,0.3);">
+      <div class="week-header">
+        <span class="week-badge" style="color:var(--amber);">RABU 27 MEI ⚡ TRIPLE TIER-1</span>
+        <span class="week-dates">AU CPI · RBNZ Decision · BOJ Ueda Speech</span>
+      </div>
+      <div class="tbl-wrap">
+        <table class="gp-table">
+          <thead><tr><th>Event</th><th>Pair Watch</th><th>Action Plan</th></tr></thead>
+          <tbody>
+            <tr><td class="amber-c"><strong>AU CPI APR (08:30 WIB+7)</strong></td><td>AUD/USD · AUD/NZD</td><td>BLACKOUT AUD sebelum rilis. Post-CPI: posisi sesuai arah. CPI MISS → SINYAL PIVOT POTENSIAL → SHORT AUD. CPI BEAT → narrative bearish terbalik → LONG AUD recovery.</td></tr>
+            <tr><td class="amber-c"><strong>RBNZ Decision (09:00 WIB+7)</strong></td><td>NZD/USD · AUD/NZD</td><td>BLACKOUT NZD sebelum press conference. Fokus pada tone forward guidance. RBNZ hawkish → LONG NZD, SHORT AUD/NZD. RBNZ dovish → NZD bearish.</td></tr>
+            <tr><td class="amber-c"><strong>BOJ Ueda Speech</strong></td><td>JPY pairs</td><td>BLACKOUT JPY sebelum Ueda. Hawkish signal → SHORT USD/JPY. Dovish → LONG USD/JPY. Kombinasikan dengan Tokyo CPI Jumat.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="week-card" style="border-color:rgba(200,168,75,0.4);">
+      <div class="week-header">
+        <span class="week-badge" style="color:var(--gold);">KAMIS 28 MEI 🔴 PCE + GDP — HARI PALING KRITIS</span>
+        <span class="week-dates">Core PCE + GDP Q1 2nd Est + ECB Lagarde</span>
+      </div>
+      <div class="tbl-wrap">
+        <table class="gp-table">
+          <thead><tr><th>Event</th><th>Action Plan</th></tr></thead>
+          <tbody>
+            <tr><td class="gold-c"><strong>PCE MoM APR + GDP (07:30 WIB+7)</strong></td><td>BLACKOUT SEMUA pairs sebelum PCE. Post-PCE: posisi sesuai arah. PCE BEAT → LONG USD, SHORT Gold, sell EM. PCE MISS → SHORT USD, BUY Gold, LONG EM. PCE in-line → range-bound, tetap dalam posisi sebelumnya.</td></tr>
+            <tr><td class="neutral-c"><strong>ECB Lagarde + ECB Meeting Accounts</strong></td><td>Post-Lagarde: posisi EUR berdasarkan tone. Hawkish → EUR bounce. Dovish → SHORT EUR/USD dikonfirmasi. Monitor ECB Accounts untuk sinyal dissenter.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="week-card">
+      <div class="week-header">
+        <span class="week-badge">JUMAT 29 MEI</span>
+        <span class="week-dates">CA GDP Q1 · BOE Bailey Speech · Tokyo CPI · MSCI Rebalancing</span>
+      </div>
+      <div class="tbl-wrap">
+        <table class="gp-table">
+          <thead><tr><th>Event</th><th>Pair Watch</th><th>Action Plan</th></tr></thead>
+          <tbody>
+            <tr><td><strong>CA GDP Q1 (07:30 WIB+7)</strong></td><td>USD/CAD</td><td>BLACKOUT CAD sebelum GDP. GDP MISS → dovish BoC risk → LONG USD/CAD. GDP BEAT → CAD stabil.</td></tr>
+            <tr><td><strong>BOE Bailey Speech</strong></td><td>GBP/USD</td><td>Post-Bailey: GBP direction final. Bailey dovish → SHORT GBP/USD dikonfirmasi (trade priority #1). Bailey hawkish → short-cover risk, kurangi atau exit.</td></tr>
+            <tr><td><strong>Tokyo CPI YoY MAY (1.5% kons)</strong></td><td>JPY pairs</td><td>Tokyo CPI BEAT → SHORT USD/JPY. MISS → LONG USD/JPY. Konfirmasikan dengan Ueda speech Rabu.</td></tr>
+            <tr><td><strong>MSCI Month-End Rebalancing</strong></td><td>IHSG</td><td>Monitor IHSG volatilitas besar dua arah. Net foreign selling teknikal mungkin terjadi. Posisi saham IHSG dihindari hari ini.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PUZZLE COMPLETION TRACKER -->
+<div style="margin-top:40px;">
+  <div class="subsection-header">
+    <span class="subsection-num">6B — WEEKLY PUZZLE COMPLETION TRACKER</span>
+    <div class="subsection-title">Entry Readiness Dashboard</div>
+  </div>
+
+  <div class="puzzle-card">
+    <div class="puzzle-header"><span class="puzzle-asset">USD</span><span class="puzzle-status"><span class="regime-reflation">Reflation</span> · SIAGA — tunggu PCE</span></div>
+    <div class="puzzle-bar"><div class="puzzle-bar-fill" style="width:70%;"></div></div>
+    <div class="puzzle-pct">70% lengkap · Pending: Core PCE + GDP Kamis</div>
+  </div>
+  <div class="puzzle-card">
+    <div class="puzzle-header"><span class="puzzle-asset">GBP</span><span class="puzzle-status"><span class="regime-stagflation">Stagflation</span> · SIAGA — tunggu Bailey</span></div>
+    <div class="puzzle-bar"><div class="puzzle-bar-fill" style="width:75%;"></div></div>
+    <div class="puzzle-pct">75% lengkap · Pending: Bailey Speech Jumat (Tier 1)</div>
+  </div>
+  <div class="puzzle-card">
+    <div class="puzzle-header"><span class="puzzle-asset">EUR</span><span class="puzzle-status"><span class="regime-stagflation">Stagflation</span> · SIAGA — tunggu Lagarde</span></div>
+    <div class="puzzle-bar"><div class="puzzle-bar-fill" style="width:60%;"></div></div>
+    <div class="puzzle-pct">60% lengkap · Pending: Lagarde + ECB Accounts Kamis</div>
+  </div>
+  <div class="puzzle-card">
+    <div class="puzzle-header"><span class="puzzle-asset">AUD</span><span class="puzzle-status"><span class="regime-goldilocks">Goldilocks*</span> · WAIT — CPI penentu regime</span></div>
+    <div class="puzzle-bar"><div class="puzzle-bar-fill" style="width:65%;background:linear-gradient(90deg,var(--amber),var(--yellow));"></div></div>
+    <div class="puzzle-pct">65% lengkap · Pending: AU CPI Rabu (Tier 1) — regime shifter</div>
+  </div>
+  <div class="puzzle-card">
+    <div class="puzzle-header"><span class="puzzle-asset">NZD</span><span class="puzzle-status"><span class="regime-reflation">Reflation</span> · SIAGA — RBNZ tone</span></div>
+    <div class="puzzle-bar"><div class="puzzle-bar-fill" style="width:65%;"></div></div>
+    <div class="puzzle-pct">65% lengkap · Pending: RBNZ Statement Rabu</div>
+  </div>
+  <div class="puzzle-card">
+    <div class="puzzle-header"><span class="puzzle-asset">JPY</span><span class="puzzle-status"><span class="regime-goldilocks">Goldilocks</span> · WAIT — Ueda menentukan</span></div>
+    <div class="puzzle-bar"><div class="puzzle-bar-fill" style="width:55%;background:linear-gradient(90deg,var(--blue-dim),var(--blue));"></div></div>
+    <div class="puzzle-pct">55% lengkap · Pending: Ueda Speech Rabu + Tokyo CPI Jumat</div>
+  </div>
+  <div class="puzzle-card">
+    <div class="puzzle-header"><span class="puzzle-asset">Gold</span><span class="puzzle-status">Global Mix · ENTRY KECIL — buy dips</span></div>
+    <div class="puzzle-bar"><div class="puzzle-bar-fill" style="width:55%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));"></div></div>
+    <div class="puzzle-pct">55% lengkap · Pending: PCE Kamis (kunci) + Iran news</div>
+  </div>
+  <div class="puzzle-card">
+    <div class="puzzle-header"><span class="puzzle-asset">IHSG</span><span class="puzzle-status"><span class="regime-reflation">Reflation</span> · WAIT AND SEE</span></div>
+    <div class="puzzle-bar"><div class="puzzle-bar-fill" style="width:45%;background:linear-gradient(90deg,var(--red-dim),var(--red));"></div></div>
+    <div class="puzzle-pct">45% lengkap · Pending: PCE Kamis + MSCI Rebalancing Jumat</div>
+  </div>
+</div>
+
+<!-- DISCLAIMER -->
+<div id="disclaimer">
+  <div class="section-header">
+    <span class="section-num">DISCLAIMER</span>
+    <h2 class="section-title">Ketentuan &amp; Transparansi Sumber</h2>
+  </div>
+
+  <div class="disclaimer-box">
+    <h3>⚠️ Disclaimer Penting</h3>
+    <p>Laporan ini disusun semata-mata untuk tujuan <strong>edukasi dan diskusi analitik</strong> di komunitas trading Nova Capital. Laporan ini <strong>BUKAN</strong> merupakan rekomendasi investasi, rekomendasi beli/jual instrumen keuangan apapun, atau saran keuangan dalam bentuk apapun.</p>
+    <p>Trading valuta asing, komoditas, dan instrumen derivatif mengandung risiko kerugian yang signifikan dan tidak cocok untuk semua kalangan investor. <em>Past performance bukan jaminan hasil di masa depan.</em></p>
+    <p>Seluruh skenario, proyeksi, dan analisis bersifat probabilistik dan dapat berubah sewaktu-waktu mengikuti perkembangan pasar. Setiap keputusan trading adalah tanggung jawab penuh masing-masing individu. Data mungkin memiliki delay dan tidak selalu real-time. Analisis IHSG bersifat makro dan sektoral, bukan rekomendasi saham individual. Seluruh aktivitas investasi tunduk pada regulasi OJK dan BEI yang berlaku.</p>
+
+    <div class="sources">
+      <h4>Transparansi Sumber Data</h4>
+      <ul>
+        <li>DXY level 99.32 per penutupan 22 Mei (Yahoo Finance / Trading Economics)</li>
+        <li>VIX 16.70 per 22 Mei (Yahoo Finance)</li>
+        <li>Gold $4,509–4,556 range 22 Mei (Investing.com / Trading Economics)</li>
+        <li>CME FedWatch: Hold Juni ~97%; hike probability end-2026 via Bloomberg swaps fully priced; Polymarket September 21%, Oktober 37%</li>
+        <li>IHSG 6,162 per 21 Mei; net foreign sell YTD Rp49.3T (IDX Tracker / GotoTrade)</li>
+        <li>US 10Y Treasury: 4.54% per 22 Mei</li>
+        <li>Ketua Fed baru Warsh dilantik 22 Mei 2026 (sumber: cryptonews.net citing Bloomberg)</li>
+        <li>Probabilitas ECB: centralbank.watch (ECB rate hike 76.4%)</li>
+        <li>BOE: centralbank.watch (Prob Hike ~11.8%)</li>
+        <li><strong>Data TIDAK tersedia:</strong> COT Positioning XAUUSD — analisis gold tetap dilakukan tanpa COT. NZD RBNZ forward probability — diasumsikan berdasarkan konsensus kalender dan konteks data 3A.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);text-align:center;letter-spacing:0.05em;">
+      NOVA CAPITAL — FX MACRO RESEARCH | Disiapkan oleh Bima Galih<br>
+      Dokumen ini adalah milik komunitas Nova Capital. Dilarang mendistribusikan tanpa izin kepada pihak di luar komunitas.
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+function toggleCard(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Scroll spy
+const sections = document.querySelectorAll('[id]');
+const navItems = document.querySelectorAll('.nav-item');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === '#' + id) {
+          item.classList.add('active');
+        }
+      });
+    }
+  });
+}, { threshold: 0.15, rootMargin: '-80px 0px -60% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
