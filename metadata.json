@@ -1,0 +1,6 @@
+{
+  "name": "Nova Capital",
+  "description": "Premium Research Archive of Nova Capital - FX Macro Division",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
