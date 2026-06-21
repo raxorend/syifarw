@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500;600&family=Libre+Franklin:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "DM Serif Display", Georgia, serif;
+  --font-mono: "IBM Plex Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: "Libre Franklin", system-ui, -apple-system, sans-serif;
+  
+  --color-gold: #c8a84b;
+  --color-gold-light: #e0c570;
+  --color-gold-dark: #8a6f2e;
+  --color-novabg: #070c14;
+  --color-novabg-light: #0c1320;
+  --color-novabg-card: #111d2e;
+  --color-novabg-hover: #162338;
+  --color-novaborder: #1e3050;
+  --color-novatext: #c8d8e8;
+  --color-novatext-muted: #8aa0b8;
+  --color-novatext-dim: #506070;
+  --color-novawhite: #e8f0f8;
+}
+
+/* Custom scrollbars for high fidelity archive experience */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0c1320;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e3050;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c8a84b;
+}
+
+/* Scanline effect from original design */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
